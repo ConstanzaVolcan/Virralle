@@ -685,3 +685,27 @@ html, body {
 #pro {
   scroll-margin-top: 100px;
 }
+button:focus,
+button:hover {
+  outline: none;
+  box-shadow: none;
+  background-color: #7f26d9; /* o el mismo color que tiene sin hover raro */
+  transition: background-color 0.3s;
+}
+.contenedor-principal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  padding: 2rem;
+  max-width: 900px;
+  margin: auto;
+}
+
+.seccion-header,
+.seccion-formulario,
+.seccion-boton,
+.seccion-footer {
+  width: 100%;
+  text-align: center;
+}
