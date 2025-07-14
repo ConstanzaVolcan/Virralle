@@ -8,7 +8,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: linear-gradient(-45deg, #85beff, #4ab8e7, #a37cff, #e39bff);
+  background: linear-gradient(-45deg, #85beff, #4ab8e7, #7bff00, #e39bff);
   background-size: 400% 400%;
   animation: fondoAnimado 12s ease infinite;
 }
