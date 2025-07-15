@@ -140,8 +140,46 @@
       </div>
     </div>
   </div>
+ <script>
+  // Mostrar el modal de login
+  function abrirLogin() {
+    document.getElementById("loginModal").classList.remove("hidden");
+  }
 
- 
+  // Mostrar el modal de registro
+  function abrirRegistro() {
+    document.getElementById("registroModal").classList.remove("hidden");
+  }
+
+  // Mostrar alerta de contacto (esto es temporal, puedes cambiarlo por un modal si quieres)
+  function abrirContacto() {
+    alert("¡Gracias por tu interés! Pronto habilitaremos el formulario de contacto.");
+  }
+
+  // Mostrar alerta de PRO (esto también puedes cambiarlo si tienes modal)
+  function abrirPro() {
+    alert("¡Función PRO activada! Muy pronto estará disponible.");
+  }
+
+  // Asociar eventos a los botones por ID
+  document.getElementById("btnLogin").onclick = abrirLogin;
+  document.getElementById("btnPro").onclick = abrirPro;
+  document.getElementById("btnContacto").onclick = abrirContacto;
+
+  // Botón cancelar login
+  document.getElementById("btnCancelarLogin").onclick = function () {
+    document.getElementById("loginModal").classList.add("hidden");
+  };
+
+  // Botón abrir registro desde login
+  document.getElementById("btnAbrirRegistro").onclick = abrirRegistro;
+
+  // Botón cancelar registro
+  document.getElementById("btnCancelarRegistro").onclick = function () {
+    document.getElementById("registroModal").classList.add("hidden");
+  };
+</script>
+
 
   <script src="https://www.paypal.com/sdk/js?client-id=AbiSnDMFMjmbJz6j34Lr_pEwF1u2iw-VmCiACaCyVSO98fNDsGywlFW-B8lsOo9NNWvLCS2P4UvNx_jb&vault=true&intent=subscription" data-sdk-integration-source="button-factory"></script>
    <footer class="text-center text-purple-900 py-6">
