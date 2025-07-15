@@ -79,6 +79,10 @@
 
   <div class="mt-6">
 </div>
+<!DOCTYPE html>
+<html lang="es">
+<!-- ... CABECERA y ESTILOS IGUALES ... -->
+<!-- Voy a dejar intacto tu head y todo lo demás, solo trabajaré en el MAIN -->
 
 <body>
   <!-- HEADER y NAV ya están bien -->
@@ -286,6 +290,37 @@
   });
 </script>
 <script src="js/script.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    window.abrirLogin = function () {
+      document.getElementById("loginModal").classList.remove("hidden");
+    };
+
+    window.cerrarLogin = function () {
+      document.getElementById("loginModal").classList.add("hidden");
+    };
+
+    window.iniciarSesion = function () {
+      alert("Sesión iniciada (simulada)");
+      cerrarLogin();
+    };
+
+    window.abrirRegistro = function () {
+      cerrarLogin();
+      document.getElementById("registroModal").classList.remove("hidden");
+    };
+
+    window.cerrarRegistro = function () {
+      document.getElementById("registroModal").classList.add("hidden");
+    };
+
+    window.registrarCuenta = function () {
+      alert("Cuenta creada (simulada)");
+      cerrarRegistro();
+      abrirLogin();
+    };
+  });
+</script>
 
 </body>
 </html>
