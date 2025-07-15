@@ -145,7 +145,6 @@ document.getElementById("btnContacto").onclick = abrirContacto;
 <script>
   <script>
 document.addEventListener("DOMContentLoaded", () => {
-  // Elementos del DOM
   const contenedorPrincipal = document.getElementById("contenedorPrincipal");
   const tituloPlataforma = document.getElementById("tituloPlataforma");
   const descripcionPlataforma = document.getElementById("descripcionPlataforma");
@@ -153,7 +152,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const botonPlataforma = document.getElementById("botonPlataforma");
   const selectIdioma = document.getElementById("languageSelect");
 
-  // Botones de navegación
   const btnTikTok = document.getElementById("btnTikTok");
   const btnInstagram = document.getElementById("btnInstagram");
   const btnYouTube = document.getElementById("btnYouTube");
@@ -161,7 +159,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const btnPro = document.getElementById("btnPro");
   const btnContacto = document.getElementById("btnContacto");
 
-  // Elementos de modales
   const loginModal = document.getElementById("loginModal");
   const registroModal = document.getElementById("registroModal");
   const btnCancelarLogin = document.getElementById("btnCancelarLogin");
@@ -169,6 +166,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const btnAbrirRegistro = document.getElementById("btnAbrirRegistro");
   const btnCancelarRegistro = document.getElementById("btnCancelarRegistro");
   const btnRegistrar = document.getElementById("btnRegistrar");
+
+  const modalPro = document.getElementById("modalPro");
+  const modalContacto = document.getElementById("modalContacto");
 
   const textos = {
     es: {
@@ -209,6 +209,10 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   };
 
+  function capitalize(str) {
+    return str.charAt(0).toUpperCase() + str.slice(1);
+  }
+
   function cambiarPlataforma(plataforma) {
     contenedorPrincipal.className = "bg-white/80 backdrop-blur-lg rounded-xl p-8 shadow-lg w-full max-w-xl flex flex-col items-center gap-6";
     contenedorPrincipal.classList.add(`${plataforma}-style`);
@@ -219,10 +223,6 @@ document.addEventListener("DOMContentLoaded", () => {
     botonPlataforma.textContent = textos[idioma][`boton${capitalize(plataforma)}`];
   }
 
-  function capitalize(str) {
-    return str.charAt(0).toUpperCase() + str.slice(1);
-  }
-
   function abrirModal(modal) {
     modal.classList.remove("hidden");
   }
@@ -231,75 +231,54 @@ document.addEventListener("DOMContentLoaded", () => {
     modal.classList.add("hidden");
   }
 
-  if (btnTikTok) btnTikTok.addEventListener("click", (e) => {
-    e.preventDefault();
-    cambiarPlataforma("tiktok");
-  });
+  // Plataforma
+  if (btnTikTok) btnTikTok.addEventListener("click", (e) => { e.preventDefault(); cambiarPlataforma("tiktok"); });
+  if (btnInstagram) btnInstagram.addEventListener("click", (e) => { e.preventDefault(); cambiarPlataforma("instagram"); });
+  if (btnYouTube) btnYouTube.addEventListener("click", (e) => { e.preventDefault(); cambiarPlataforma("youtube"); });
 
-  if (btnInstagram) btnInstagram.addEventListener("click", (e) => {
-    e.preventDefault();
-    cambiarPlataforma("instagram");
-  });
+  // Login
+  if (btnLogin) btnLogin.addEventListener("click", (e) => { e.preventDefault(); abrirModal(loginModal); });
+  if (btnCancelarLogin) btnCancelarLogin.addEventListener("click", (e) => { e.preventDefault(); cerrarModal(loginModal); });
+  if (btnIniciarSesion) btnIniciarSesion.addEventListener("click", (e) => { e.preventDefault(); alert("Inicio de sesión simulado"); cerrarModal(loginModal); });
+  if (btnAbrirRegistro) btnAbrirRegistro.addEventListener("click", (e) => { e.preventDefault(); cerrarModal(loginModal); abrirModal(registroModal); });
 
-  if (btnYouTube) btnYouTube.addEventListener("click", (e) => {
-    e.preventDefault();
-    cambiarPlataforma("youtube");
-  });
+  // Registro
+  if (btnCancelarRegistro) btnCancelarRegistro.addEventListener("click", (e) => { e.preventDefault(); cerrarModal(registroModal); });
+  if (btnRegistrar) btnRegistrar.addEventListener("click", (e) => { e.preventDefault(); alert("Registro simulado - Cuenta creada"); cerrarModal(registroModal); });
 
-  if (btnLogin) btnLogin.addEventListener("click", (e) => {
-    e.preventDefault();
-    abrirModal(loginModal);
-  });
-
+  // PRO con botón PayPal
   if (btnPro) btnPro.addEventListener("click", (e) => {
     e.preventDefault();
-    alert("Funcionalidad PRO - En desarrollo");
+    abrirModal(modalPro);
+    if (!document.getElementById("paypal-button-container").hasChildNodes()) {
+      paypal.Buttons({
+        style: { shape: 'rect', color: 'purple', layout: 'vertical', label: 'subscribe' },
+        createSubscription: function (data, actions) {
+          return actions.subscription.create({ plan_id: 'TU_PLAN_ID' });
+        },
+        onApprove: function (data, actions) {
+          alert('¡Suscripción activada correctamente!');
+        }
+      }).render('#paypal-button-container');
+    }
   });
 
+  // Contacto
   if (btnContacto) btnContacto.addEventListener("click", (e) => {
     e.preventDefault();
-    alert("Formulario de contacto - En desarrollo");
+    abrirModal(modalContacto);
   });
 
-  if (btnCancelarLogin) btnCancelarLogin.addEventListener("click", (e) => {
-    e.preventDefault();
-    cerrarModal(loginModal);
-  });
-
-  if (btnIniciarSesion) btnIniciarSesion.addEventListener("click", (e) => {
-    e.preventDefault();
-    alert("Inicio de sesión simulado");
-    cerrarModal(loginModal);
-  });
-
-  if (btnAbrirRegistro) btnAbrirRegistro.addEventListener("click", (e) => {
-    e.preventDefault();
-    cerrarModal(loginModal);
-    abrirModal(registroModal);
-  });
-
-  if (btnCancelarRegistro) btnCancelarRegistro.addEventListener("click", (e) => {
-    e.preventDefault();
-    cerrarModal(registroModal);
-  });
-
-  if (btnRegistrar) btnRegistrar.addEventListener("click", (e) => {
-    e.preventDefault();
-    alert("Registro simulado - Cuenta creada");
-    cerrarModal(registroModal);
-  });
-
+  // Idioma
   if (selectIdioma) selectIdioma.addEventListener("change", (e) => {
     const idioma = e.target.value;
     document.getElementById("eslogan").innerText = textos[idioma].eslogan;
     btnLogin.innerText = textos[idioma].iniciarSesion;
     btnPro.innerText = textos[idioma].pro;
     btnContacto.innerText = textos[idioma].contactanos;
-    const plataforma = contenedorPrincipal.classList.contains("instagram-style")
-      ? "instagram"
-      : contenedorPrincipal.classList.contains("youtube-style")
-      ? "youtube"
-      : "tiktok";
+    const plataforma = contenedorPrincipal.classList.contains("instagram-style") ? "instagram"
+                      : contenedorPrincipal.classList.contains("youtube-style") ? "youtube"
+                      : "tiktok";
     cambiarPlataforma(plataforma);
     document.getElementById("alertaLimite").querySelector("p").innerText = textos[idioma].alertaLimite;
     document.getElementById("alertaLimite").querySelector(".text-sm").innerText = textos[idioma].alertaLimiteDesc;
