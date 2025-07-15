@@ -74,9 +74,15 @@
       </div>
     </div>
   </div>
-  <div id="modalPro" class="hidden">...</div>
-<div id="modalContacto" class="hidden">...</div>
-<div id="paypal-button-container"></div>
+  <!-- Modal PRO -->
+<div id="modalPro" class="fixed inset-0 bg-black/50 flex items-center justify-center z-50 hidden">
+  <div class="bg-white rounded-2xl p-6 w-full max-w-md shadow-xl text-center">
+    <h2 class="text-2xl font-bold mb-4 text-purple-800">Suscríbete a PRO</h2>
+    <p class="mb-4 text-purple-700">Desbloquea acceso ilimitado por solo $5.99 al mes.</p>
+    <div id="paypal-button-container" class="flex justify-center"></div>
+    <button onclick="document.getElementById('modalPro').classList.add('hidden')" class="mt-4 text-purple-600 font-semibold">Cancelar</button>
+  </div>
+</div>
   </header>
 
   <main class="w-full flex justify-center mt-12 px-4">
