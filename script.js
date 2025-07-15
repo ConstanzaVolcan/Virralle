@@ -31,20 +31,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // CONTACTO
   window.abrirContacto = function () {
-    document.getElementById("modalContacto").classList.remove("hidden");
+    document.getElementById("modalContacto")?.classList.remove("hidden");
   };
 
   window.cerrarContacto = function () {
-    document.getElementById("modalContacto").classList.add("hidden");
+    document.getElementById("modalContacto")?.classList.add("hidden");
   };
 
   // PRO
   window.abrirModalPro = function () {
-    document.getElementById("modalPro").classList.remove("hidden");
+    document.getElementById("modalPro")?.classList.remove("hidden");
   };
 
   window.cerrarModalPro = function () {
-    document.getElementById("modalPro").classList.add("hidden");
+    document.getElementById("modalPro")?.classList.add("hidden");
   };
 
   // PLATAFORMAS
@@ -82,5 +82,8 @@ document.addEventListener("DOMContentLoaded", () => {
   document.getElementById("btnInstagram")?.addEventListener("click", () => cambiarPlataforma("instagram"));
   document.getElementById("btnYouTube")?.addEventListener("click", () => cambiarPlataforma("youtube"));
 
-  });
-
+  // Activar eventos para botones con onclick
+  document.querySelector('a[onclick="abrirLogin()"]')?.addEventListener("click", abrirLogin);
+  document.querySelector('a[onclick="abrirModalPro()"]')?.addEventListener("click", abrirModalPro);
+  document.querySelector('a[onclick="abrirContacto()"]')?.addEventListener("click", abrirContacto);
+});
