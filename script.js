@@ -139,3 +139,6 @@ function abrirContacto() {
   // Mostrar formulario de contacto
   document.getElementById("modal-contacto").style.display = "block";
 }
+document.getElementById("btnLogin").onclick = abrirLogin;
+document.getElementById("btnPro").onclick = abrirPro;
+document.getElementById("btnContacto").onclick = abrirContacto;
