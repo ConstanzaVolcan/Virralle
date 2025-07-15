@@ -125,3 +125,17 @@ document.addEventListener("DOMContentLoaded", () => {
   // Inicializar con TikTok por defecto
   cambiarPlataforma("tiktok");
 });
+function abrirLogin() {
+  // Mostrar modal de login
+  document.getElementById("modal-login").style.display = "block";
+}
+
+function abrirPro() {
+  // Redirigir a la sección PRO o mostrar un modal
+  window.location.href = "#pro"; // O usa scroll a una sección del mismo HTML
+}
+
+function abrirContacto() {
+  // Mostrar formulario de contacto
+  document.getElementById("modal-contacto").style.display = "block";
+}
