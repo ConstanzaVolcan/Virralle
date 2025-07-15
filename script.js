@@ -81,4 +81,9 @@ document.addEventListener("DOMContentLoaded", () => {
   document.getElementById("btnTikTok")?.addEventListener("click", () => cambiarPlataforma("tiktok"));
   document.getElementById("btnInstagram")?.addEventListener("click", () => cambiarPlataforma("instagram"));
   document.getElementById("btnYouTube")?.addEventListener("click", () => cambiarPlataforma("youtube"));
-});
+  // Botones extra del menú superior
+  document.querySelector('a[onclick="abrirLogin()"]')?.addEventListener("click", abrirLogin);
+  document.querySelector('a[onclick="abrirModalPro()"]')?.addEventListener("click", abrirModalPro);
+  document.querySelector('a[onclick="abrirContacto()"]')?.addEventListener("click", abrirContacto);
+  });
+
