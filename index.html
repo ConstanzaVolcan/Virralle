@@ -290,37 +290,6 @@
   });
 </script>
 <script src="js/script.js"></script>
-<script>
-  document.addEventListener("DOMContentLoaded", () => {
-    window.abrirLogin = function () {
-      document.getElementById("loginModal").classList.remove("hidden");
-    };
-
-    window.cerrarLogin = function () {
-      document.getElementById("loginModal").classList.add("hidden");
-    };
-
-    window.iniciarSesion = function () {
-      alert("Sesión iniciada (simulada)");
-      cerrarLogin();
-    };
-
-    window.abrirRegistro = function () {
-      cerrarLogin();
-      document.getElementById("registroModal").classList.remove("hidden");
-    };
-
-    window.cerrarRegistro = function () {
-      document.getElementById("registroModal").classList.add("hidden");
-    };
-
-    window.registrarCuenta = function () {
-      alert("Cuenta creada (simulada)");
-      cerrarRegistro();
-      abrirLogin();
-    };
-  });
-</script>
 
 </body>
 </html>
