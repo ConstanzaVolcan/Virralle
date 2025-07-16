@@ -61,19 +61,6 @@
         <option value="en">ENG</option>
       </select>
 
-
-  <div id="registroModal" class="fixed inset-0 bg-black/50 flex items-center justify-center z-50 hidden">
-    <div class="bg-white rounded-2xl p-6 w-full max-w-md shadow-xl">
-      <h2 class="text-2xl font-bold mb-4 text-purple-800">Crear cuenta</h2>
-      <input type="text" placeholder="Nombre completo" class="w-full p-3 mb-3 border border-purple-300 rounded-lg" />
-      <input type="email" placeholder="Correo electrónico" class="w-full p-3 mb-3 border border-purple-300 rounded-lg" />
-      <input type="password" placeholder="Contraseña" class="w-full p-3 mb-4 border border-purple-300 rounded-lg" />
-      <div class="flex justify-end gap-2">
-        <button id="btnCancelarRegistro" class="text-purple-500 font-semibold">Cancelar</button>
-        <button id="btnRegistrar" class="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-lg">Registrar</button>
-      </div>
-    </div>
-  </div>
   <!-- Modal PRO -->
 <div id="modalPro" class="fixed inset-0 bg-black/50 flex items-center justify-center z-50 hidden">
   <div class="bg-white rounded-2xl p-6 w-full max-w-md shadow-xl text-center">
@@ -149,45 +136,6 @@
       </div>
     </div>
   </div>
- <script>
-  // Mostrar el modal de login
-  function abrirLogin() {
-    document.getElementById("loginModal").classList.remove("hidden");
-  }
-
-  // Mostrar el modal de registro
-  function abrirRegistro() {
-    document.getElementById("registroModal").classList.remove("hidden");
-  }
-
-  // Mostrar alerta de contacto (esto es temporal, puedes cambiarlo por un modal si quieres)
-  function abrirContacto() {
-    alert("¡Gracias por tu interés! Pronto habilitaremos el formulario de contacto.");
-  }
-
-  // Mostrar alerta de PRO (esto también puedes cambiarlo si tienes modal)
-  function abrirPro() {
-    alert("¡Función PRO activada! Muy pronto estará disponible.");
-  }
-
-  // Asociar eventos a los botones por ID
-  document.getElementById("btnLogin").onclick = abrirLogin;
-  document.getElementById("btnPro").onclick = abrirPro;
-  document.getElementById("btnContacto").onclick = abrirContacto;
-
-  // Botón cancelar login
-  document.getElementById("btnCancelarLogin").onclick = function () {
-    document.getElementById("loginModal").classList.add("hidden");
-  };
-
-  // Botón abrir registro desde login
-  document.getElementById("btnAbrirRegistro").onclick = abrirRegistro;
-
-  // Botón cancelar registro
-  document.getElementById("btnCancelarRegistro").onclick = function () {
-    document.getElementById("registroModal").classList.add("hidden");
-  };
-</script>
 <div id="modalContacto" class="fixed inset-0 bg-black/50 flex items-center justify-center z-50 hidden">
   <div class="bg-white rounded-2xl p-6 w-full max-w-md shadow-xl">
     <h2 class="text-xl font-bold mb-4 text-purple-800">Contáctanos</h2>
