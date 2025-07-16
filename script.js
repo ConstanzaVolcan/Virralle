@@ -1,3 +1,5 @@
+console.log("✅ script.js cargado correctamente");
+
 document.addEventListener("DOMContentLoaded", () => {
   const contenedorPrincipal = document.getElementById("contenedorPrincipal");
   const tituloPlataforma = document.getElementById("tituloPlataforma");
