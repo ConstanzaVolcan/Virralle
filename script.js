@@ -135,6 +135,11 @@ document.addEventListener("DOMContentLoaded", () => {
                 const desc = alertaLimiteElem.querySelector(".text-sm");
                 if (p) p.innerText = textos[idioma].alertaLimite;
                 if (desc) desc.innerText = textos[idioma].alertaLimiteDesc;
+                btnPro.addEventListener("click", () => abrirModal(proModal));
+const abrirModal = (modal) => {
+    if (modal) modal.classList.remove("hidden");
+};
+
             }
             // Mantener la plataforma actual seleccionada
             let plataformaActual = "tiktok";
