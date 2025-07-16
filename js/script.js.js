@@ -78,6 +78,41 @@ document.addEventListener("DOMContentLoaded", () => {
     descripcionPlataforma.textContent = textos[idioma][`desc${capitalize(plataforma)}`];
     inputPlataforma.placeholder = textos[idioma].placeholderIdea;
     botonPlataforma.textContent = textos[idioma][`boton${capitalize(plataforma)}`];
+      const select = document.getElementById("tonoPlataforma");
+  if (plataforma === "tiktok") {
+    select.innerHTML = `
+      <option value="">Selecciona una categoría</option>
+      <option value="divertido">🌟 Contenido Divertido</option>
+      <option value="retos">🔥 Retos y Tendencias</option>
+      <option value="lifehacks">🛠 Life Hacks / Tutoriales</option>
+      <option value="curiosidades">🤯 Curiosidades y Datos</option>
+      <option value="asmr">🎷 ASMR y Relajación</option>
+      <option value="emocional">❤️ Contenido Emocional</option>
+      <option value="educativo">📚 Educación y Divulgación</option>
+      <option value="historias">📖 Story Time</option>
+      <option value="espiritual">🧘 Espiritualidad y Bienestar</option>
+      <option value="ambiental">🌱 Conciencia Ambiental</option>
+      <option value="animales">🐾 Animales y Mascotas</option>
+      <option value="tematico">🎯 Contenido Temático Específico</option>
+    `;
+  } else if (plataforma === "instagram") {
+    select.innerHTML = `
+      <option value="">Selecciona una categoría</option>
+      <option value="moda">💄 Moda y Belleza</option>
+      <option value="comida">🍩 Comida Estética</option>
+      <option value="arte">🎨 Arte y Estilo</option>
+      <option value="inspiracion">✨ Inspiración y Frases</option>
+      <option value="fitness">💪 Fitness y Estilo de vida</option>
+    `;
+  } else if (plataforma === "youtube") {
+    select.innerHTML = `
+      <option value="">Selecciona una categoría</option>
+      <option value="vlog">📹 Vlogs Personales</option>
+      <option value="tutorial">🧠 Tutoriales y How-To</option>
+      <option value="gaming">🎮 Gaming</option>
+      <option value="review">📦 Unboxing y Reviews</option>
+      <option value="documental">🎬 Documentales y Opinión</option>
+    `;
   }
 
   function abrirModal(modal) {
