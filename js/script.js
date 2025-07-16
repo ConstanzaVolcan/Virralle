@@ -86,33 +86,5 @@ document.addEventListener("DOMContentLoaded", () => {
   document.querySelector('a[onclick="abrirLogin()"]')?.addEventListener("click", abrirLogin);
   document.querySelector('a[onclick="abrirModalPro()"]')?.addEventListener("click", abrirModalPro);
   document.querySelector('a[onclick="abrirContacto()"]')?.addEventListener("click", abrirContacto);
-  function abrirModalPro() {
-  const modal = document.getElementById("modalPro");
-  modal.classList.remove("hidden");
-
-  const paypalContainer = document.getElementById("paypal-button-container");
-
-  // Evita renderizar el botón más de una vez
-  if (paypalContainer.childElementCount === 0) {
-    paypal.Buttons({
-      style: {
-        shape: 'rect',
-        color: 'purple',
-        layout: 'vertical',
-        label: 'subscribe'
-      },
-      createSubscription: function (data, actions) {
-        return actions.subscription.create({
-          plan_id: "P-34X70623V9188512DNBZS2UA" // Reemplaza esto con el plan real de PayPal
-        });
-      },
-      onApprove: function (data, actions) {
-        alert("✅ ¡Suscripción PRO activada con éxito!");
-        document.getElementById("modalPro").classList.add("hidden");
-      }
-    }).render("#paypal-button-container");
-  }
-}
-
 });
 
