@@ -6,7 +6,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const botonPlataforma = document.getElementById("botonPlataforma");
   const selectIdioma = document.getElementById("languageSelect");
 
-  // Botones
   const btnTikTok = document.getElementById("btnTikTok");
   const btnInstagram = document.getElementById("btnInstagram");
   const btnYouTube = document.getElementById("btnYouTube");
@@ -14,13 +13,11 @@ document.addEventListener("DOMContentLoaded", () => {
   const btnPro = document.getElementById("btnPro");
   const btnContacto = document.getElementById("btnContacto");
 
-  // Modales
   const loginModal = document.getElementById("loginModal");
   const registroModal = document.getElementById("registroModal");
   const modalPro = document.getElementById("modalPro");
   const modalContacto = document.getElementById("modalContacto");
 
-  // Botones dentro de modales
   const btnCancelarLogin = document.getElementById("btnCancelarLogin");
   const btnIniciarSesion = document.getElementById("btnIniciarSesion");
   const btnAbrirRegistro = document.getElementById("btnAbrirRegistro");
@@ -88,29 +85,27 @@ document.addEventListener("DOMContentLoaded", () => {
     if (modal) modal.classList.add("hidden");
   }
 
-  // Cambiar plataforma
+  // Eventos de plataforma
   btnTikTok?.addEventListener("click", (e) => { e.preventDefault(); cambiarPlataforma("tiktok"); });
   btnInstagram?.addEventListener("click", (e) => { e.preventDefault(); cambiarPlataforma("instagram"); });
   btnYouTube?.addEventListener("click", (e) => { e.preventDefault(); cambiarPlataforma("youtube"); });
 
-  // Abrir modales
+  // Eventos de modales
   btnLogin?.addEventListener("click", (e) => { e.preventDefault(); abrirModal(loginModal); });
   btnPro?.addEventListener("click", (e) => {
     e.preventDefault();
-    abrirModalPro(); // ✅ CORREGIDO: renderiza botón PayPal al abrir modal PRO
+    abrirModalPro();
   });
   btnContacto?.addEventListener("click", (e) => { e.preventDefault(); abrirModal(modalContacto); });
 
-  // Cerrar login
+  // Eventos login y registro
   btnCancelarLogin?.addEventListener("click", (e) => { e.preventDefault(); cerrarModal(loginModal); });
   btnIniciarSesion?.addEventListener("click", (e) => { e.preventDefault(); cerrarModal(loginModal); });
   btnAbrirRegistro?.addEventListener("click", (e) => { e.preventDefault(); cerrarModal(loginModal); abrirModal(registroModal); });
-
-  // Registro
   btnCancelarRegistro?.addEventListener("click", (e) => { e.preventDefault(); cerrarModal(registroModal); });
   btnRegistrar?.addEventListener("click", (e) => { e.preventDefault(); cerrarModal(registroModal); });
 
-  // Idioma
+  // Cambio de idioma
   selectIdioma?.addEventListener("change", (e) => {
     const idioma = e.target.value;
     document.getElementById("eslogan").textContent = textos[idioma].eslogan;
@@ -119,8 +114,8 @@ document.addEventListener("DOMContentLoaded", () => {
     btnContacto.textContent = textos[idioma].contactanos;
 
     const plataforma = contenedorPrincipal.classList.contains("instagram-style") ? "instagram"
-                      : contenedorPrincipal.classList.contains("youtube-style") ? "youtube"
-                      : "tiktok";
+                    : contenedorPrincipal.classList.contains("youtube-style") ? "youtube"
+                    : "tiktok";
     cambiarPlataforma(plataforma);
 
     const alerta = document.getElementById("alertaLimite");
@@ -130,19 +125,19 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  cambiarPlataforma("tiktok"); // Por defecto TikTok
+  cambiarPlataforma("tiktok");
 });
 
-// Confirmamos que el script cargó
+// ✅ Confirmación de carga
 console.log("✅ script.js cargado");
 
+// ✅ Función para abrir el modal PRO con PayPal
 function abrirModalPro() {
   const modal = document.getElementById("modalPro");
   modal.classList.remove("hidden");
 
   const paypalContainer = document.getElementById("paypal-button-container");
 
-  // Evita renderizar el botón más de una vez
   if (paypalContainer.childElementCount === 0) {
     paypal.Buttons({
       style: {
@@ -153,7 +148,7 @@ function abrirModalPro() {
       },
       createSubscription: function (data, actions) {
         return actions.subscription.create({
-          plan_id: "P-34X70623V9188512DNBZS2UA" // Reemplaza con tu plan real de PayPal
+          plan_id: "P-34X70623V9188512DNBZS2UA"
         });
       },
       onApprove: function (data, actions) {

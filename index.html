@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta name="description" content="Hazte viral con Virralle, la plataforma de IA que crea contenido viral para TikTok, Instagram y YouTube. ¡Empieza gratis y mejora a PRO!" />
-<meta property="og:title" content="Virralle – Hazte viral con IA" />
-<meta property="og:description" content="Captions, ideas virales y planificación con inteligencia artificial. Tu camino a la viralidad comienza aquí." />
-<meta property="og:image" content="https://virralle.com/logo.png" />
-<meta property="og:url" content="https://virralle.com" />
-<meta name="twitter:card" content="summary_large_image" />
+  <meta name="description" content="Hazte viral con Virralle, la plataforma de IA que crea contenido viral para TikTok, Instagram y YouTube. ¡Empieza gratis y mejora a PRO!" />
+  <meta property="og:title" content="Virralle – Hazte viral con IA" />
+  <meta property="og:description" content="Captions, ideas virales y planificación con inteligencia artificial. Tu camino a la viralidad comienza aquí." />
+  <meta property="og:image" content="https://virralle.com/logo.png" />
+  <meta property="og:url" content="https://virralle.com" />
+  <meta name="twitter:card" content="summary_large_image" />
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Virralle AI</title>
@@ -15,9 +15,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;600&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    body {
-      font-family: 'Inter', sans-serif;
-    }
+    body { font-family: 'Inter', sans-serif; }
     .animate-pulse-fast {
       animation: pulse 1s cubic-bezier(0.4, 0, 0.6, 1) infinite;
     }
@@ -84,6 +82,7 @@
       </div>
     </div>
   </main>
+
   <div id="modalPro" class="fixed inset-0 bg-black/50 flex items-center justify-center z-50 hidden">
     <div class="bg-white rounded-2xl p-6 w-full max-w-md shadow-xl text-center">
       <h2 class="text-2xl font-bold mb-4 text-purple-800">Suscríbete a PRO</h2>
@@ -92,10 +91,12 @@
       <button onclick="document.getElementById('modalPro').classList.add('hidden')" class="mt-4 text-purple-600 font-semibold">Cancelar</button>
     </div>
   </div>
+
   <div id="alertaLimite" class="alerta-limite oculto">
     <p>🚫 Solo puedes generar 1 caption gratis. <strong>Actualiza a PRO</strong> para acceso ilimitado por solo $5.99/mes.</p>
     <p class="text-sm text-white/80 mt-1">Suscripción mensual — cancela en cualquier momento.</p>
   </div>
+
   <div id="loginModal" class="fixed inset-0 bg-black/50 flex items-center justify-center z-50 hidden">
     <div class="bg-white rounded-2xl p-6 w-full max-w-md shadow-xl">
       <h2 class="text-2xl font-bold mb-4 text-purple-800">Iniciar sesión</h2>
@@ -112,6 +113,7 @@
       </div>
     </div>
   </div>
+
   <div id="modalContacto" class="fixed inset-0 bg-black/50 flex items-center justify-center z-50 hidden">
     <div class="bg-white rounded-2xl p-6 w-full max-w-md shadow-xl">
       <h2 class="text-xl font-bold mb-4 text-purple-800">Contáctanos</h2>
@@ -125,13 +127,41 @@
     </div>
   </div>
   <script src="https://www.paypal.com/sdk/js?client-id=AbiSnDMFMjmbJz6j34Lr_pEwF1u2iw-VmCiACaCyVSO98fNDsGywlFW-B8lsOo9NNWvLCS2P4UvNx_jb&vault=true&intent=subscription" data-sdk-integration-source="button-factory"></script>
-  
+
   <footer class="text-center text-purple-900 py-6">
     © 2025 <strong>Virralle AI</strong> — Todos los derechos reservados
   </footer>
+
+  <script>
+    function abrirModalPro() {
+      const modal = document.getElementById("modalPro");
+      modal.classList.remove("hidden");
+
+      const paypalContainer = document.getElementById("paypal-button-container");
+
+      // Solo renderiza el botón si no ha sido renderizado antes
+      if (paypalContainer.childElementCount === 0) {
+        paypal.Buttons({
+          style: {
+            shape: 'rect',
+            color: 'purple',
+            layout: 'vertical',
+            label: 'subscribe'
+          },
+          createSubscription: function (data, actions) {
+            return actions.subscription.create({
+              plan_id: "P-34X70623V9188512DNBZS2UA" // ID de plan real de PayPal
+            });
+          },
+          onApprove: function (data, actions) {
+            alert("✅ ¡Suscripción PRO activada con éxito!");
+            document.getElementById("modalPro").classList.add("hidden");
+          }
+        }).render("#paypal-button-container");
+      }
+    }
+  </script>
+
   <script src="js/script.js.js"></script>
-
-
-
 </body>
 </html>
