@@ -1,289 +1,133 @@
-document.addEventListener("DOMContentLoaded", () => {
-  // Elementos del DOM
-  const contenedorPrincipal = document.getElementById("contenedorPrincipal");
-  const tituloPlataforma = document.getElementById("tituloPlataforma");
-  const descripcionPlataforma = document.getElementById("descripcionPlataforma");
-  const inputPlataforma = document.getElementById("inputPlataforma");
-  const botonPlataforma = document.getElementById("botonPlataforma");
-  
-  // Botones de navegación
-  const btnTikTok = document.getElementById("btnTikTok");
-  const btnInstagram = document.getElementById("btnInstagram");
-  const btnYouTube = document.getElementById("btnYouTube");
-  const btnLogin = document.getElementById("btnLogin");
-  const btnPro = document.getElementById("btnPro");
-  const btnContacto = document.getElementById("btnContacto");
-  
-  // Elementos de modales
-  const loginModal = document.getElementById("loginModal");
-  const registroModal = document.getElementById("registroModal");
-  const btnCancelarLogin = document.getElementById("btnCancelarLogin");
-  const btnIniciarSesion = document.getElementById("btnIniciarSesion");
-  const btnAbrirRegistro = document.getElementById("btnAbrirRegistro");
-  const btnCancelarRegistro = document.getElementById("btnCancelarRegistro");
-  const btnRegistrar = document.getElementById("btnRegistrar");
-
-  // Función para cambiar entre plataformas
-  function cambiarPlataforma(plataforma) {
-    // Resetear clases de estilo
-    contenedorPrincipal.className = "bg-white/80 backdrop-blur-lg rounded-xl p-8 shadow-lg w-full max-w-xl flex flex-col items-center gap-6";
-    
-    switch(plataforma) {
-      case "tiktok":
-        contenedorPrincipal.classList.add("tiktok-style");
-        tituloPlataforma.textContent = "Comencemos la creación de tu TikTok viral";
-        descripcionPlataforma.textContent = "Responde unas preguntas y recibe una idea lista para triunfar en TikTok.";
-        inputPlataforma.placeholder = "¡Cuéntanos tu idea para TikTok!";
-        botonPlataforma.textContent = "🚀 ¡Crear mi TikTok viral!";
-        break;
-      case "instagram":
-        contenedorPrincipal.classList.add("instagram-style");
-        tituloPlataforma.textContent = "Crea un post viral en Instagram";
-        descripcionPlataforma.textContent = "Haz que tu contenido destaque en Instagram con una idea viral.";
-        inputPlataforma.placeholder = "¡Cuéntanos tu idea para Instagram!";
-        botonPlataforma.textContent = "📸 ¡Crear mi post viral!";
-        break;
-      case "youtube":
-        contenedorPrincipal.classList.add("youtube-style");
-        tituloPlataforma.textContent = "Hazte viral en YouTube con esta idea";
-        descripcionPlataforma.textContent = "Planifica tu video viral con ayuda de IA.";
-        inputPlataforma.placeholder = "¡Cuéntanos tu idea para YouTube!";
-        botonPlataforma.textContent = "🎬 ¡Crear mi YouTube viral!";
-        break;
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta name="description" content="Hazte viral con Virralle, la plataforma de IA que crea contenido viral para TikTok, Instagram y YouTube. ¡Empieza gratis y mejora a PRO!" />
+<meta property="og:title" content="Virralle – Hazte viral con IA" />
+<meta property="og:description" content="Captions, ideas virales y planificación con inteligencia artificial. Tu camino a la viralidad comienza aquí." />
+<meta property="og:image" content="https://virralle.com/logo.png" />
+<meta property="og:url" content="https://virralle.com" />
+<meta name="twitter:card" content="summary_large_image" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Virralle AI</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
     }
-  }
-
-  // Funciones para manejar modales
-  function abrirModal(modal) {
-    modal.classList.remove("hidden");
-  }
-
-  function cerrarModal(modal) {
-    modal.classList.add("hidden");
-  }
-
-  // Event listeners para botones de plataforma
-  if (btnTikTok) btnTikTok.addEventListener("click", (e) => {
-    e.preventDefault();
-    cambiarPlataforma("tiktok");
-  });
-
-  if (btnInstagram) btnInstagram.addEventListener("click", (e) => {
-    e.preventDefault();
-    cambiarPlataforma("instagram");
-  });
-
-  if (btnYouTube) btnYouTube.addEventListener("click", (e) => {
-    e.preventDefault();
-    cambiarPlataforma("youtube");
-  });
-
-  // Event listeners para modales
-  if (btnLogin) btnLogin.addEventListener("click", (e) => {
-    e.preventDefault();
-    abrirModal(loginModal);
-  });
-
-  if (btnPro) btnPro.addEventListener("click", (e) => {
-    e.preventDefault();
-    alert("Funcionalidad PRO - En desarrollo");
-  });
-
-  if (btnContacto) btnContacto.addEventListener("click", (e) => {
-    e.preventDefault();
-    alert("Formulario de contacto - En desarrollo");
-  });
-
-  if (btnCancelarLogin) btnCancelarLogin.addEventListener("click", (e) => {
-    e.preventDefault();
-    cerrarModal(loginModal);
-  });
-
-  if (btnIniciarSesion) btnIniciarSesion.addEventListener("click", (e) => {
-    e.preventDefault();
-    alert("Inicio de sesión simulado");
-    cerrarModal(loginModal);
-  });
-
-  if (btnAbrirRegistro) btnAbrirRegistro.addEventListener("click", (e) => {
-    e.preventDefault();
-    cerrarModal(loginModal);
-    abrirModal(registroModal);
-  });
-
-  if (btnCancelarRegistro) btnCancelarRegistro.addEventListener("click", (e) => {
-    e.preventDefault();
-    cerrarModal(registroModal);
-  });
-
-  if (btnRegistrar) btnRegistrar.addEventListener("click", (e) => {
-    e.preventDefault();
-    alert("Registro simulado - Cuenta creada");
-    cerrarModal(registroModal);
-  });
-
-  // Inicializar con TikTok por defecto
-  cambiarPlataforma("tiktok");
-});
-function abrirLogin() {
-  // Mostrar modal de login
-  document.getElementById("modal-login").style.display = "block";
-}
-
-function abrirPro() {
-  // Redirigir a la sección PRO o mostrar un modal
-  window.location.href = "#pro"; // O usa scroll a una sección del mismo HTML
-}
-
-function abrirContacto() {
-  // Mostrar formulario de contacto
-  document.getElementById("modal-contacto").style.display = "block";
-}
-document.getElementById("btnLogin").onclick = abrirLogin;
-document.getElementById("btnPro").onclick = abrirPro;
-document.getElementById("btnContacto").onclick = abrirContacto;
-<script>
-  <script>
-document.addEventListener("DOMContentLoaded", () => {
-  const contenedorPrincipal = document.getElementById("contenedorPrincipal");
-  const tituloPlataforma = document.getElementById("tituloPlataforma");
-  const descripcionPlataforma = document.getElementById("descripcionPlataforma");
-  const inputPlataforma = document.getElementById("inputPlataforma");
-  const botonPlataforma = document.getElementById("botonPlataforma");
-  const selectIdioma = document.getElementById("languageSelect");
-
-  const btnTikTok = document.getElementById("btnTikTok");
-  const btnInstagram = document.getElementById("btnInstagram");
-  const btnYouTube = document.getElementById("btnYouTube");
-  const btnLogin = document.getElementById("btnLogin");
-  const btnPro = document.getElementById("btnPro");
-  const btnContacto = document.getElementById("btnContacto");
-
-  const loginModal = document.getElementById("loginModal");
-  const registroModal = document.getElementById("registroModal");
-  const btnCancelarLogin = document.getElementById("btnCancelarLogin");
-  const btnIniciarSesion = document.getElementById("btnIniciarSesion");
-  const btnAbrirRegistro = document.getElementById("btnAbrirRegistro");
-  const btnCancelarRegistro = document.getElementById("btnCancelarRegistro");
-  const btnRegistrar = document.getElementById("btnRegistrar");
-
-  const modalPro = document.getElementById("modalPro");
-  const modalContacto = document.getElementById("modalContacto");
-
-  const textos = {
-    es: {
-      eslogan: "Hazte viral con IA",
-      iniciarSesion: "Iniciar sesión",
-      pro: "Mejorar a PRO",
-      contactanos: "Contáctanos",
-      tituloTikTok: "Comencemos la creación de tu TikTok viral",
-      descTikTok: "Responde unas preguntas y recibe una idea lista para triunfar en TikTok.",
-      tituloInstagram: "Crea un post viral en Instagram",
-      descInstagram: "Haz que tu contenido destaque en Instagram con una idea viral.",
-      tituloYouTube: "Hazte viral en YouTube con esta idea",
-      descYouTube: "Planifica tu video viral con ayuda de IA.",
-      placeholderIdea: "¡Cuéntanos tu idea!",
-      botonTikTok: "🚀 ¡Crear mi TikTok viral!",
-      botonInstagram: "📸 ¡Crear mi post viral!",
-      botonYouTube: "🎮 ¡Crear mi YouTube viral!",
-      alertaLimite: "🚫 Solo puedes generar 1 caption gratis. Actualiza a PRO para acceso ilimitado por solo $5.99/mes.",
-      alertaLimiteDesc: "Suscripción mensual — cancela en cualquier momento."
-    },
-    en: {
-      eslogan: "Go viral with AI",
-      iniciarSesion: "Log in",
-      pro: "Upgrade to PRO",
-      contactanos: "Contact Us",
-      tituloTikTok: "Let's start creating your viral TikTok",
-      descTikTok: "Answer a few questions and get a ready-to-go idea to triumph on TikTok.",
-      tituloInstagram: "Let's start creating your viral Instagram Reel",
-      descInstagram: "Make your content shine on Instagram with a viral idea.",
-      tituloYouTube: "Go viral on YouTube with this idea",
-      descYouTube: "Plan your viral video with AI support.",
-      placeholderIdea: "Tell us your idea!",
-      botonTikTok: "🚀 Create my viral TikTok!",
-      botonInstagram: "📸 Create my viral post!",
-      botonYouTube: "🎮 Create my viral YouTube video!",
-      alertaLimite: "🚫 You can only generate 1 caption for free. Upgrade to PRO for unlimited access at just $5.99/month.",
-      alertaLimiteDesc: "Monthly subscription — cancel anytime."
+    .animate-pulse-fast {
+      animation: pulse 1s cubic-bezier(0.4, 0, 0.6, 1) infinite;
     }
-  };
-
-  function capitalize(str) {
-    return str.charAt(0).toUpperCase() + str.slice(1);
-  }
-
-  function cambiarPlataforma(plataforma) {
-    contenedorPrincipal.className = "bg-white/80 backdrop-blur-lg rounded-xl p-8 shadow-lg w-full max-w-xl flex flex-col items-center gap-6";
-    contenedorPrincipal.classList.add(`${plataforma}-style`);
-    const idioma = selectIdioma.value;
-    tituloPlataforma.textContent = textos[idioma][`titulo${capitalize(plataforma)}`];
-    descripcionPlataforma.textContent = textos[idioma][`desc${capitalize(plataforma)}`];
-    inputPlataforma.placeholder = textos[idioma].placeholderIdea;
-    botonPlataforma.textContent = textos[idioma][`boton${capitalize(plataforma)}`];
-  }
-
-  function abrirModal(modal) {
-    modal.classList.remove("hidden");
-  }
-
-  function cerrarModal(modal) {
-    modal.classList.add("hidden");
-  }
-
-  // Plataforma
-  if (btnTikTok) btnTikTok.addEventListener("click", (e) => { e.preventDefault(); cambiarPlataforma("tiktok"); });
-  if (btnInstagram) btnInstagram.addEventListener("click", (e) => { e.preventDefault(); cambiarPlataforma("instagram"); });
-  if (btnYouTube) btnYouTube.addEventListener("click", (e) => { e.preventDefault(); cambiarPlataforma("youtube"); });
-
-  // Login
-  if (btnLogin) btnLogin.addEventListener("click", (e) => { e.preventDefault(); abrirModal(loginModal); });
-  if (btnCancelarLogin) btnCancelarLogin.addEventListener("click", (e) => { e.preventDefault(); cerrarModal(loginModal); });
-  if (btnIniciarSesion) btnIniciarSesion.addEventListener("click", (e) => { e.preventDefault(); alert("Inicio de sesión simulado"); cerrarModal(loginModal); });
-  if (btnAbrirRegistro) btnAbrirRegistro.addEventListener("click", (e) => { e.preventDefault(); cerrarModal(loginModal); abrirModal(registroModal); });
-
-  // Registro
-  if (btnCancelarRegistro) btnCancelarRegistro.addEventListener("click", (e) => { e.preventDefault(); cerrarModal(registroModal); });
-  if (btnRegistrar) btnRegistrar.addEventListener("click", (e) => { e.preventDefault(); alert("Registro simulado - Cuenta creada"); cerrarModal(registroModal); });
-
-  // PRO con botón PayPal
-  if (btnPro) btnPro.addEventListener("click", (e) => {
-    e.preventDefault();
-    abrirModal(modalPro);
-    if (!document.getElementById("paypal-button-container").hasChildNodes()) {
-      paypal.Buttons({
-        style: { shape: 'rect', color: 'purple', layout: 'vertical', label: 'subscribe' },
-        createSubscription: function (data, actions) {
-          return actions.subscription.create({ plan_id: 'TU_PLAN_ID' });
-        },
-        onApprove: function (data, actions) {
-          alert('¡Suscripción activada correctamente!');
-        }
-      }).render('#paypal-button-container');
+    .tiktok-style {
+      background: linear-gradient(to bottom right, #d8b4fe, #c084fc);
     }
-  });
-
-  // Contacto
-  if (btnContacto) btnContacto.addEventListener("click", (e) => {
-    e.preventDefault();
-    abrirModal(modalContacto);
-  });
-
-  // Idioma
-  if (selectIdioma) selectIdioma.addEventListener("change", (e) => {
-    const idioma = e.target.value;
-    document.getElementById("eslogan").innerText = textos[idioma].eslogan;
-    btnLogin.innerText = textos[idioma].iniciarSesion;
-    btnPro.innerText = textos[idioma].pro;
-    btnContacto.innerText = textos[idioma].contactanos;
-    const plataforma = contenedorPrincipal.classList.contains("instagram-style") ? "instagram"
-                      : contenedorPrincipal.classList.contains("youtube-style") ? "youtube"
-                      : "tiktok";
-    cambiarPlataforma(plataforma);
-    document.getElementById("alertaLimite").querySelector("p").innerText = textos[idioma].alertaLimite;
-    document.getElementById("alertaLimite").querySelector(".text-sm").innerText = textos[idioma].alertaLimiteDesc;
-  });
-
-  cambiarPlataforma("tiktok");
-});
-</script>
+    .instagram-style {
+      background: linear-gradient(to bottom right, #fbcfe8, #f472b6);
+    }
+    .youtube-style {
+      background: linear-gradient(to bottom right, #fecaca, #f87171);
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col items-center justify-between bg-gradient-to-br from-purple-300 via-purple-400 to-purple-500">
+  <div class="fondo-animado"></div>
+  <header class="header">
+    <div class="top-bar">
+      <div class="titulo-contenedor">
+        <h1 class="text-2xl sm:text-3xl md:text-4xl font-bold text-white text-center mb-2">Virralle</h1>
+        <p class="eslogan" id="eslogan">Hazte viral con IA</p>
+      </div>
+      <nav class="navbar">
+        <ul>
+          <li><a href="#" id="btnLogin">Iniciar sesión</a></li>
+          <li><a href="#" id="btnTikTok">TikTok</a></li>
+          <li><a href="#" id="btnInstagram">Instagram</a></li>
+          <li><a href="#" id="btnYouTube">YouTube</a></li>
+          <li><a href="#" id="btnPro">Mejorar a PRO</a></li>
+          <li>
+            <a href="#" id="btnContacto" class="inline-block px-6 py-2 text-white font-bold border-2 border-white rounded-full transition duration-300 hover:bg-white hover:text-purple-600">Contáctanos</a>
+          </li>
+        </ul>
+      </nav>
+      <select id="languageSelect" class="selector-idioma">
+        <option value="es">ESP</option>
+        <option value="en">ENG</option>
+      </select>
+    </div>
+  </header>
+  <main class="w-full flex justify-center mt-12 px-4">
+    <div id="contenedorPrincipal" class="bg-white/80 backdrop-blur-lg rounded-xl p-8 shadow-lg w-full max-w-xl flex flex-col items-center gap-6 tiktok-style">
+      <h2 id="tituloPlataforma" class="text-2xl font-bold text-purple-900 text-center">Comencemos la creación de tu TikTok viral</h2>
+      <p id="descripcionPlataforma" class="text-center text-purple-700">Responde unas preguntas y recibe una idea lista para triunfar en TikTok.</p>
+      <select id="tonoTikTok" class="w-[90%] max-w-[400px] p-3 text-black rounded-xl border border-purple-300 bg-white focus:outline-none focus:ring-2 focus:ring-purple-500">
+        <option value="">Selecciona una categoría</option>
+        <option value="divertido">🌟 Contenido Divertido</option>
+        <option value="retos">🔥 Retos y Tendencias</option>
+        <option value="lifehacks">🛠 Life Hacks / Tutoriales</option>
+        <option value="curiosidades">🤯 Curiosidades y Datos</option>
+        <option value="asmr">🎷 ASMR y Relajación</option>
+        <option value="emocional">❤️ Contenido Emocional</option>
+        <option value="educativo">📚 Educación y Divulgación</option>
+        <option value="historias">📖 Story Time</option>
+        <option value="espiritual">🧘 Espiritualidad y Bienestar</option>
+        <option value="ambiental">🌱 Conciencia Ambiental</option>
+        <option value="animales">🐾 Animales y Mascotas</option>
+        <option value="tematico">🎯 Contenido Temático Específico</option>
+      </select>
+      <textarea id="inputPlataforma" placeholder="¡Cuéntanos tu idea!" class="w-full min-h-[180px] p-4 text-black rounded-xl border border-purple-300 focus:outline-none focus:ring-2 focus:ring-purple-500 resize-y"></textarea>
+      <button id="botonPlataforma" class="w-full py-4 px-6 bg-gradient-to-r from-purple-600 to-purple-800 text-white font-semibold rounded-xl shadow-md hover:brightness-110 transition-all duration-300">🚀 ¡Crear mi TikTok viral!</button>
+      <div id="cargando" class="text-center text-purple-900 mt-2 hidden animate-pulse-fast">
+        <p>✨ Generando idea viral...✨</p>
+      </div>
+    </div>
+  </main>
+  <div id="modalPro" class="fixed inset-0 bg-black/50 flex items-center justify-center z-50 hidden">
+    <div class="bg-white rounded-2xl p-6 w-full max-w-md shadow-xl text-center">
+      <h2 class="text-2xl font-bold mb-4 text-purple-800">Suscríbete a PRO</h2>
+      <p class="mb-4 text-purple-700">Desbloquea acceso ilimitado por solo $5.99 al mes.</p>
+      <div id="paypal-button-container" class="flex justify-center"></div>
+      <button onclick="document.getElementById('modalPro').classList.add('hidden')" class="mt-4 text-purple-600 font-semibold">Cancelar</button>
+    </div>
+  </div>
+  <div id="alertaLimite" class="alerta-limite oculto">
+    <p>🚫 Solo puedes generar 1 caption gratis. <strong>Actualiza a PRO</strong> para acceso ilimitado por solo $5.99/mes.</p>
+    <p class="text-sm text-white/80 mt-1">Suscripción mensual — cancela en cualquier momento.</p>
+  </div>
+  <div id="loginModal" class="fixed inset-0 bg-black/50 flex items-center justify-center z-50 hidden">
+    <div class="bg-white rounded-2xl p-6 w-full max-w-md shadow-xl">
+      <h2 class="text-2xl font-bold mb-4 text-purple-800">Iniciar sesión</h2>
+      <input type="email" placeholder="Correo electrónico" class="w-full p-3 mb-3 border border-purple-300 rounded-lg" />
+      <input type="password" placeholder="Contraseña" class="w-full p-3 mb-4 border border-purple-300 rounded-lg" />
+      <div class="flex flex-col items-center gap-3 mt-4">
+        <div class="flex justify-center gap-4 w-full">
+          <button id="btnCancelarLogin" class="text-purple-600 font-semibold hover:text-purple-800">Cancelar</button>
+          <button id="btnIniciarSesion" class="bg-purple-600 hover:bg-purple-700 text-white px-5 py-2 rounded-lg">Entrar</button>
+        </div>
+        <p class="text-sm text-purple-700">¿No tienes cuenta?
+          <a href="#" id="btnAbrirRegistro" class="font-semibold underline hover:text-purple-900">Crear cuenta</a>
+        </p>
+      </div>
+    </div>
+  </div>
+  <div id="modalContacto" class="fixed inset-0 bg-black/50 flex items-center justify-center z-50 hidden">
+    <div class="bg-white rounded-2xl p-6 w-full max-w-md shadow-xl">
+      <h2 class="text-xl font-bold mb-4 text-purple-800">Contáctanos</h2>
+      <input type="text" placeholder="Tu nombre" class="w-full p-3 mb-3 border border-purple-300 rounded-lg" />
+      <input type="email" placeholder="Tu correo" class="w-full p-3 mb-3 border border-purple-300 rounded-lg" />
+      <textarea placeholder="Escribe tu mensaje" class="w-full p-3 mb-3 border border-purple-300 rounded-lg"></textarea>
+      <div class="flex justify-end gap-2">
+        <button onclick="document.getElementById('modalContacto').classList.add('hidden')" class="text-purple-600 font-semibold">Cerrar</button>
+        <button class="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-lg">Enviar</button>
+      </div>
+    </div>
+  </div>
+  <script src="https://www.paypal.com/sdk/js?client-id=AbiSnDMFMjmbJz6j34Lr_pEwF1u2iw-VmCiACaCyVSO98fNDsGywlFW-B8lsOo9NNWvLCS2P4UvNx_jb&vault=true&intent=subscription" data-sdk-integration-source="button-factory"></script>
+  <script src="js/script.js"></script>
+  <footer class="text-center text-purple-900 py-6">
+    © 2025 <strong>Virralle AI</strong> — Todos los derechos reservados
+  </footer>
+</body>
+</html>
