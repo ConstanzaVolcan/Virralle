@@ -1,156 +1,131 @@
-/* 
-Correcciones en el HTML necesarias:
-- Asegúrate de que el elemento selector de idioma tenga id="idioma" (si en el HTML tenía otro id, cámbialo para que coincida con este script).
-- Verifica que los botones tengan los IDs esperados: "btnLogin", "btnPro", "btnContacto". Si en el HTML se usaron otros (p.ej. "btnIniciarSesion", "btnContact"), renómbralos para coincidir.
-- Verifica que los modales tengan los IDs esperados: "loginModal", "proModal", "contactoModal" y "registroModal". Por ejemplo, si el modal de contacto en el HTML tenía id="contactModal" (en inglés), cámbialo a "contactoModal" para coincidir con el script.
-- Cada modal debe incluir un elemento de cierre (botón o span "X") con IDs "loginClose", "proClose", "contactoClose", "registroClose" según corresponda, para que el script pueda cerrarlos. Si faltan en el HTML, agrégalos.
-- Asegúrate de que el contenedor principal (donde se aplican las clases *-style para TikTok/Instagram/YouTube) tenga id="contenedorPrincipal" como referencia en el script.
-*/
-
 document.addEventListener("DOMContentLoaded", () => {
-    // Textos en ambos idiomas
-    const textos = {
-        es: {
-            eslogan: "Hazte viral con IA",
-            iniciarSesion: "Iniciar sesión",
-            pro: "Mejorar a PRO",
-            contactanos: "Contáctanos",
-            alertaLimite: "Has alcanzado el límite gratuito.",
-            alertaLimiteDesc: "Mejora a PRO para eliminar las limitaciones."
-        },
-        en: {
-            eslogan: "Go viral with AI",
-            iniciarSesion: "Sign in",
-            pro: "Upgrade to PRO",
-            contactanos: "Contact us",
-            alertaLimite: "You have reached the free limit.",
-            alertaLimiteDesc: "Upgrade to PRO to remove limitations."
-        }
-    };
+  const contenedorPrincipal = document.getElementById("contenedorPrincipal");
+  const tituloPlataforma = document.getElementById("tituloPlataforma");
+  const descripcionPlataforma = document.getElementById("descripcionPlataforma");
+  const inputPlataforma = document.getElementById("inputPlataforma");
+  const botonPlataforma = document.getElementById("botonPlataforma");
+  const selectIdioma = document.getElementById("languageSelect");
 
-    // Referencias a elementos del DOM
-    const selectIdioma = document.getElementById("idioma");
-    const contenedorPrincipal = document.getElementById("contenedorPrincipal");
+  // Botones
+  const btnTikTok = document.getElementById("btnTikTok");
+  const btnInstagram = document.getElementById("btnInstagram");
+  const btnYouTube = document.getElementById("btnYouTube");
+  const btnLogin = document.getElementById("btnLogin");
+  const btnPro = document.getElementById("btnPro");
+  const btnContacto = document.getElementById("btnContacto");
 
-    const btnLogin = document.getElementById("btnLogin");
-    const btnPro = document.getElementById("btnPro");
-    const btnContacto = document.getElementById("btnContacto");
-    const btnRegistro = document.getElementById("btnRegistro");
+  // Modales
+  const loginModal = document.getElementById("loginModal");
+  const registroModal = document.getElementById("registroModal");
+  const modalPro = document.getElementById("modalPro");
+  const modalContacto = document.getElementById("modalContacto");
 
-    const loginModal = document.getElementById("loginModal");
-    const registroModal = document.getElementById("registroModal");
-    const proModal = document.getElementById("proModal");
-    const contactoModal = document.getElementById("contactoModal");
+  // Botones dentro de modales
+  const btnCancelarLogin = document.getElementById("btnCancelarLogin");
+  const btnIniciarSesion = document.getElementById("btnIniciarSesion");
+  const btnAbrirRegistro = document.getElementById("btnAbrirRegistro");
+  const btnCancelarRegistro = document.getElementById("btnCancelarRegistro");
+  const btnRegistrar = document.getElementById("btnRegistrar");
 
-    const loginClose = document.getElementById("loginClose");
-    const registroClose = document.getElementById("registroClose");
-    const proClose = document.getElementById("proClose");
-    const contactoClose = document.getElementById("contactoClose");
-
-    // Funciones para abrir y cerrar modales
-    const abrirModal = (modal) => {
-        if (modal) modal.classList.remove("hidden");
-    };
-    const cerrarModal = (modal) => {
-        if (modal) modal.classList.add("hidden");
-    };
-
-    // Función para cambiar plataforma (TikTok/Instagram/YouTube)
-    function cambiarPlataforma(plataforma) {
-        if (contenedorPrincipal) {
-            contenedorPrincipal.classList.remove("tiktok-style", "instagram-style", "youtube-style");
-        }
-        switch (plataforma) {
-            case "instagram":
-                if (contenedorPrincipal) contenedorPrincipal.classList.add("instagram-style");
-                break;
-            case "youtube":
-                if (contenedorPrincipal) contenedorPrincipal.classList.add("youtube-style");
-                break;
-            default:
-                if (contenedorPrincipal) contenedorPrincipal.classList.add("tiktok-style");
-        }
-        // (Si se requiere más lógica al cambiar plataforma, agregarla aquí)
+  const textos = {
+    es: {
+      eslogan: "Hazte viral con IA",
+      iniciarSesion: "Iniciar sesión",
+      pro: "Mejorar a PRO",
+      contactanos: "Contáctanos",
+      tituloTikTok: "Comencemos la creación de tu TikTok viral",
+      descTikTok: "Responde unas preguntas y recibe una idea lista para triunfar en TikTok.",
+      tituloInstagram: "Crea un post viral en Instagram",
+      descInstagram: "Haz que tu contenido destaque en Instagram con una idea viral.",
+      tituloYouTube: "Hazte viral en YouTube con esta idea",
+      descYouTube: "Planifica tu video viral con ayuda de IA.",
+      placeholderIdea: "¡Cuéntanos tu idea!",
+      botonTikTok: "🚀 ¡Crear mi TikTok viral!",
+      botonInstagram: "📸 ¡Crear mi post viral!",
+      botonYouTube: "🎮 ¡Crear mi YouTube viral!",
+      alertaLimite: "🚫 Solo puedes generar 1 caption gratis. Actualiza a PRO por solo $5.99/mes.",
+      alertaLimiteDesc: "Suscripción mensual — cancela en cualquier momento."
+    },
+    en: {
+      eslogan: "Go viral with AI",
+      iniciarSesion: "Log in",
+      pro: "Upgrade to PRO",
+      contactanos: "Contact Us",
+      tituloTikTok: "Let's start creating your viral TikTok",
+      descTikTok: "Answer a few questions and get a ready-to-go idea to triumph on TikTok.",
+      tituloInstagram: "Create a viral post on Instagram",
+      descInstagram: "Make your content shine on Instagram with a viral idea.",
+      tituloYouTube: "Go viral on YouTube with this idea",
+      descYouTube: "Plan your viral video with AI support.",
+      placeholderIdea: "Tell us your idea!",
+      botonTikTok: "🚀 Create my viral TikTok!",
+      botonInstagram: "📸 Create my viral post!",
+      botonYouTube: "🎮 Create my viral YouTube video!",
+      alertaLimite: "🚫 You can only generate 1 caption for free. Upgrade to PRO for unlimited access at just $5.99/month.",
+      alertaLimiteDesc: "Monthly subscription — cancel anytime."
     }
+  };
 
-    // Eventos para abrir modales al hacer clic en botones
-    if (btnLogin) {
-        btnLogin.addEventListener("click", () => abrirModal(loginModal));
-    }
-    if (btnPro) {
-        btnPro.addEventListener("click", () => {
-            if (proModal) {
-                abrirModal(proModal);
-            } else {
-                alert("¡Función PRO activada! Muy pronto estará disponible.");
-            }
-        });
-    }
-    if (btnContacto) {
-        btnContacto.addEventListener("click", () => abrirModal(contactoModal));
-    }
+  function capitalize(str) {
+    return str.charAt(0).toUpperCase() + str.slice(1);
+  }
 
-    // Evento simulado de registro (crear cuenta) para cerrar el modal de registro
-    if (btnRegistro) {
-        btnRegistro.addEventListener("click", (e) => {
-            e.preventDefault();
-            alert("Registro simulado - Cuenta creada");
-            cerrarModal(registroModal);
-        });
-    }
+  function cambiarPlataforma(plataforma) {
+    contenedorPrincipal.className = "bg-white/80 backdrop-blur-lg rounded-xl p-8 shadow-lg w-full max-w-xl flex flex-col items-center gap-6";
+    contenedorPrincipal.classList.add(`${plataforma}-style`);
+    const idioma = selectIdioma.value;
+    tituloPlataforma.textContent = textos[idioma][`titulo${capitalize(plataforma)}`];
+    descripcionPlataforma.textContent = textos[idioma][`desc${capitalize(plataforma)}`];
+    inputPlataforma.placeholder = textos[idioma].placeholderIdea;
+    botonPlataforma.textContent = textos[idioma][`boton${capitalize(plataforma)}`];
+  }
 
-    // Eventos para cerrar modales (botón de cierre y clic fuera del modal)
-    if (loginClose) {
-        loginClose.addEventListener("click", () => cerrarModal(loginModal));
-    }
-    if (registroClose) {
-        registroClose.addEventListener("click", () => cerrarModal(registroModal));
-    }
-    if (proClose) {
-        proClose.addEventListener("click", () => cerrarModal(proModal));
-    }
-    if (contactoClose) {
-        contactoClose.addEventListener("click", () => cerrarModal(contactoModal));
-    }
-    window.addEventListener("click", (e) => {
-        if (e.target === loginModal) cerrarModal(loginModal);
-        if (e.target === registroModal) cerrarModal(registroModal);
-        if (e.target === proModal) cerrarModal(proModal);
-        if (e.target === contactoModal) cerrarModal(contactoModal);
-    });
-
-    // Evento para cambio de idioma
-    if (selectIdioma) {
-        selectIdioma.addEventListener("change", (e) => {
-            const idioma = e.target.value;
-            // Actualizar textos al cambiar de idioma
-            const esloganElem = document.getElementById("eslogan");
-            if (esloganElem) esloganElem.innerText = textos[idioma].eslogan;
-            if (btnLogin) btnLogin.innerText = textos[idioma].iniciarSesion;
-            if (btnPro) btnPro.innerText = textos[idioma].pro;
-            if (btnContacto) btnContacto.innerText = textos[idioma].contactanos;
-            const alertaLimiteElem = document.getElementById("alertaLimite");
-            if (alertaLimiteElem) {
-                const p = alertaLimiteElem.querySelector("p");
-                const desc = alertaLimiteElem.querySelector(".text-sm");
-                if (p) p.innerText = textos[idioma].alertaLimite;
-                if (desc) desc.innerText = textos[idioma].alertaLimiteDesc;
-                btnPro.addEventListener("click", () => abrirModal(proModal));
-const abrirModal = (modal) => {
+  function abrirModal(modal) {
     if (modal) modal.classList.remove("hidden");
-};
+  }
 
-            }
-            // Mantener la plataforma actual seleccionada
-            let plataformaActual = "tiktok";
-            if (contenedorPrincipal) {
-                if (contenedorPrincipal.classList.contains("instagram-style")) plataformaActual = "instagram";
-                else if (contenedorPrincipal.classList.contains("youtube-style")) plataformaActual = "youtube";
-            }
-            cambiarPlataforma(plataformaActual);
-        });
+  function cerrarModal(modal) {
+    if (modal) modal.classList.add("hidden");
+  }
+
+  // Cambiar plataforma
+  btnTikTok?.addEventListener("click", (e) => { e.preventDefault(); cambiarPlataforma("tiktok"); });
+  btnInstagram?.addEventListener("click", (e) => { e.preventDefault(); cambiarPlataforma("instagram"); });
+  btnYouTube?.addEventListener("click", (e) => { e.preventDefault(); cambiarPlataforma("youtube"); });
+
+  // Abrir modales
+  btnLogin?.addEventListener("click", (e) => { e.preventDefault(); abrirModal(loginModal); });
+  btnPro?.addEventListener("click", (e) => { e.preventDefault(); abrirModal(modalPro); });
+  btnContacto?.addEventListener("click", (e) => { e.preventDefault(); abrirModal(modalContacto); });
+
+  // Cerrar login
+  btnCancelarLogin?.addEventListener("click", (e) => { e.preventDefault(); cerrarModal(loginModal); });
+  btnIniciarSesion?.addEventListener("click", (e) => { e.preventDefault(); cerrarModal(loginModal); });
+  btnAbrirRegistro?.addEventListener("click", (e) => { e.preventDefault(); cerrarModal(loginModal); abrirModal(registroModal); });
+
+  // Registro
+  btnCancelarRegistro?.addEventListener("click", (e) => { e.preventDefault(); cerrarModal(registroModal); });
+  btnRegistrar?.addEventListener("click", (e) => { e.preventDefault(); cerrarModal(registroModal); });
+
+  // Idioma
+  selectIdioma?.addEventListener("change", (e) => {
+    const idioma = e.target.value;
+    document.getElementById("eslogan").textContent = textos[idioma].eslogan;
+    btnLogin.textContent = textos[idioma].iniciarSesion;
+    btnPro.textContent = textos[idioma].pro;
+    btnContacto.textContent = textos[idioma].contactanos;
+
+    const plataforma = contenedorPrincipal.classList.contains("instagram-style") ? "instagram"
+                      : contenedorPrincipal.classList.contains("youtube-style") ? "youtube"
+                      : "tiktok";
+    cambiarPlataforma(plataforma);
+
+    const alerta = document.getElementById("alertaLimite");
+    if (alerta) {
+      alerta.querySelector("p").textContent = textos[idioma].alertaLimite;
+      alerta.querySelector(".text-sm").textContent = textos[idioma].alertaLimiteDesc;
     }
+  });
 
-    // Inicializar la página con la plataforma TikTok por defecto
-    cambiarPlataforma("tiktok");
+  cambiarPlataforma("tiktok");
 });
