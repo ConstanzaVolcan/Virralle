@@ -1,22 +1,25 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+<meta name="description" content="Hazte viral con Virralle, la plataforma de IA que crea contenido viral para TikTok, Instagram y YouTube. ¡Empieza gratis y mejora a PRO!" />
+<meta property="og:title" content="Virralle – Hazte viral con IA" />
+<meta property="og:description" content="Captions, ideas virales y planificación con inteligencia artificial. Tu camino a la viralidad comienza aquí." />
+<meta property="og:image" content="https://virralle.com/logo.png" />
+<meta property="og:url" content="https://virralle.com" />
+<meta name="twitter:card" content="summary_large_image" />
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Hazte viral con Virralle, la plataforma de IA que crea contenido viral para TikTok, Instagram y YouTube. ¡Empieza gratis y mejora a PRO!" />
-  <meta property="og:title" content="Virralle – Hazte viral con IA" />
-  <meta property="og:description" content="Captions, ideas virales y planificación con inteligencia artificial. Tu camino a la viralidad comienza aquí." />
-  <meta property="og:image" content="https://virralle.com/logo.png" />
-  <meta property="og:url" content="https://virralle.com" />
-  <meta name="twitter:card" content="summary_large_image" />
   <title>Virralle AI</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;600&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     body {
-      font-family: 'Poppins', sans-serif;
+      font-family: 'Inter', sans-serif;
+    }
+    .animate-pulse-fast {
+      animation: pulse 1s cubic-bezier(0.4, 0, 0.6, 1) infinite;
     }
     .tiktok-style {
       background: linear-gradient(to bottom right, #d8b4fe, #c084fc);
@@ -27,47 +30,39 @@
     .youtube-style {
       background: linear-gradient(to bottom right, #fecaca, #f87171);
     }
-    .selector-idioma {
-      padding: 0.4rem 0.6rem;
-      border-radius: 8px;
-      border: 1px solid #ddd;
-      background: white;
-      font-weight: bold;
-    }
-    @media (max-width: 640px) {
-      .top-bar ul {
-        flex-direction: column;
-        gap: 0.5rem;
-      }
-    }
   </style>
 </head>
-<body class="min-h-screen flex flex-col items-center bg-gradient-to-br from-purple-300 via-purple-400 to-purple-500">
-  <header class="w-full p-4 flex flex-col md:flex-row justify-between items-center bg-white/10 backdrop-blur-md">
-    <div class="flex flex-col items-center mb-4 md:mb-0">
-      <h1 class="text-3xl font-bold text-white">Virralle</h1>
-      <p class="text-white text-sm" id="eslogan">Hazte viral con IA</p>
-    </div>
-    <nav class="flex flex-wrap gap-4 items-center justify-center">
-      <button id="btnLogin" class="text-white font-semibold">Iniciar sesión</button>
-      <button id="btnTikTok" class="text-white">TikTok</button>
-      <button id="btnInstagram" class="text-white">Instagram</button>
-      <button id="btnYouTube" class="text-white">YouTube</button>
-      <button id="btnPro" class="text-white font-semibold">Mejorar a PRO</button>
-      <button id="btnContacto" class="text-white border border-white px-3 py-1 rounded-full hover:bg-white hover:text-purple-600 transition">Contáctanos</button>
+<body class="min-h-screen flex flex-col items-center justify-between bg-gradient-to-br from-purple-300 via-purple-400 to-purple-500">
+  <div class="fondo-animado"></div>
+  <header class="header">
+    <div class="top-bar">
+      <div class="titulo-contenedor">
+        <h1 class="text-2xl sm:text-3xl md:text-4xl font-bold text-white text-center mb-2">Virralle</h1>
+        <p class="eslogan" id="eslogan">Hazte viral con IA</p>
+      </div>
+      <nav class="navbar">
+        <ul>
+          <li><a href="#" id="btnLogin">Iniciar sesión</a></li>
+          <li><a href="#" id="btnTikTok">TikTok</a></li>
+          <li><a href="#" id="btnInstagram">Instagram</a></li>
+          <li><a href="#" id="btnYouTube">YouTube</a></li>
+          <li><a href="#" id="btnPro">Mejorar a PRO</a></li>
+          <li>
+            <a href="#" id="btnContacto" class="inline-block px-6 py-2 text-white font-bold border-2 border-white rounded-full transition duration-300 hover:bg-white hover:text-purple-600">Contáctanos</a>
+          </li>
+        </ul>
+      </nav>
       <select id="languageSelect" class="selector-idioma">
         <option value="es">ESP</option>
         <option value="en">ENG</option>
       </select>
-    </nav>
+    </div>
   </header>
-
-  <main class="w-full flex justify-center px-4 py-10">
-    <div id="contenedorPrincipal" class="bg-white/80 backdrop-blur-lg rounded-xl p-6 shadow-lg w-full max-w-xl flex flex-col items-center gap-5 tiktok-style">
-      <h2 id="tituloPlataforma" class="text-xl font-bold text-purple-900 text-center">Comencemos la creación de tu TikTok viral</h2>
+  <main class="w-full flex justify-center mt-12 px-4">
+    <div id="contenedorPrincipal" class="bg-white/80 backdrop-blur-lg rounded-xl p-8 shadow-lg w-full max-w-xl flex flex-col items-center gap-6 tiktok-style">
+      <h2 id="tituloPlataforma" class="text-2xl font-bold text-purple-900 text-center">Comencemos la creación de tu TikTok viral</h2>
       <p id="descripcionPlataforma" class="text-center text-purple-700">Responde unas preguntas y recibe una idea lista para triunfar en TikTok.</p>
-
-      <select id="tonoTikTok" class="w-[90%] max-w-[400px] p-3 text-black rounded-xl border border-purple-300 bg-white">
+      <select id="tonoTikTok" class="w-[90%] max-w-[400px] p-3 text-black rounded-xl border border-purple-300 bg-white focus:outline-none focus:ring-2 focus:ring-purple-500">
         <option value="">Selecciona una categoría</option>
         <option value="divertido">🌟 Contenido Divertido</option>
         <option value="retos">🔥 Retos y Tendencias</option>
@@ -82,37 +77,90 @@
         <option value="animales">🐾 Animales y Mascotas</option>
         <option value="tematico">🎯 Contenido Temático Específico</option>
       </select>
+      <textarea id="inputPlataforma" placeholder="¡Cuéntanos tu idea!" class="w-full min-h-[180px] p-4 text-black rounded-xl border border-purple-300 focus:outline-none focus:ring-2 focus:ring-purple-500 resize-y"></textarea>
+      <button id="botonPlataforma" class="w-full py-4 px-6 bg-gradient-to-r from-purple-600 to-purple-800 text-white font-semibold rounded-xl shadow-md hover:brightness-110 transition-all duration-300">🚀 ¡Crear mi TikTok viral!</button>
+      <div id="cargando" class="text-center text-purple-900 mt-2 hidden animate-pulse-fast">
+        <p>✨ Generando idea viral...✨</p>
+        <!-- 🌎 Selector de país -->
+<div class="mb-4">
+  <label for="pais" class="block font-semibold mb-1">🌎 Tu país</label>
+  <select id="pais" class="w-full p-2 border rounded">
+    <option value="Chile">Chile</option>
+    <option value="México">México</option>
+    <option value="España">España</option>
+    <option value="Argentina">Argentina</option>
+    <option value="Colombia">Colombia</option>
+    <!-- Puedes agregar más -->
+  </select>
+</div>
 
-      <textarea id="inputPlataforma" placeholder="¡Cuéntanos tu idea!" class="w-full min-h-[160px] p-3 text-black rounded-xl border border-purple-300 resize-y"></textarea>
-      <button id="botonPlataforma" class="w-full py-3 px-5 bg-gradient-to-r from-purple-600 to-purple-800 text-white font-semibold rounded-xl hover:brightness-110 transition">🚀 ¡Crear mi TikTok viral!</button>
+<!-- 💡 Sugerencias virales -->
+<div id="consejosVirales" class="hidden p-4 rounded-2xl shadow bg-white border border-purple-200 space-y-3">
+  <div>
+    <span class="font-bold">🕒 Mejor hora de publicación:</span>
+    <span id="mejorHora">--</span>
+  </div>
+  <div>
+    <span class="font-bold">🔥 Hashtags recomendados:</span>
+    <span id="hashtagsRecomendados">--</span>
+  </div>
+  <div>
+    <span class="font-bold">💡 Consejo viral:</span>
+    <span id="consejoViral">--</span>
+  </div>
+</div>
 
-      <!-- País y consejos virales -->
-      <div class="w-full space-y-4">
-        <div>
-          <label for="pais" class="block font-semibold text-purple-800">🌎 Tu país</label>
-          <select id="pais" class="w-full p-2 border rounded">
-            <option value="Chile">Chile</option>
-            <option value="México">México</option>
-            <option value="España">España</option>
-            <option value="Argentina">Argentina</option>
-            <option value="Colombia">Colombia</option>
-          </select>
-        </div>
-
-        <div id="consejosVirales" class="hidden p-4 rounded-2xl shadow bg-white border border-purple-200 space-y-3">
-          <div><span class="font-bold">🕒 Mejor hora:</span> <span id="mejorHora">--</span></div>
-          <div><span class="font-bold">🔥 Hashtags:</span> <span id="hashtagsRecomendados">--</span></div>
-          <div><span class="font-bold">💡 Consejo:</span> <span id="consejoViral">--</span></div>
-        </div>
       </div>
     </div>
   </main>
-
-  <footer class="text-center text-white text-sm py-6">
+  <div id="modalPro" class="fixed inset-0 bg-black/50 flex items-center justify-center z-50 hidden">
+    <div class="bg-white rounded-2xl p-6 w-full max-w-md shadow-xl text-center">
+      <h2 class="text-2xl font-bold mb-4 text-purple-800">Suscríbete a PRO</h2>
+      <p class="mb-4 text-purple-700">Desbloquea acceso ilimitado por solo $5.99 al mes.</p>
+      <div id="paypal-button-container" class="flex justify-center"></div>
+      <button onclick="document.getElementById('modalPro').classList.add('hidden')" class="mt-4 text-purple-600 font-semibold">Cancelar</button>
+    </div>
+  </div>
+  <div id="alertaLimite" class="alerta-limite oculto">
+    <p>🚫 Solo puedes generar 1 caption gratis. <strong>Actualiza a PRO</strong> para acceso ilimitado por solo $5.99/mes.</p>
+    <p class="text-sm text-white/80 mt-1">Suscripción mensual — cancela en cualquier momento.</p>
+  </div>
+  <div id="loginModal" class="fixed inset-0 bg-black/50 flex items-center justify-center z-50 hidden">
+    <div class="bg-white rounded-2xl p-6 w-full max-w-md shadow-xl">
+      <h2 class="text-2xl font-bold mb-4 text-purple-800">Iniciar sesión</h2>
+      <input type="email" placeholder="Correo electrónico" class="w-full p-3 mb-3 border border-purple-300 rounded-lg" />
+      <input type="password" placeholder="Contraseña" class="w-full p-3 mb-4 border border-purple-300 rounded-lg" />
+      <div class="flex flex-col items-center gap-3 mt-4">
+        <div class="flex justify-center gap-4 w-full">
+          <button id="btnCancelarLogin" class="text-purple-600 font-semibold hover:text-purple-800">Cancelar</button>
+          <button id="btnIniciarSesion" class="bg-purple-600 hover:bg-purple-700 text-white px-5 py-2 rounded-lg">Entrar</button>
+        </div>
+        <p class="text-sm text-purple-700">¿No tienes cuenta?
+          <a href="#" id="btnAbrirRegistro" class="font-semibold underline hover:text-purple-900">Crear cuenta</a>
+        </p>
+      </div>
+    </div>
+  </div>
+  <div id="modalContacto" class="fixed inset-0 bg-black/50 flex items-center justify-center z-50 hidden">
+    <div class="bg-white rounded-2xl p-6 w-full max-w-md shadow-xl">
+      <h2 class="text-xl font-bold mb-4 text-purple-800">Contáctanos</h2>
+      <input type="text" placeholder="Tu nombre" class="w-full p-3 mb-3 border border-purple-300 rounded-lg" />
+      <input type="email" placeholder="Tu correo" class="w-full p-3 mb-3 border border-purple-300 rounded-lg" />
+      <textarea placeholder="Escribe tu mensaje" class="w-full p-3 mb-3 border border-purple-300 rounded-lg"></textarea>
+      <div class="flex justify-end gap-2">
+        <button onclick="document.getElementById('modalContacto').classList.add('hidden')" class="text-purple-600 font-semibold">Cerrar</button>
+        <button class="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-lg">Enviar</button>
+      </div>
+    </div>
+  </div>
+  <script src="https://www.paypal.com/sdk/js?client-id=AbiSnDMFMjmbJz6j34Lr_pEwF1u2iw-VmCiACaCyVSO98fNDsGywlFW-B8lsOo9NNWvLCS2P4UvNx_jb&vault=true&intent=subscription" data-sdk-integration-source="button-factory"></script>
+  
+  <footer class="text-center text-purple-900 py-6">
     © 2025 <strong>Virralle AI</strong> — Todos los derechos reservados
   </footer>
-
   <script src="js/script.js.js"></script>
-  <script src="https://www.paypal.com/sdk/js?client-id=AbiSnDMFMjmbJz6j34Lr_pEwF1u2iw-VmCiACaCyVSO98fNDsGywlFW-B8lsOo9NNWvLCS2P4UvNx_jb&vault=true&intent=subscription" data-sdk-integration-source="button-factory"></script>
+
+
+
 </body>
 </html>
