@@ -24,6 +24,25 @@ document.addEventListener("DOMContentLoaded", () => {
   const btnCancelarRegistro = document.getElementById("btnCancelarRegistro");
   const btnRegistrar = document.getElementById("btnRegistrar");
 
+  const paisSelect = document.getElementById("pais");
+  const consejosBox = document.getElementById("consejosVirales");
+  const horaSpan = document.getElementById("mejorHora");
+  const hashtagsSpan = document.getElementById("hashtagsRecomendados");
+  const consejoSpan = document.getElementById("consejoViral");
+
+  paisSelect.addEventListener("change", async () => {
+    const pais = paisSelect.value;
+    const plataforma = obtenerPlataforma();
+
+    const resultado = await obtenerConsejosPara(plataforma, pais);
+
+    horaSpan.textContent = resultado.hora;
+    hashtagsSpan.textContent = resultado.hashtags.join(" ");
+    consejoSpan.textContent = resultado.consejo;
+
+    consejosBox.classList.remove("hidden");
+  });
+
   const textos = {
     es: {
       eslogan: "Hazte viral con IA",
@@ -70,11 +89,20 @@ document.addEventListener("DOMContentLoaded", () => {
   function cambiarPlataforma(plataforma) {
     contenedorPrincipal.className = "bg-white/80 backdrop-blur-lg rounded-xl p-8 shadow-lg w-full max-w-xl flex flex-col items-center gap-6";
     contenedorPrincipal.classList.add(`${plataforma}-style`);
+
+    const main = document.querySelector("main");
+    main.classList.remove("tiktok", "instagram", "youtube");
+    main.classList.add(plataforma);
+
     const idioma = selectIdioma.value;
     tituloPlataforma.textContent = textos[idioma][`titulo${capitalize(plataforma)}`];
     descripcionPlataforma.textContent = textos[idioma][`desc${capitalize(plataforma)}`];
     inputPlataforma.placeholder = textos[idioma].placeholderIdea;
     botonPlataforma.textContent = textos[idioma][`boton${capitalize(plataforma)}`];
+
+    if (paisSelect.value) {
+      paisSelect.dispatchEvent(new Event("change"));
+    }
   }
 
   function abrirModal(modal) {
@@ -85,27 +113,20 @@ document.addEventListener("DOMContentLoaded", () => {
     if (modal) modal.classList.add("hidden");
   }
 
-  // Eventos de plataforma
   btnTikTok?.addEventListener("click", (e) => { e.preventDefault(); cambiarPlataforma("tiktok"); });
   btnInstagram?.addEventListener("click", (e) => { e.preventDefault(); cambiarPlataforma("instagram"); });
   btnYouTube?.addEventListener("click", (e) => { e.preventDefault(); cambiarPlataforma("youtube"); });
 
-  // Eventos de modales
   btnLogin?.addEventListener("click", (e) => { e.preventDefault(); abrirModal(loginModal); });
-  btnPro?.addEventListener("click", (e) => {
-    e.preventDefault();
-    abrirModalPro();
-  });
+  btnPro?.addEventListener("click", (e) => { e.preventDefault(); abrirModalPro(); });
   btnContacto?.addEventListener("click", (e) => { e.preventDefault(); abrirModal(modalContacto); });
 
-  // Eventos login y registro
   btnCancelarLogin?.addEventListener("click", (e) => { e.preventDefault(); cerrarModal(loginModal); });
   btnIniciarSesion?.addEventListener("click", (e) => { e.preventDefault(); cerrarModal(loginModal); });
   btnAbrirRegistro?.addEventListener("click", (e) => { e.preventDefault(); cerrarModal(loginModal); abrirModal(registroModal); });
   btnCancelarRegistro?.addEventListener("click", (e) => { e.preventDefault(); cerrarModal(registroModal); });
   btnRegistrar?.addEventListener("click", (e) => { e.preventDefault(); cerrarModal(registroModal); });
 
-  // Cambio de idioma
   selectIdioma?.addEventListener("change", (e) => {
     const idioma = e.target.value;
     document.getElementById("eslogan").textContent = textos[idioma].eslogan;
@@ -114,8 +135,8 @@ document.addEventListener("DOMContentLoaded", () => {
     btnContacto.textContent = textos[idioma].contactanos;
 
     const plataforma = contenedorPrincipal.classList.contains("instagram-style") ? "instagram"
-                    : contenedorPrincipal.classList.contains("youtube-style") ? "youtube"
-                    : "tiktok";
+                      : contenedorPrincipal.classList.contains("youtube-style") ? "youtube"
+                      : "tiktok";
     cambiarPlataforma(plataforma);
 
     const alerta = document.getElementById("alertaLimite");
@@ -150,4 +171,38 @@ function abrirModalPro() {
       }
     }).render("#paypal-button-container");
   }
+}
+
+
+// Función temporal de ejemplo hasta conectar con OpenAI
+async function obtenerConsejosPara(plataforma, pais) {
+  // Luego esto se reemplaza por fetch a tu backend con OpenAI
+  if (plataforma === "TikTok" && pais === "Chile") {
+    return {
+      hora: "19:00 hrs",
+      hashtags: ["#parati", "#viral", "#chileno"],
+      consejo: "Usa contenido con humor local o audios virales del momento."
+    };
+  }
+
+  if (plataforma === "Instagram" && pais === "México") {
+    return {
+      hora: "18:30 hrs",
+      hashtags: ["#igersmexico", "#instatrend", "#reelsmexico"],
+      consejo: "Comparte tips breves con visuales llamativos y subtítulos."
+    };
+  }
+
+  return {
+    hora: "17:00 hrs",
+    hashtags: ["#viral", "#tips", "#contenido"],
+    consejo: "Publica cuando tu audiencia esté más activa y usa subtítulos."
+  };
+}
+function obtenerPlataforma() {
+  const main = document.querySelector("main");
+  if (main.classList.contains("tiktok")) return "TikTok";
+  if (main.classList.contains("instagram")) return "Instagram";
+  if (main.classList.contains("youtube")) return "YouTube";
+  return "TikTok"; // Default
 }
