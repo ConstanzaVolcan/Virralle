@@ -6,6 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const botonPlataforma = document.getElementById("botonPlataforma");
   const selectIdioma = document.getElementById("languageSelect");
 
+  // Botones
   const btnTikTok = document.getElementById("btnTikTok");
   const btnInstagram = document.getElementById("btnInstagram");
   const btnYouTube = document.getElementById("btnYouTube");
@@ -13,11 +14,13 @@ document.addEventListener("DOMContentLoaded", () => {
   const btnPro = document.getElementById("btnPro");
   const btnContacto = document.getElementById("btnContacto");
 
+  // Modales
   const loginModal = document.getElementById("loginModal");
   const registroModal = document.getElementById("registroModal");
   const modalPro = document.getElementById("modalPro");
   const modalContacto = document.getElementById("modalContacto");
 
+  // Botones dentro de modales
   const btnCancelarLogin = document.getElementById("btnCancelarLogin");
   const btnIniciarSesion = document.getElementById("btnIniciarSesion");
   const btnAbrirRegistro = document.getElementById("btnAbrirRegistro");
@@ -43,3 +46,153 @@ document.addEventListener("DOMContentLoaded", () => {
       alertaLimite: "🚫 Solo puedes generar 1 caption gratis. Actualiza a PRO por solo $5.99/mes.",
       alertaLimiteDesc: "Suscripción mensual — cancela en cualquier momento."
     },
+    en: {
+      eslogan: "Go viral with AI",
+      iniciarSesion: "Log in",
+      pro: "Upgrade to PRO",
+      contactanos: "Contact Us",
+      tituloTikTok: "Let's start creating your viral TikTok",
+      descTikTok: "Answer a few questions and get a ready-to-go idea to triumph on TikTok.",
+      tituloInstagram: "Create a viral post on Instagram",
+      descInstagram: "Make your content shine on Instagram with a viral idea.",
+      tituloYouTube: "Go viral on YouTube with this idea",
+      descYouTube: "Plan your viral video with AI support.",
+      placeholderIdea: "Tell us your idea!",
+      botonTikTok: "🚀 Create my viral TikTok!",
+      botonInstagram: "📸 Create my viral post!",
+      botonYouTube: "🎮 Create my viral YouTube video!",
+      alertaLimite: "🚫 You can only generate 1 caption for free. Upgrade to PRO for unlimited access at just $5.99/month.",
+      alertaLimiteDesc: "Monthly subscription — cancel anytime."
+    }
+  };
+
+  function capitalize(str) {
+    return str.charAt(0).toUpperCase() + str.slice(1);
+  }
+
+  function cambiarPlataforma(plataforma) {
+    contenedorPrincipal.className = "bg-white/80 backdrop-blur-lg rounded-xl p-8 shadow-lg w-full max-w-xl flex flex-col items-center gap-6";
+    contenedorPrincipal.classList.add(`${plataforma}-style`);
+    const idioma = selectIdioma.value;
+    tituloPlataforma.textContent = textos[idioma][`titulo${capitalize(plataforma)}`];
+    descripcionPlataforma.textContent = textos[idioma][`desc${capitalize(plataforma)}`];
+    inputPlataforma.placeholder = textos[idioma].placeholderIdea;
+    botonPlataforma.textContent = textos[idioma][`boton${capitalize(plataforma)}`];
+  }
+
+  function abrirModal(modal) {
+    if (modal) modal.classList.remove("hidden");
+  }
+
+  function cerrarModal(modal) {
+    if (modal) modal.classList.add("hidden");
+  }
+
+  // Cambiar plataforma
+  btnTikTok?.addEventListener("click", (e) => { e.preventDefault(); cambiarPlataforma("tiktok"); });
+  btnInstagram?.addEventListener("click", (e) => { e.preventDefault(); cambiarPlataforma("instagram"); });
+  btnYouTube?.addEventListener("click", (e) => { e.preventDefault(); cambiarPlataforma("youtube"); });
+
+  // Abrir modales
+  btnLogin?.addEventListener("click", (e) => { e.preventDefault(); abrirModal(loginModal); });
+ btnPro?.addEventListener("click", (e) => {
+  e.preventDefault();
+  abrirModalPro(); // Ahora sí renderiza el botón de PayPal correctamente
+});
+
+  btnContacto?.addEventListener("click", (e) => { e.preventDefault(); abrirModal(modalContacto); });
+
+  // Cerrar login
+  btnCancelarLogin?.addEventListener("click", (e) => { e.preventDefault(); cerrarModal(loginModal); });
+  btnIniciarSesion?.addEventListener("click", (e) => { e.preventDefault(); cerrarModal(loginModal); });
+  btnAbrirRegistro?.addEventListener("click", (e) => { e.preventDefault(); cerrarModal(loginModal); abrirModal(registroModal); });
+
+  // Registro
+  btnCancelarRegistro?.addEventListener("click", (e) => { e.preventDefault(); cerrarModal(registroModal); });
+  btnRegistrar?.addEventListener("click", (e) => { e.preventDefault(); cerrarModal(registroModal); });
+
+  // Idioma
+  selectIdioma?.addEventListener("change", (e) => {
+    const idioma = e.target.value;
+    document.getElementById("eslogan").textContent = textos[idioma].eslogan;
+    btnLogin.textContent = textos[idioma].iniciarSesion;
+    btnPro.textContent = textos[idioma].pro;
+    btnContacto.textContent = textos[idioma].contactanos;
+
+    const plataforma = contenedorPrincipal.classList.contains("instagram-style") ? "instagram"
+                      : contenedorPrincipal.classList.contains("youtube-style") ? "youtube"
+                      : "tiktok";
+    cambiarPlataforma(plataforma);
+
+    const alerta = document.getElementById("alertaLimite");
+    if (alerta) {
+      alerta.querySelector("p").textContent = textos[idioma].alertaLimite;
+      alerta.querySelector(".text-sm").textContent = textos[idioma].alertaLimiteDesc;
+    }
+  });
+
+  cambiarPlataforma("tiktok");
+});
+// Confirmamos que el script cargó
+console.log("✅ script.js cargado");
+
+// Botones para abrir modales
+document.getElementById('btnPro')?.addEventListener('click', () => {
+  document.getElementById('modalPro')?.classList.remove('hidden');
+});
+
+document.getElementById('btnContacto')?.addEventListener('click', () => {
+  document.getElementById('modalContacto')?.classList.remove('hidden');
+});
+
+document.getElementById('btnLogin')?.addEventListener('click', () => {
+  document.getElementById('loginModal')?.classList.remove('hidden');
+});
+
+// Botón cancelar login ya está manejado inline, pero si quieres:
+document.getElementById('btnCancelarLogin')?.addEventListener('click', () => {
+  document.getElementById('loginModal')?.classList.add('hidden');
+});
+
+// Selector de idioma básico
+document.getElementById('languageSelect')?.addEventListener('change', (e) => {
+  const idioma = e.target.value;
+  if (idioma === 'en') {
+    document.getElementById('eslogan').textContent = 'Go viral with AI';
+    document.getElementById('tituloPlataforma').textContent = 'Let’s create your viral TikTok';
+    document.getElementById('descripcionPlataforma').textContent = 'Answer a few questions and get a ready-to-go viral TikTok idea.';
+    document.getElementById('botonPlataforma').textContent = '🚀 Create my viral TikTok!';
+  } else {
+    document.getElementById('eslogan').textContent = 'Hazte viral con IA';
+    document.getElementById('tituloPlataforma').textContent = 'Comencemos la creación de tu TikTok viral';
+    document.getElementById('descripcionPlataforma').textContent = 'Responde unas preguntas y recibe una idea lista para triunfar en TikTok.';
+    document.getElementById('botonPlataforma').textContent = '🚀 ¡Crear mi TikTok viral!';
+  }
+});
+function abrirModalPro() {
+  const modal = document.getElementById("modalPro");
+  modal.classList.remove("hidden");
+
+  const paypalContainer = document.getElementById("paypal-button-container");
+
+  // Evita renderizar el botón más de una vez
+  if (paypalContainer.childElementCount === 0) {
+    paypal.Buttons({
+      style: {
+        shape: 'rect',
+        color: 'purple',
+        layout: 'vertical',
+        label: 'subscribe'
+      },
+      createSubscription: function (data, actions) {
+        return actions.subscription.create({
+          plan_id: "P-34X70623V9188512DNBZS2UA" // Reemplaza esto con el plan real de PayPal
+        });
+      },
+      onApprove: function (data, actions) {
+        alert("✅ ¡Suscripción PRO activada con éxito!");
+        document.getElementById("modalPro").classList.add("hidden");
+      }
+    }).render("#paypal-button-container");
+  }
+}
