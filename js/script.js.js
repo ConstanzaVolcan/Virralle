@@ -159,4 +159,35 @@ document.getElementById("btnPro").addEventListener("click", function (e) {
   e.preventDefault();
   abrirModalPro();
 });
+// Asegúrate de que el DOM esté listo
+window.addEventListener('DOMContentLoaded', () => {
+  // Conecta el botón de “Mejorar a PRO” con la función
+  document.getElementById("btnPro").addEventListener("click", function (e) {
+    e.preventDefault(); // Evita que recargue la página
+    abrirModalPro();
+  });
+});
+
+// Función para abrir el modal y cargar PayPal si no está cargado aún
+function abrirModalPro() {
+  const modal = document.getElementById("modalPro");
+  modal.classList.remove("hidden");
+
+  const paypalContainer = document.getElementById("paypal-button-container");
+
+  if (paypalContainer.childElementCount === 0) {
+    paypal.Buttons({
+      createSubscription: function (data, actions) {
+        return actions.subscription.create({
+          plan_id: "P-34X70623V9188512DNBZS2UA" // <-- Tu plan real
+        });
+      },
+      onApprove: function (data, actions) {
+        alert("✅ ¡Suscripción PRO activada con éxito!");
+        document.getElementById("modalPro").classList.add("hidden");
+        // Aquí puedes añadir llamada a tu backend si lo deseas
+      }
+    }).render("#paypal-button-container");
+  }
+}
 
