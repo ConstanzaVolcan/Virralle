@@ -95,11 +95,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Abrir modales
   btnLogin?.addEventListener("click", (e) => { e.preventDefault(); abrirModal(loginModal); });
- btnPro?.addEventListener("click", (e) => {
-  e.preventDefault();
-  abrirModalPro(); // Ahora sí renderiza el botón de PayPal correctamente
-});
-
+  btnPro?.addEventListener("click", (e) => { e.preventDefault(); abrirModal(modalPro); });
   btnContacto?.addEventListener("click", (e) => { e.preventDefault(); abrirModal(modalContacto); });
 
   // Cerrar login
