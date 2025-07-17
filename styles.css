@@ -713,3 +713,71 @@ button:hover {
 #consejosVirales {
   transition: all 0.3s ease-in-out;
 }
+body {
+  font-family: 'Inter', sans-serif;
+}
+
+.animate-pulse-fast {
+  animation: pulse 1s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.tiktok-style {
+  background: linear-gradient(to bottom right, #d8b4fe, #c084fc);
+}
+
+.instagram-style {
+  background: linear-gradient(to bottom right, #fbcfe8, #f472b6);
+}
+
+.youtube-style {
+  background: linear-gradient(to bottom right, #fecaca, #f87171);
+}
+
+/* Para el selector de país */
+#pais {
+  border: 1px solid #d8b4fe;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  background-color: #fff;
+  font-size: 1rem;
+  width: 100%;
+  max-width: 300px;
+  outline: none;
+}
+
+#pais:focus {
+  border-color: #9333ea;
+  box-shadow: 0 0 0 2px rgba(147, 51, 234, 0.3);
+}
+
+/* Contenedor de sugerencias */
+#consejosVirales {
+  background-color: #ffffff;
+  border: 1px solid #e9d5ff;
+  padding: 1rem;
+  border-radius: 1rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+  font-size: 1rem;
+  color: #4c1d95;
+}
+
+/* Sugerencias internas */
+#consejosVirales span {
+  display: inline;
+}
+
+@media (max-width: 640px) {
+  #consejosVirales {
+    font-size: 0.9rem;
+    padding: 0.75rem;
+  }
+
+  #pais {
+    max-width: 100%;
+  }
+
+  .header ul {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
