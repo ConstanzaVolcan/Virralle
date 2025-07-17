@@ -709,3 +709,7 @@ button:hover {
   width: 100%;
   text-align: center;
 }
+/* Opcional */
+#consejosVirales {
+  transition: all 0.3s ease-in-out;
+}
