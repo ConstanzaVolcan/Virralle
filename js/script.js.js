@@ -30,6 +30,19 @@ document.addEventListener("DOMContentLoaded", () => {
   const hashtagsSpan = document.getElementById("hashtagsRecomendados");
   const consejoSpan = document.getElementById("consejoViral");
 
+  paisSelect.addEventListener("change", async () => {
+    const pais = paisSelect.value;
+    const plataforma = obtenerPlataforma();
+
+    const resultado = await obtenerConsejosPara(plataforma, pais);
+
+    horaSpan.textContent = resultado.hora;
+    hashtagsSpan.textContent = resultado.hashtags.join(" ");
+    consejoSpan.textContent = resultado.consejo;
+
+    consejosBox.classList.remove("hidden");
+  });
+
   const textos = {
     es: {
       eslogan: "Hazte viral con IA",
@@ -87,9 +100,9 @@ document.addEventListener("DOMContentLoaded", () => {
     inputPlataforma.placeholder = textos[idioma].placeholderIdea;
     botonPlataforma.textContent = textos[idioma][`boton${capitalize(plataforma)}`];
 
-    // Refrescar consejos al cambiar plataforma
-    const pais = paisSelect.value;
-    if (pais) actualizarConsejos(plataforma, pais);
+    if (paisSelect.value) {
+      paisSelect.dispatchEvent(new Event("change"));
+    }
   }
 
   function abrirModal(modal) {
@@ -121,7 +134,9 @@ document.addEventListener("DOMContentLoaded", () => {
     btnPro.textContent = textos[idioma].pro;
     btnContacto.textContent = textos[idioma].contactanos;
 
-    const plataforma = obtenerPlataforma();
+    const plataforma = contenedorPrincipal.classList.contains("instagram-style") ? "instagram"
+                      : contenedorPrincipal.classList.contains("youtube-style") ? "youtube"
+                      : "tiktok";
     cambiarPlataforma(plataforma);
 
     const alerta = document.getElementById("alertaLimite");
@@ -131,62 +146,11 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  paisSelect?.addEventListener("change", () => {
-    const pais = paisSelect.value;
-    const plataforma = obtenerPlataforma();
-    actualizarConsejos(plataforma, pais);
-  });
-
-  cambiarPlataforma("tiktok"); // Inicial
-  console.log("✅ script.js.js cargado");
+  cambiarPlataforma("tiktok");
 });
 
-function obtenerPlataforma() {
-  const main = document.querySelector("main");
-  if (main.classList.contains("instagram")) return "Instagram";
-  if (main.classList.contains("youtube")) return "YouTube";
-  return "TikTok";
-}
-
-async function actualizarConsejos(plataforma, pais) {
-  const consejosBox = document.getElementById("consejosVirales");
-  const horaSpan = document.getElementById("mejorHora");
-  const hashtagsSpan = document.getElementById("hashtagsRecomendados");
-  const consejoSpan = document.getElementById("consejoViral");
-
-  const resultado = await obtenerConsejosPara(plataforma, pais);
-
-  horaSpan.textContent = resultado.hora;
-  hashtagsSpan.textContent = resultado.hashtags.join(" ");
-  consejoSpan.textContent = resultado.consejo;
-
-  consejosBox.classList.remove("hidden");
-}
-
-// Función temporal, luego conectar a OpenAI
-async function obtenerConsejosPara(plataforma, pais) {
-  if (plataforma === "TikTok" && pais === "Chile") {
-    return {
-      hora: "19:00 hrs",
-      hashtags: ["#parati", "#viral", "#chileno"],
-      consejo: "Usa humor local o audios virales del momento."
-    };
-  }
-
-  if (plataforma === "Instagram" && pais === "México") {
-    return {
-      hora: "18:30 hrs",
-      hashtags: ["#igersmexico", "#instatrend", "#reelsmexico"],
-      consejo: "Usa subtítulos llamativos y visuales fuertes."
-    };
-  }
-
-  return {
-    hora: "17:00 hrs",
-    hashtags: ["#viral", "#tips", "#contenido"],
-    consejo: "Publica cuando tu audiencia esté más activa."
-  };
-}
+// ✅ Confirmación de carga
+console.log("✅ script.js cargado");
 
 function abrirModalPro() {
   const modal = document.getElementById("modalPro");
@@ -207,4 +171,38 @@ function abrirModalPro() {
       }
     }).render("#paypal-button-container");
   }
+}
+
+
+// Función temporal de ejemplo hasta conectar con OpenAI
+async function obtenerConsejosPara(plataforma, pais) {
+  // Luego esto se reemplaza por fetch a tu backend con OpenAI
+  if (plataforma === "TikTok" && pais === "Chile") {
+    return {
+      hora: "19:00 hrs",
+      hashtags: ["#parati", "#viral", "#chileno"],
+      consejo: "Usa contenido con humor local o audios virales del momento."
+    };
+  }
+
+  if (plataforma === "Instagram" && pais === "México") {
+    return {
+      hora: "18:30 hrs",
+      hashtags: ["#igersmexico", "#instatrend", "#reelsmexico"],
+      consejo: "Comparte tips breves con visuales llamativos y subtítulos."
+    };
+  }
+
+  return {
+    hora: "17:00 hrs",
+    hashtags: ["#viral", "#tips", "#contenido"],
+    consejo: "Publica cuando tu audiencia esté más activa y usa subtítulos."
+  };
+}
+function obtenerPlataforma() {
+  const main = document.querySelector("main");
+  if (main.classList.contains("tiktok")) return "TikTok";
+  if (main.classList.contains("instagram")) return "Instagram";
+  if (main.classList.contains("youtube")) return "YouTube";
+  return "TikTok"; // Default
 }
