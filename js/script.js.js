@@ -140,7 +140,11 @@ function abrirModalPro() {
 
   if (paypalContainer.childElementCount === 0) {
     paypal.Buttons({
-
+      style: {
+        shape: 'rect',
+        color: 'purple',
+        layout: 'vertical',
+        label: 'subscribe'
       },
       createSubscription: function (data, actions) {
         return actions.subscription.create({
