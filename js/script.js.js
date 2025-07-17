@@ -135,17 +135,14 @@ console.log("✅ script.js cargado");
 function abrirModalPro() {
   const modal = document.getElementById("modalPro");
   modal.classList.remove("hidden");
+function abrirModalPro() {
+  const modal = document.getElementById("modalPro");
+  modal.classList.remove("hidden");
 
   const paypalContainer = document.getElementById("paypal-button-container");
 
   if (paypalContainer.childElementCount === 0) {
     paypal.Buttons({
-      style: {
-        shape: 'rect',
-        color: 'purple',
-        layout: 'vertical',
-        label: 'subscribe'
-      },
       createSubscription: function (data, actions) {
         return actions.subscription.create({
           plan_id: "P-34X70623V9188512DNBZS2UA"
@@ -158,3 +155,8 @@ function abrirModalPro() {
     }).render("#paypal-button-container");
   }
 }
+document.getElementById("btnPro").addEventListener("click", function (e) {
+  e.preventDefault();
+  abrirModalPro();
+});
+
