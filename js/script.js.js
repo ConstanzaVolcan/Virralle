@@ -131,6 +131,10 @@ document.addEventListener("DOMContentLoaded", () => {
 // ✅ Confirmación de carga
 console.log("✅ script.js cargado");
 
+// ✅ Función para abrir el modal PRO con PayPal
+function abrirModalPro() {
+  const modal = document.getElementById("modalPro");
+  modal.classList.remove("hidden");
 function abrirModalPro() {
   const modal = document.getElementById("modalPro");
   modal.classList.remove("hidden");
@@ -146,8 +150,13 @@ function abrirModalPro() {
       },
       onApprove: function (data, actions) {
         alert("✅ ¡Suscripción PRO activada con éxito!");
-        modal.classList.add("hidden");
+        document.getElementById("modalPro").classList.add("hidden");
       }
     }).render("#paypal-button-container");
   }
 }
+document.getElementById("btnPro").addEventListener("click", function (e) {
+  e.preventDefault();
+  abrirModalPro();
+});
+
