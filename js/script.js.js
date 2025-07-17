@@ -63,36 +63,98 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   };
 
-  // ... (funciones cambiarPlataforma, abrirModal, eventos, etc.)
-  // Ya sabes que estas funciones están igual que antes
+  function capitalize(str) {
+    return str.charAt(0).toUpperCase() + str.slice(1);
+  }
 
-  // ✅ Confirmación de carga
-  console.log("✅ script.js cargado");
+  function cambiarPlataforma(plataforma) {
+    contenedorPrincipal.className = "bg-white/80 backdrop-blur-lg rounded-xl p-8 shadow-lg w-full max-w-xl flex flex-col items-center gap-6";
+    contenedorPrincipal.classList.add(`${plataforma}-style`);
+    const idioma = selectIdioma.value;
+    tituloPlataforma.textContent = textos[idioma][`titulo${capitalize(plataforma)}`];
+    descripcionPlataforma.textContent = textos[idioma][`desc${capitalize(plataforma)}`];
+    inputPlataforma.placeholder = textos[idioma].placeholderIdea;
+    botonPlataforma.textContent = textos[idioma][`boton${capitalize(plataforma)}`];
+  }
 
-  // ✅ Función para abrir el modal PRO con PayPal (sin color personalizado)
-  window.abrirModalPro = function () {
-    const modal = document.getElementById("modalPro");
-    modal.classList.remove("hidden");
+  function abrirModal(modal) {
+    if (modal) modal.classList.remove("hidden");
+  }
 
-    const paypalContainer = document.getElementById("paypal-button-container");
+  function cerrarModal(modal) {
+    if (modal) modal.classList.add("hidden");
+  }
 
-    if (paypalContainer.childElementCount === 0) {
-      paypal.Buttons({
-        style: {
-          shape: 'rect',
-          layout: 'vertical',
-          label: 'subscribe'
-        },
-        createSubscription: function (data, actions) {
-          return actions.subscription.create({
-            plan_id: "P-34X70623V9188512DNBZS2UA"
-          });
-        },
-        onApprove: function (data, actions) {
-          alert("✅ ¡Suscripción PRO activada con éxito!");
-          modal.classList.add("hidden");
-        }
-      }).render("#paypal-button-container");
+  // Eventos de plataforma
+  btnTikTok?.addEventListener("click", (e) => { e.preventDefault(); cambiarPlataforma("tiktok"); });
+  btnInstagram?.addEventListener("click", (e) => { e.preventDefault(); cambiarPlataforma("instagram"); });
+  btnYouTube?.addEventListener("click", (e) => { e.preventDefault(); cambiarPlataforma("youtube"); });
+
+  // Eventos de modales
+  btnLogin?.addEventListener("click", (e) => { e.preventDefault(); abrirModal(loginModal); });
+  btnPro?.addEventListener("click", (e) => {
+    e.preventDefault();
+    abrirModalPro();
+  });
+  btnContacto?.addEventListener("click", (e) => { e.preventDefault(); abrirModal(modalContacto); });
+
+  // Eventos login y registro
+  btnCancelarLogin?.addEventListener("click", (e) => { e.preventDefault(); cerrarModal(loginModal); });
+  btnIniciarSesion?.addEventListener("click", (e) => { e.preventDefault(); cerrarModal(loginModal); });
+  btnAbrirRegistro?.addEventListener("click", (e) => { e.preventDefault(); cerrarModal(loginModal); abrirModal(registroModal); });
+  btnCancelarRegistro?.addEventListener("click", (e) => { e.preventDefault(); cerrarModal(registroModal); });
+  btnRegistrar?.addEventListener("click", (e) => { e.preventDefault(); cerrarModal(registroModal); });
+
+  // Cambio de idioma
+  selectIdioma?.addEventListener("change", (e) => {
+    const idioma = e.target.value;
+    document.getElementById("eslogan").textContent = textos[idioma].eslogan;
+    btnLogin.textContent = textos[idioma].iniciarSesion;
+    btnPro.textContent = textos[idioma].pro;
+    btnContacto.textContent = textos[idioma].contactanos;
+
+    const plataforma = contenedorPrincipal.classList.contains("instagram-style") ? "instagram"
+                    : contenedorPrincipal.classList.contains("youtube-style") ? "youtube"
+                    : "tiktok";
+    cambiarPlataforma(plataforma);
+
+    const alerta = document.getElementById("alertaLimite");
+    if (alerta) {
+      alerta.querySelector("p").textContent = textos[idioma].alertaLimite;
+      alerta.querySelector(".text-sm").textContent = textos[idioma].alertaLimiteDesc;
     }
-  };
+  });
+
+  cambiarPlataforma("tiktok");
 });
+
+// ✅ Confirmación de carga
+console.log("✅ script.js cargado");
+
+// ✅ Función para abrir el modal PRO con PayPal
+function abrirModalPro() {
+  const modal = document.getElementById("modalPro");
+  modal.classList.remove("hidden");
+
+  const paypalContainer = document.getElementById("paypal-button-container");
+
+  if (paypalContainer.childElementCount === 0) {
+    paypal.Buttons({
+      style: {
+        shape: 'rect',
+        color: 'purple',
+        layout: 'vertical',
+        label: 'subscribe'
+      },
+      createSubscription: function (data, actions) {
+        return actions.subscription.create({
+          plan_id: "P-34X70623V9188512DNBZS2UA"
+        });
+      },
+      onApprove: function (data, actions) {
+        alert("✅ ¡Suscripción PRO activada con éxito!");
+        document.getElementById("modalPro").classList.add("hidden");
+      }
+    }).render("#paypal-button-container");
+  }
+}
