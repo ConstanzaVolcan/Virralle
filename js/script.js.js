@@ -78,7 +78,7 @@ document.addEventListener("DOMContentLoaded", () => {
     descripcionPlataforma.textContent = textos[idioma][`desc${capitalize(plataforma)}`];
     inputPlataforma.placeholder = textos[idioma].placeholderIdea;
     botonPlataforma.textContent = textos[idioma][`boton${capitalize(plataforma)}`];
-
+    
   }
 
   function abrirModal(modal) {
