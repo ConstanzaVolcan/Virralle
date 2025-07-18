@@ -121,9 +121,10 @@ button:hover {
 }
 
 .eslogan {
-  font-size: 1.5em; /* antes era 1.2em */
+  font-size: 1.5em;
   color: #ffffff;
-  margin: -15;
+  margin-top: -8px; /* Acerca el eslogan hacia "Virralle" */
+  margin-bottom: 0;
   font-weight: 500;
   letter-spacing: 1px;
   animation: fadeInUp 1.4s ease-out;
