@@ -50,7 +50,7 @@ document.addEventListener("DOMContentLoaded", () => {
       pro: "Mejorar a PRO",
       contactanos: "Contáctanos",
       tituloTikTok: "Comencemos la creación de tu TikTok viral",
-      descTikTok: "Responde unas preguntas y recibe una idea lista para triunfar en TikTok.",
+      descTikTok: "Recibe una idea lista para triunfar en TikTok.",
       tituloInstagram: "Crea un post viral en Instagram",
       descInstagram: "Haz que tu contenido destaque en Instagram con una idea viral.",
       tituloYouTube: "Hazte viral en YouTube con esta idea",
@@ -58,7 +58,7 @@ document.addEventListener("DOMContentLoaded", () => {
       placeholderIdea: "¡Cuéntanos tu idea!",
       botonTikTok: "🚀 ¡Crear mi TikTok viral!",
       botonInstagram: "📸 ¡Crear mi post viral!",
-      botonYouTube: "🎮 ¡Crear mi YouTube viral!",
+      botonYouTube: "🎮 ¡Crear mi video viral!",
       alertaLimite: "🚫 Solo puedes generar 1 caption gratis. Actualiza a PRO por solo $5.99/mes.",
       alertaLimiteDesc: "Suscripción mensual — cancela en cualquier momento."
     },
@@ -68,7 +68,7 @@ document.addEventListener("DOMContentLoaded", () => {
       pro: "Upgrade to PRO",
       contactanos: "Contact Us",
       tituloTikTok: "Let's start creating your viral TikTok",
-      descTikTok: "Answer a few questions and get a ready-to-go idea to triumph on TikTok.",
+      descTikTok: "Get a ready-to-succeed idea for TikTok.",
       tituloInstagram: "Create a viral post on Instagram",
       descInstagram: "Make your content shine on Instagram with a viral idea.",
       tituloYouTube: "Go viral on YouTube with this idea",
@@ -76,7 +76,7 @@ document.addEventListener("DOMContentLoaded", () => {
       placeholderIdea: "Tell us your idea!",
       botonTikTok: "🚀 Create my viral TikTok!",
       botonInstagram: "📸 Create my viral post!",
-      botonYouTube: "🎮 Create my viral YouTube video!",
+      botonYouTube: "🎮 Create my viral video!",
       alertaLimite: "🚫 You can only generate 1 caption for free. Upgrade to PRO for unlimited access at just $5.99/month.",
       alertaLimiteDesc: "Monthly subscription — cancel anytime."
     }
