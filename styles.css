@@ -781,3 +781,14 @@ body {
     justify-content: center;
   }
 }
+.tiktok-style {
+  background-color: rgba(255, 255, 255, 0.2); /* Mantener estilo base */
+}
+
+.instagram-style {
+  background-color: rgba(255, 255, 255, 0.2); /* Mismo fondo para coherencia visual */
+}
+
+.youtube-style {
+  background-color: rgba(255, 0, 0, 0.1); /* Rojizo pastel translúcido */
+}
