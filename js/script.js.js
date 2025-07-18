@@ -167,3 +167,42 @@ function abrirModalPro() {
       },
       onApprove: function (data, actions) {
         alert("✅ ¡Suscripción PRO activada con éxito!");
+        modal.classList.add("hidden");
+      }
+    }).render("#paypal-button-container");
+  }
+}
+
+
+// Función temporal de ejemplo hasta conectar con OpenAI
+async function obtenerConsejosPara(plataforma, pais) {
+  // Luego esto se reemplaza por fetch a tu backend con OpenAI
+  if (plataforma === "TikTok" && pais === "Chile") {
+    return {
+      hora: "19:00 hrs",
+      hashtags: ["#parati", "#viral", "#chileno"],
+      consejo: "Usa contenido con humor local o audios virales del momento."
+    };
+  }
+
+  if (plataforma === "Instagram" && pais === "México") {
+    return {
+      hora: "18:30 hrs",
+      hashtags: ["#igersmexico", "#instatrend", "#reelsmexico"],
+      consejo: "Comparte tips breves con visuales llamativos y subtítulos."
+    };
+  }
+
+  return {
+    hora: "17:00 hrs",
+    hashtags: ["#viral", "#tips", "#contenido"],
+    consejo: "Publica cuando tu audiencia esté más activa y usa subtítulos."
+  };
+}
+function obtenerPlataforma() {
+  const main = document.querySelector("main");
+  if (main.classList.contains("tiktok")) return "TikTok";
+  if (main.classList.contains("instagram")) return "Instagram";
+  if (main.classList.contains("youtube")) return "YouTube";
+  return "TikTok"; // Default
+}
