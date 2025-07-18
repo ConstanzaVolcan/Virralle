@@ -93,6 +93,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const main = document.querySelector("main");
     main.classList.remove("tiktok", "instagram", "youtube");
     main.classList.add(plataforma);
+function capitalize(str) {
+  return str === "tiktok" ? "TikTok"
+       : str === "youtube" ? "YouTube"
+       : str.charAt(0).toUpperCase() + str.slice(1);
+}
 
     const idioma = selectIdioma.value;
     tituloPlataforma.textContent = textos[idioma][`titulo${capitalize(plataforma)}`];
