@@ -62,6 +62,22 @@ document.addEventListener("DOMContentLoaded", () => {
       alertaLimite: "🚫 Solo puedes generar 1 caption gratis. Actualiza a PRO por solo $5.99/mes.",
       alertaLimiteDesc: "Suscripción mensual — cancela en cualquier momento."
     },
+    categorias: [
+  { value: "", label: "Selecciona una categoría" },
+  { value: "divertido", label: "🌟 Contenido Divertido" },
+  { value: "retos", label: "🔥 Retos y Tendencias" },
+  { value: "lifehacks", label: "🛠 Life Hacks / Tutoriales" },
+  { value: "curiosidades", label: "🤯 Curiosidades y Datos" },
+  { value: "asmr", label: "🎷 ASMR y Relajación" },
+  { value: "emocional", label: "❤️ Contenido Emocional" },
+  { value: "educativo", label: "📚 Educación y Divulgación" },
+  { value: "historias", label: "📖 Story Time" },
+  { value: "espiritual", label: "🧘 Espiritualidad y Bienestar" },
+  { value: "ambiental", label: "🌱 Conciencia Ambiental" },
+  { value: "animales", label: "🐾 Animales y Mascotas" },
+  { value: "tematico", label: "🎯 Contenido Temático Específico" }
+],
+
     en: {
       eslogan: "Go viral with AI",
       iniciarSesion: "Log in",
@@ -79,7 +95,23 @@ document.addEventListener("DOMContentLoaded", () => {
       botonYouTube: "🎮 Create my viral video!",
       alertaLimite: "🚫 You can only generate 1 caption for free. Upgrade to PRO for unlimited access at just $5.99/month.",
       alertaLimiteDesc: "Monthly subscription — cancel anytime."
-    }
+    },
+    categorias: [
+  { value: "", label: "Select a category" },
+  { value: "divertido", label: "🌟 Funny Content" },
+  { value: "retos", label: "🔥 Challenges & Trends" },
+  { value: "lifehacks", label: "🛠 Life Hacks / Tutorials" },
+  { value: "curiosidades", label: "🤯 Curiosities & Facts" },
+  { value: "asmr", label: "🎷 ASMR & Relaxation" },
+  { value: "emocional", label: "❤️ Emotional Content" },
+  { value: "educativo", label: "📚 Education & Learning" },
+  { value: "historias", label: "📖 Story Time" },
+  { value: "espiritual", label: "🧘 Spirituality & Wellness" },
+  { value: "ambiental", label: "🌱 Environmental Awareness" },
+  { value: "animales", label: "🐾 Animals & Pets" },
+  { value: "tematico", label: "🎯 Specific Thematic Content" }
+]
+
   };
 
   function capitalize(str) {
@@ -149,6 +181,7 @@ function capitalize(str) {
       alerta.querySelector("p").textContent = textos[idioma].alertaLimite;
       alerta.querySelector(".text-sm").textContent = textos[idioma].alertaLimiteDesc;
     }
+    actualizarOpcionesCategorias();
   });
 
   cambiarPlataforma("tiktok");
@@ -210,4 +243,20 @@ function obtenerPlataforma() {
   if (main.classList.contains("instagram")) return "Instagram";
   if (main.classList.contains("youtube")) return "YouTube";
   return "TikTok"; // Default
+}
+function actualizarOpcionesCategorias() {
+  const idioma = selectIdioma.value;
+  const categorias = textos[idioma].categorias;
+  const select = document.getElementById("tonoTikTok");
+
+  // Limpiar opciones actuales
+  select.innerHTML = "";
+
+  // Insertar nuevas opciones
+  categorias.forEach(cat => {
+    const option = document.createElement("option");
+    option.value = cat.value;
+    option.textContent = cat.label;
+    select.appendChild(option);
+  });
 }
