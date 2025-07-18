@@ -111,20 +111,6 @@ document.addEventListener("DOMContentLoaded", () => {
   { value: "animales", label: "🐾 Animals & Pets" },
   { value: "tematico", label: "🎯 Specific Thematic Content" }
 ]
-es: {
-  // ... lo que ya tienes
-  labelPais: "🌍 Tu país",
-  mejorHora: "🕒 Mejor hora de publicación:",
-  hashtags: "🔥 Hashtags recomendados:",
-  consejo: "💡 Consejo viral:"
-},
-en: {
-  // ... lo que ya tienes
-  labelPais: "🌍 Your country",
-  mejorHora: "🕒 Best time to post:",
-  hashtags: "🔥 Recommended hashtags:",
-  consejo: "💡 Viral tip:"
-}
 
   };
 
@@ -184,14 +170,6 @@ function capitalize(str) {
     btnLogin.textContent = textos[idioma].iniciarSesion;
     btnPro.textContent = textos[idioma].pro;
     btnContacto.textContent = textos[idioma].contactanos;
-
-    // Actualiza la etiqueta "Tu país"
-document.querySelector('label[for="pais"]').textContent = textos[idioma].labelPais;
-
-// Actualiza los títulos de los consejos virales
-document.querySelector('#consejosVirales span:nth-of-type(1)').textContent = textos[idioma].mejorHora;
-document.querySelector('#consejosVirales span:nth-of-type(3)').textContent = textos[idioma].hashtags;
-document.querySelector('#consejosVirales span:nth-of-type(5)').textContent = textos[idioma].consejo;
 
     const plataforma = contenedorPrincipal.classList.contains("instagram-style") ? "instagram"
                       : contenedorPrincipal.classList.contains("youtube-style") ? "youtube"
