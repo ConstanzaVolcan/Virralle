@@ -164,68 +164,99 @@ function capitalize(str) {
   btnCancelarRegistro?.addEventListener("click", (e) => { e.preventDefault(); cerrarModal(registroModal); });
   btnRegistrar?.addEventListener("click", (e) => { e.preventDefault(); cerrarModal(registroModal); });
 
-  // ... tu script previo (sin modificar estructura) ...
+  selectIdioma?.addEventListener("change", (e) => {
+    const idioma = e.target.value;
+    document.getElementById("eslogan").textContent = textos[idioma].eslogan;
+    btnLogin.textContent = textos[idioma].iniciarSesion;
+    btnPro.textContent = textos[idioma].pro;
+    btnContacto.textContent = textos[idioma].contactanos;
 
-selectIdioma?.addEventListener("change", (e) => {
-  const idioma = e.target.value;
-  document.getElementById("eslogan").textContent = textos[idioma].eslogan;
-  btnLogin.textContent = textos[idioma].iniciarSesion;
-  btnPro.textContent = textos[idioma].pro;
-  btnContacto.textContent = textos[idioma].contactanos;
+    const plataforma = contenedorPrincipal.classList.contains("instagram-style") ? "instagram"
+                      : contenedorPrincipal.classList.contains("youtube-style") ? "youtube"
+                      : "tiktok";
+    cambiarPlataforma(plataforma);
 
-  const plataforma = contenedorPrincipal.classList.contains("instagram-style") ? "instagram"
-                    : contenedorPrincipal.classList.contains("youtube-style") ? "youtube"
-                    : "tiktok";
-  cambiarPlataforma(plataforma);
-
-  const alerta = document.getElementById("alertaLimite");
-  if (alerta) {
-    alerta.querySelector("p").textContent = textos[idioma].alertaLimite;
-    alerta.querySelector(".text-sm").textContent = textos[idioma].alertaLimiteDesc;
-  }
-  actualizarOpcionesCategorias();
-
-  // ✅ Traducción dinámica de etiqueta "Tu país"
-  const labelPais = document.querySelector('label[for="pais"]');
-  if (labelPais) labelPais.textContent = idioma === "en" ? "🌍 Your country" : "🌍 Tu país";
-
-  // ✅ Traducción dinámica de títulos de consejos
-  const consejos = document.querySelectorAll("#consejosVirales span");
-  if (consejos.length >= 6) {
-    consejos[0].textContent = idioma === "en" ? "🕒 Best time to post:" : "🕒 Mejor hora de publicación:";
-    consejos[2].textContent = idioma === "en" ? "🔥 Recommended hashtags:" : "🔥 Hashtags recomendados:";
-    consejos[4].textContent = idioma === "en" ? "💡 Viral tip:" : "💡 Consejo viral:";
-  }
-
-  // ✅ Traducción dinámica de países según idioma del país
-  const paisSelect = document.getElementById("pais");
-  const paisOptions = paisSelect?.options;
-  if (!paisOptions) return;
-
-  const traduccionesPaises = {
-    "Alemania": { es: "Alemania", en: "Germany", de: "Deutschland" },
-    "Argentina": { es: "Argentina", en: "Argentina", es_ar: "Argentina" },
-    "Brasil": { es: "Brasil", en: "Brazil", pt: "Brasil" },
-    "Canadá": { es: "Canadá", en: "Canada", fr: "Canada" },
-    "Chile": { es: "Chile", en: "Chile" },
-    "Colombia": { es: "Colombia", en: "Colombia" },
-    "España": { es: "España", en: "Spain", ca: "Espanya" },
-    "Estados Unidos": { es: "Estados Unidos", en: "United States" },
-    "Francia": { es: "Francia", en: "France", fr: "France" },
-    "Italia": { es: "Italia", en: "Italy", it: "Italia" },
-    "México": { es: "México", en: "Mexico" },
-    "Perú": { es: "Perú", en: "Peru" },
-    "Reino Unido": { es: "Reino Unido", en: "United Kingdom" },
-    "Uruguay": { es: "Uruguay", en: "Uruguay" },
-    "Venezuela": { es: "Venezuela", en: "Venezuela" },
-    "Otro país": { es: "🌍 Otro país", en: "🌍 Other country" }
-  };
-
-  for (let i = 0; i < paisOptions.length; i++) {
-    const opcion = paisOptions[i];
-    const nombreActual = opcion.value;
-    if (traduccionesPaises[nombreActual]) {
-      opcion.textContent = traduccionesPaises[nombreActual][idioma] || nombreActual;
+    const alerta = document.getElementById("alertaLimite");
+    if (alerta) {
+      alerta.querySelector("p").textContent = textos[idioma].alertaLimite;
+      alerta.querySelector(".text-sm").textContent = textos[idioma].alertaLimiteDesc;
     }
-  }
+    actualizarOpcionesCategorias();
+  });
+
+  cambiarPlataforma("tiktok");
 });
+
+// ✅ Confirmación de carga
+console.log("✅ script.js cargado");
+
+function abrirModalPro() {
+  const modal = document.getElementById("modalPro");
+  modal.classList.remove("hidden");
+
+  const paypalContainer = document.getElementById("paypal-button-container");
+
+  if (paypalContainer.childElementCount === 0) {
+    paypal.Buttons({
+      createSubscription: function (data, actions) {
+        return actions.subscription.create({
+          plan_id: "P-34X70623V9188512DNBZS2UA"
+        });
+      },
+      onApprove: function (data, actions) {
+        alert("✅ ¡Suscripción PRO activada con éxito!");
+        modal.classList.add("hidden");
+      }
+    }).render("#paypal-button-container");
+  }
+}
+
+
+// Función temporal de ejemplo hasta conectar con OpenAI
+async function obtenerConsejosPara(plataforma, pais) {
+  // Luego esto se reemplaza por fetch a tu backend con OpenAI
+  if (plataforma === "TikTok" && pais === "Chile") {
+    return {
+      hora: "19:00 hrs",
+      hashtags: ["#parati", "#viral", "#chileno"],
+      consejo: "Usa contenido con humor local o audios virales del momento."
+    };
+  }
+
+  if (plataforma === "Instagram" && pais === "México") {
+    return {
+      hora: "18:30 hrs",
+      hashtags: ["#igersmexico", "#instatrend", "#reelsmexico"],
+      consejo: "Comparte tips breves con visuales llamativos y subtítulos."
+    };
+  }
+
+  return {
+    hora: "17:00 hrs",
+    hashtags: ["#viral", "#tips", "#contenido"],
+    consejo: "Publica cuando tu audiencia esté más activa y usa subtítulos."
+  };
+}
+function obtenerPlataforma() {
+  const main = document.querySelector("main");
+  if (main.classList.contains("tiktok")) return "TikTok";
+  if (main.classList.contains("instagram")) return "Instagram";
+  if (main.classList.contains("youtube")) return "YouTube";
+  return "TikTok"; // Default
+}
+function actualizarOpcionesCategorias() {
+  const idioma = selectIdioma.value;
+  const categorias = textos[idioma].categorias;
+  const select = document.getElementById("tonoTikTok");
+
+  // Limpiar opciones actuales
+  select.innerHTML = "";
+
+  // Insertar nuevas opciones
+  categorias.forEach(cat => {
+    const option = document.createElement("option");
+    option.value = cat.value;
+    option.textContent = cat.label;
+    select.appendChild(option);
+  });
+}
