@@ -203,8 +203,10 @@
   <div id="loginModal" class="fixed inset-0 bg-black/50 flex items-center justify-center z-50 hidden">
     <div class="bg-white rounded-2xl p-6 w-full max-w-md shadow-xl">
       <h2 class="text-2xl font-bold mb-4 text-purple-800">Iniciar sesión</h2>
-      <input type="email" placeholder="Correo electrónico" class="w-full p-3 mb-3 border border-purple-300 rounded-lg" />
-      <input type="password" placeholder="Contraseña" class="w-full p-3 mb-4 border border-purple-300 rounded-lg" />
+      <input type="email" id="loginEmail" placeholder="Tu correo" />
+<input type="password" id="loginPassword" placeholder="Contraseña" />
+<input type="text" id="nombreRegistro" placeholder="Tu nombre" class="w-full p-3 mb-3 border border-purple-300 rounded-lg" />
+
       <div class="flex flex-col items-center gap-3 mt-4">
         <div class="flex justify-center gap-4 w-full">
           <button id="btnCancelarLogin" class="text-purple-600 font-semibold hover:text-purple-800">Cancelar</button>
@@ -246,15 +248,22 @@
 <div id="registroModal" class="fixed inset-0 bg-black/50 flex items-center justify-center z-50 hidden">
   <div class="bg-white rounded-2xl p-6 w-full max-w-md shadow-xl">
     <h2 class="text-2xl font-bold mb-4 text-purple-800">Crear cuenta</h2>
-    <input type="text" placeholder="Tu nombre" class="w-full p-3 mb-3 border border-purple-300 rounded-lg" />
-    <input type="email" placeholder="Tu correo" class="w-full p-3 mb-3 border border-purple-300 rounded-lg" />
-    <input type="password" placeholder="Contraseña" class="w-full p-3 mb-4 border border-purple-300 rounded-lg" />
+
+    <input type="text" id="nombreRegistro" placeholder="Tu nombre" class="w-full p-3 mb-3 border border-purple-300 rounded-lg" />
+
+    <!-- Email y contraseña con IDs necesarios -->
+    <input type="email" id="email" placeholder="Tu correo" class="w-full p-3 mb-3 border border-purple-300 rounded-lg" />
+    <input type="password" id="password" placeholder="Contraseña" class="w-full p-3 mb-4 border border-purple-300 rounded-lg" />
+    
     <div class="flex justify-end gap-2">
       <button id="btnCancelarRegistro" class="text-purple-600 font-semibold">Cancelar</button>
-      <button id="btnRegistrar" class="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-lg">Registrar</button>
+      <button id="btnCrearCuenta" class="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-lg">
+        Crear cuenta
+      </button>
     </div>
   </div>
 </div>
+
 
   <!-- Footer -->
   <footer class="text-center text-purple-900 py-6">

@@ -159,10 +159,46 @@ function capitalize(str) {
   btnContacto?.addEventListener("click", (e) => { e.preventDefault(); abrirModal(modalContacto); });
 
   btnCancelarLogin?.addEventListener("click", (e) => { e.preventDefault(); cerrarModal(loginModal); });
-  btnIniciarSesion?.addEventListener("click", (e) => { e.preventDefault(); cerrarModal(loginModal); });
   btnAbrirRegistro?.addEventListener("click", (e) => { e.preventDefault(); cerrarModal(loginModal); abrirModal(registroModal); });
   btnCancelarRegistro?.addEventListener("click", (e) => { e.preventDefault(); cerrarModal(registroModal); });
   btnRegistrar?.addEventListener("click", (e) => { e.preventDefault(); cerrarModal(registroModal); });
+btnIniciarSesion?.addEventListener("click", async (e) => {
+  e.preventDefault();
+
+  const email = document.getElementById("loginEmail")?.value;
+  const contraseña = document.getElementById("loginPassword")?.value;
+
+  if (!email || !contraseña) {
+    return alert("Por favor completa todos los campos");
+  }
+
+  try {
+    const res = await fetch("https://virralle-backend.vercel.app/api/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email, contraseña })
+    });
+
+    const data = await res.json();
+
+    if (res.ok) {
+      alert("✅ Sesión iniciada correctamente");
+
+      localStorage.setItem("usuario", JSON.stringify({
+        email,
+        esPro: data.esPro,
+        expiracion: data.expiracionPro
+      }));
+
+      cerrarModal(loginModal);
+    } else {
+      alert("❌ " + data.mensaje);
+    }
+  } catch (error) {
+    alert("Error al conectar con el servidor");
+    console.error(error);
+  }
+});
 
   selectIdioma?.addEventListener("change", (e) => {
     const idioma = e.target.value;
@@ -260,3 +296,43 @@ function actualizarOpcionesCategorias() {
     select.appendChild(option);
   });
 }
+document.getElementById("btnCrearCuenta").addEventListener("click", async () => {
+  const email = document.getElementById("email").value.trim();
+  const contraseña = document.getElementById("password").value.trim();
+  const nombre = document.getElementById("nombreRegistro")?.value.trim(); // 👈 nuevo
+
+  if (!email || !contraseña || !nombre) {
+    alert("Completa todos los campos (nombre, correo y contraseña)");
+    return;
+  }
+
+  try {
+    const res = await fetch("https://virralle-backend.vercel.app/api/registro", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ email, contraseña, nombre }) // 👈 ahora se envía también el nombre
+    });
+
+    const data = await res.json();
+
+    if (res.ok) {
+  // Guardar en localStorage
+ localStorage.setItem("usuario", JSON.stringify({
+  email,
+  nombre: data.nombre, // debe venir del backend
+  esPro: data.esPro,
+  expiracion: data.expiracionPro
+}));
+
+  alert(`✅ Bienvenido/a ${nombre}, tu cuenta ha sido creada exitosamente. Ya puedes usar la plataforma.`);
+  cerrarModal(registroModal);
+    } else {
+      alert("❌ " + data.mensaje);
+    }
+  } catch (error) {
+    alert("Error al conectar con el servidor");
+    console.error(error);
+  }
+});
