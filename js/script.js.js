@@ -30,19 +30,21 @@ document.addEventListener("DOMContentLoaded", () => {
   const hashtagsSpan = document.getElementById("hashtagsRecomendados");
   const consejoSpan = document.getElementById("consejoViral");
 
-  paisSelect.addEventListener("change", async () => {
-    const pais = paisSelect.value;
-    const plataforma = obtenerPlataforma();
+  const loginInputs = {
+    email: document.getElementById("loginEmail"),
+    password: document.getElementById("loginPassword"),
+    cancelar: btnCancelarLogin,
+    iniciar: btnIniciarSesion,
+    registro: btnAbrirRegistro
+  };
 
-    const resultado = await obtenerConsejosPara(plataforma, pais);
-
-    horaSpan.textContent = resultado.hora;
-    hashtagsSpan.textContent = resultado.hashtags.join(" ");
-    consejoSpan.textContent = resultado.consejo;
-
-    consejosBox.classList.remove("hidden");
-  });
-
+  const registroInputs = {
+    nombre: document.getElementById("nombreRegistro"),
+    email: document.getElementById("email"),
+    password: document.getElementById("password"),
+    cancelar: btnCancelarRegistro,
+    crear: document.getElementById("btnCrearCuenta")
+  };
   const textos = {
     es: {
       eslogan: "Hazte viral con IA",
@@ -60,24 +62,31 @@ document.addEventListener("DOMContentLoaded", () => {
       botonInstagram: "📸 ¡Crear mi post viral!",
       botonYouTube: "🎮 ¡Crear mi video viral!",
       alertaLimite: "🚫 Solo puedes generar 1 caption gratis. Actualiza a PRO por solo $5.99/mes.",
-      alertaLimiteDesc: "Suscripción mensual — cancela en cualquier momento."
+      alertaLimiteDesc: "Suscripción mensual — cancela en cualquier momento.",
+      login: {
+        titulo: "Iniciar sesión",
+        email: "Tu correo",
+        password: "Contraseña",
+        cancelar: "Cancelar",
+        entrar: "Entrar",
+        noCuenta: "¿No tienes cuenta?",
+        crearCuenta: "Crear cuenta"
+      },
+      registro: {
+        titulo: "Crear cuenta",
+        nombre: "Tu nombre",
+        email: "Tu correo",
+        password: "Contraseña",
+        cancelar: "Cancelar",
+        crear: "Crear cuenta"
+      },
+      paises: {
+        Chile: "Chile",
+        Mexico: "México",
+        Argentina: "Argentina",
+        USA: "Estados Unidos"
+      }
     },
-    categorias: [
-  { value: "", label: "Selecciona una categoría" },
-  { value: "divertido", label: "🌟 Contenido Divertido" },
-  { value: "retos", label: "🔥 Retos y Tendencias" },
-  { value: "lifehacks", label: "🛠 Life Hacks / Tutoriales" },
-  { value: "curiosidades", label: "🤯 Curiosidades y Datos" },
-  { value: "asmr", label: "🎷 ASMR y Relajación" },
-  { value: "emocional", label: "❤️ Contenido Emocional" },
-  { value: "educativo", label: "📚 Educación y Divulgación" },
-  { value: "historias", label: "📖 Story Time" },
-  { value: "espiritual", label: "🧘 Espiritualidad y Bienestar" },
-  { value: "ambiental", label: "🌱 Conciencia Ambiental" },
-  { value: "animales", label: "🐾 Animales y Mascotas" },
-  { value: "tematico", label: "🎯 Contenido Temático Específico" }
-],
-
     en: {
       eslogan: "Go viral with AI",
       iniciarSesion: "Log in",
@@ -94,112 +103,67 @@ document.addEventListener("DOMContentLoaded", () => {
       botonInstagram: "📸 Create my viral post!",
       botonYouTube: "🎮 Create my viral video!",
       alertaLimite: "🚫 You can only generate 1 caption for free. Upgrade to PRO for unlimited access at just $5.99/month.",
-      alertaLimiteDesc: "Monthly subscription — cancel anytime."
-    },
-    categorias: [
-  { value: "", label: "Select a category" },
-  { value: "divertido", label: "🌟 Funny Content" },
-  { value: "retos", label: "🔥 Challenges & Trends" },
-  { value: "lifehacks", label: "🛠 Life Hacks / Tutorials" },
-  { value: "curiosidades", label: "🤯 Curiosities & Facts" },
-  { value: "asmr", label: "🎷 ASMR & Relaxation" },
-  { value: "emocional", label: "❤️ Emotional Content" },
-  { value: "educativo", label: "📚 Education & Learning" },
-  { value: "historias", label: "📖 Story Time" },
-  { value: "espiritual", label: "🧘 Spirituality & Wellness" },
-  { value: "ambiental", label: "🌱 Environmental Awareness" },
-  { value: "animales", label: "🐾 Animals & Pets" },
-  { value: "tematico", label: "🎯 Specific Thematic Content" }
-]
-
+      alertaLimiteDesc: "Monthly subscription — cancel anytime.",
+      login: {
+        titulo: "Log in",
+        email: "Your email",
+        password: "Password",
+        cancelar: "Cancel",
+        entrar: "Enter",
+        noCuenta: "Don't have an account?",
+        crearCuenta: "Sign up"
+      },
+      registro: {
+        titulo: "Sign up",
+        nombre: "Your name",
+        email: "Your email",
+        password: "Password",
+        cancelar: "Cancel",
+        crear: "Create account"
+      },
+      paises: {
+        Chile: "Chile",
+        Mexico: "Mexico",
+        Argentina: "Argentina",
+        USA: "United States"
+      }
+    }
   };
+  function traducirModales(idioma) {
+    // Login modal
+    document.querySelector("#loginModal h2").textContent = textos[idioma].login.titulo;
+    document.getElementById("loginEmail").placeholder = textos[idioma].login.email;
+    document.getElementById("loginPassword").placeholder = textos[idioma].login.password;
+    document.getElementById("btnCancelarLogin").textContent = textos[idioma].login.cancelar;
+    document.getElementById("btnIniciarSesion").textContent = textos[idioma].login.entrar;
+    document.getElementById("btnAbrirRegistro").textContent = textos[idioma].login.crearCuenta;
+    document.querySelector("#loginModal p").childNodes[0].textContent = textos[idioma].login.noCuenta + " ";
 
-  function capitalize(str) {
-    return str.charAt(0).toUpperCase() + str.slice(1);
-  }
+    // Registro modal
+    const registroTitulo = document.querySelector("#registroModal h2");
+    const nombreInput = document.getElementById("nombreRegistro");
+    const emailRegistro = document.getElementById("email");
+    const passRegistro = document.getElementById("password");
 
-  function cambiarPlataforma(plataforma) {
-    contenedorPrincipal.className = "bg-white/80 backdrop-blur-lg rounded-xl p-8 shadow-lg w-full max-w-xl flex flex-col items-center gap-6";
-    contenedorPrincipal.classList.add(`${plataforma}-style`);
-
-    const main = document.querySelector("main");
-    main.classList.remove("tiktok", "instagram", "youtube");
-    main.classList.add(plataforma);
-function capitalize(str) {
-  return str === "tiktok" ? "TikTok"
-       : str === "youtube" ? "YouTube"
-       : str.charAt(0).toUpperCase() + str.slice(1);
-}
-
-    const idioma = selectIdioma.value;
-    tituloPlataforma.textContent = textos[idioma][`titulo${capitalize(plataforma)}`];
-    descripcionPlataforma.textContent = textos[idioma][`desc${capitalize(plataforma)}`];
-    inputPlataforma.placeholder = textos[idioma].placeholderIdea;
-    botonPlataforma.textContent = textos[idioma][`boton${capitalize(plataforma)}`];
-
-    if (paisSelect.value) {
-      paisSelect.dispatchEvent(new Event("change"));
+    if (registroTitulo && nombreInput && emailRegistro && passRegistro) {
+      registroTitulo.textContent = textos[idioma].registro.titulo;
+      nombreInput.placeholder = textos[idioma].registro.nombre;
+      emailRegistro.placeholder = textos[idioma].registro.email;
+      passRegistro.placeholder = textos[idioma].registro.password;
+      document.getElementById("btnCancelarRegistro").textContent = textos[idioma].registro.cancelar;
+      document.getElementById("btnRegistrar").textContent = textos[idioma].registro.crear;
     }
-  }
 
-  function abrirModal(modal) {
-    if (modal) modal.classList.remove("hidden");
-  }
-
-  function cerrarModal(modal) {
-    if (modal) modal.classList.add("hidden");
-  }
-
-  btnTikTok?.addEventListener("click", (e) => { e.preventDefault(); cambiarPlataforma("tiktok"); });
-  btnInstagram?.addEventListener("click", (e) => { e.preventDefault(); cambiarPlataforma("instagram"); });
-  btnYouTube?.addEventListener("click", (e) => { e.preventDefault(); cambiarPlataforma("youtube"); });
-
-  btnLogin?.addEventListener("click", (e) => { e.preventDefault(); abrirModal(loginModal); });
-  btnPro?.addEventListener("click", (e) => { e.preventDefault(); abrirModalPro(); });
-  btnContacto?.addEventListener("click", (e) => { e.preventDefault(); abrirModal(modalContacto); });
-
-  btnCancelarLogin?.addEventListener("click", (e) => { e.preventDefault(); cerrarModal(loginModal); });
-  btnAbrirRegistro?.addEventListener("click", (e) => { e.preventDefault(); cerrarModal(loginModal); abrirModal(registroModal); });
-  btnCancelarRegistro?.addEventListener("click", (e) => { e.preventDefault(); cerrarModal(registroModal); });
-  btnRegistrar?.addEventListener("click", (e) => { e.preventDefault(); cerrarModal(registroModal); });
-btnIniciarSesion?.addEventListener("click", async (e) => {
-  e.preventDefault();
-
-  const email = document.getElementById("loginEmail")?.value;
-  const contraseña = document.getElementById("loginPassword")?.value;
-
-  if (!email || !contraseña) {
-    return alert("Por favor completa todos los campos");
-  }
-
-  try {
-    const res = await fetch("https://virralle-backend.vercel.app/api/login", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email, contraseña })
+    // Países
+    const paises = textos[idioma].paises;
+    const opciones = paisSelect.querySelectorAll("option");
+    opciones.forEach((opcion) => {
+      const valor = opcion.value;
+      if (paises[valor]) {
+        opcion.textContent = paises[valor];
+      }
     });
-
-    const data = await res.json();
-
-    if (res.ok) {
-      alert("✅ Sesión iniciada correctamente");
-
-      localStorage.setItem("usuario", JSON.stringify({
-        email,
-        esPro: data.esPro,
-        expiracion: data.expiracionPro
-      }));
-
-      cerrarModal(loginModal);
-    } else {
-      alert("❌ " + data.mensaje);
-    }
-  } catch (error) {
-    alert("Error al conectar con el servidor");
-    console.error(error);
   }
-});
-
   selectIdioma?.addEventListener("change", (e) => {
     const idioma = e.target.value;
     document.getElementById("eslogan").textContent = textos[idioma].eslogan;
@@ -217,135 +181,10 @@ btnIniciarSesion?.addEventListener("click", async (e) => {
       alerta.querySelector("p").textContent = textos[idioma].alertaLimite;
       alerta.querySelector(".text-sm").textContent = textos[idioma].alertaLimiteDesc;
     }
+
     actualizarOpcionesCategorias();
+    traducirModales(idioma); // 👈 Traduce también los modales y países
   });
 
-  cambiarPlataforma("tiktok");
-});
-// Después de iniciar sesión correctamente
-const email = document.getElementById("inputEmail").value;
-
-localStorage.setItem("emailUsuario", email);
-
-// Verificar si es PRO
-fetch(`https://virralle-backend.vercel.app/api/es-pro?email=${email}`)
-  .then(res => res.json())
-  .then(data => {
-    localStorage.setItem("usuarioEsPro", data.esPro);
-    console.log("¿Es PRO?", data.esPro);
-  })
-  .catch(err => console.error("Error al verificar estado PRO:", err));
-
-// ✅ Confirmación de carga
-console.log("✅ script.js cargado");
-
-function abrirModalPro() {
-  const modal = document.getElementById("modalPro");
-  modal.classList.remove("hidden");
-
-  const paypalContainer = document.getElementById("paypal-button-container");
-
-  if (paypalContainer.childElementCount === 0) {
-    paypal.Buttons({
-      createSubscription: function (data, actions) {
-        return actions.subscription.create({
-          plan_id: "P-34X70623V9188512DNBZS2UA"
-        });
-      },
-      onApprove: function (data, actions) {
-        alert("✅ ¡Suscripción PRO activada con éxito!");
-        modal.classList.add("hidden");
-      }
-    }).render("#paypal-button-container");
-  }
-}
-
-
-// Función temporal de ejemplo hasta conectar con OpenAI
-async function obtenerConsejosPara(plataforma, pais) {
-  // Luego esto se reemplaza por fetch a tu backend con OpenAI
-  if (plataforma === "TikTok" && pais === "Chile") {
-    return {
-      hora: "19:00 hrs",
-      hashtags: ["#parati", "#viral", "#chileno"],
-      consejo: "Usa contenido con humor local o audios virales del momento."
-    };
-  }
-
-  if (plataforma === "Instagram" && pais === "México") {
-    return {
-      hora: "18:30 hrs",
-      hashtags: ["#igersmexico", "#instatrend", "#reelsmexico"],
-      consejo: "Comparte tips breves con visuales llamativos y subtítulos."
-    };
-  }
-
-  return {
-    hora: "17:00 hrs",
-    hashtags: ["#viral", "#tips", "#contenido"],
-    consejo: "Publica cuando tu audiencia esté más activa y usa subtítulos."
-  };
-}
-function obtenerPlataforma() {
-  const main = document.querySelector("main");
-  if (main.classList.contains("tiktok")) return "TikTok";
-  if (main.classList.contains("instagram")) return "Instagram";
-  if (main.classList.contains("youtube")) return "YouTube";
-  return "TikTok"; // Default
-}
-function actualizarOpcionesCategorias() {
-  const idioma = selectIdioma.value;
-  const categorias = textos[idioma].categorias;
-  const select = document.getElementById("tonoTikTok");
-
-  // Limpiar opciones actuales
-  select.innerHTML = "";
-
-  // Insertar nuevas opciones
-  categorias.forEach(cat => {
-    const option = document.createElement("option");
-    option.value = cat.value;
-    option.textContent = cat.label;
-    select.appendChild(option);
-  });
-}
-document.getElementById("btnCrearCuenta").addEventListener("click", async () => {
-  const email = document.getElementById("email").value.trim();
-  const contraseña = document.getElementById("password").value.trim();
-  const nombre = document.getElementById("nombreRegistro")?.value.trim(); // 👈 nuevo
-
-  if (!email || !contraseña || !nombre) {
-    alert("Completa todos los campos (nombre, correo y contraseña)");
-    return;
-  }
-
-  try {
-    const res = await fetch("https://virralle-backend.vercel.app/api/registro", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({ email, contraseña, nombre }) // 👈 ahora se envía también el nombre
-    });
-
-    const data = await res.json();
-
-    if (res.ok) {
-  // Guardar en localStorage
- localStorage.setItem("usuario", JSON.stringify({
-  email,
-  nombre: data.nombre, // debe venir del backend
-  esPro: data.esPro,
-  expiracion: data.expiracionPro
-}));
-
-  alert(`✅ Bienvenido/a ${nombre}, tu cuenta ha sido creada exitosamente. Ya puedes usar la plataforma.`);
-  cerrarModal(registroModal);
-    } else {
-      alert("❌ " + data.mensaje);
-    }
-  } catch (error) {
-    alert("Error al conectar con el servidor");
-    console.error(error);
-  }
-});
+  // Llamada inicial
+  traducirModales(selectIdioma?.value || "es");
