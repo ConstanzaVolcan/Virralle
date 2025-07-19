@@ -382,4 +382,3 @@ function mostrarBotonIniciarSesion() {
   btnLogin.classList.remove("hidden");
   btnCerrarSesion.classList.add("hidden");
 }
-
