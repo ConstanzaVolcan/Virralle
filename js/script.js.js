@@ -34,7 +34,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const pais = paisSelect.value;
     const plataforma = obtenerPlataforma();
 
-    const resultado = await obtenerConsejosPara(plataforma, pais);
+    const idioma = selectIdioma.value;
+const resultado = await obtenerConsejosPara(plataforma, pais, idioma);
+
 
     horaSpan.textContent = resultado.hora;
     hashtagsSpan.textContent = resultado.hashtags.join(" ");
@@ -262,30 +264,50 @@ function abrirModalPro() {
 
 
 // Función temporal de ejemplo hasta conectar con OpenAI
-async function obtenerConsejosPara(plataforma, pais) {
-  // Luego esto se reemplaza por fetch a tu backend con OpenAI
-  if (plataforma === "TikTok" && pais === "Chile") {
+async function obtenerConsejosPara(plataforma, pais, idioma = "es") {
+  if (idioma === "en") {
+    if (plataforma === "TikTok" && pais === "Germany") {
+      return {
+        hora: "5:00 PM",
+        hashtags: ["#foryou", "#viral", "#germany"],
+        consejo: "Use trending local sounds or humor to engage your audience."
+      };
+    }
+    if (plataforma === "Instagram" && pais === "Mexico") {
+      return {
+        hora: "6:30 PM",
+        hashtags: ["#igersmexico", "#instatrend", "#reelsmexico"],
+        consejo: "Share short tips with eye-catching visuals and subtitles."
+      };
+    }
     return {
-      hora: "19:00 hrs",
-      hashtags: ["#parati", "#viral", "#chileno"],
-      consejo: "Usa contenido con humor local o audios virales del momento."
+      hora: "5:00 PM",
+      hashtags: ["#viral", "#tips", "#content"],
+      consejo: "Post when your audience is most active and use subtitles."
+    };
+  } else {
+    if (plataforma === "TikTok" && pais === "Chile") {
+      return {
+        hora: "19:00 hrs",
+        hashtags: ["#parati", "#viral", "#chileno"],
+        consejo: "Usa contenido con humor local o audios virales del momento."
+      };
+    }
+    if (plataforma === "Instagram" && pais === "México") {
+      return {
+        hora: "18:30 hrs",
+        hashtags: ["#igersmexico", "#instatrend", "#reelsmexico"],
+        consejo: "Comparte tips breves con visuales llamativos y subtítulos."
+      };
+    }
+    return {
+      hora: "17:00 hrs",
+      hashtags: ["#viral", "#tips", "#contenido"],
+      consejo: "Publica cuando tu audiencia esté más activa y usa subtítulos."
     };
   }
-
-  if (plataforma === "Instagram" && pais === "México") {
-    return {
-      hora: "18:30 hrs",
-      hashtags: ["#igersmexico", "#instatrend", "#reelsmexico"],
-      consejo: "Comparte tips breves con visuales llamativos y subtítulos."
-    };
-  }
-
-  return {
-    hora: "17:00 hrs",
-    hashtags: ["#viral", "#tips", "#contenido"],
-    consejo: "Publica cuando tu audiencia esté más activa y usa subtítulos."
-  };
 }
+
 function obtenerPlataforma() {
   const main = document.querySelector("main");
   if (main.classList.contains("tiktok")) return "TikTok";
