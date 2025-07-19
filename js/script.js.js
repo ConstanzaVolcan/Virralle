@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
+  const btnCerrarSesion = document.getElementById("btnCerrarSesion");
   const contenedorPrincipal = document.getElementById("contenedorPrincipal");
   const tituloPlataforma = document.getElementById("tituloPlataforma");
   const descripcionPlataforma = document.getElementById("descripcionPlataforma");
@@ -179,27 +180,37 @@ btnIniciarSesion?.addEventListener("click", async (e) => {
       body: JSON.stringify({ email, contraseña })
     });
 
-    const data = await res.json();
+ if (res.ok) {
+  alert("✅ Sesión iniciada correctamente");
 
-    if (res.ok) {
-      alert("✅ Sesión iniciada correctamente");
+  localStorage.setItem("usuario", JSON.stringify({
+    email,
+    esPro: data.esPro,
+    expiracion: data.expiracionPro
+  }));
 
-      localStorage.setItem("usuario", JSON.stringify({
-        email,
-        esPro: data.esPro,
-        expiracion: data.expiracionPro
-      }));
-
-      cerrarModal(loginModal);
-    } else {
-      alert("❌ " + data.mensaje);
-    }
-  } catch (error) {
-    alert("Error al conectar con el servidor");
-    console.error(error);
+  // Mostrar nombre en la interfaz
+  const nombreSpan = document.getElementById("nombreUsuario");
+  if (nombreSpan && data.nombre) {
+    nombreSpan.textContent = `👋 Bienvenido/a, ${data.nombre}`;
+    nombreSpan.classList.remove("hidden");
   }
-});
 
+
+  };
+
+  localStorage.setItem("emailUsuario", email); // guarda el email plano también
+
+  // Verificar si es PRO
+  fetch(`https://virralle-backend.vercel.app/api/es-pro?email=${email}`)
+    .then(res => res.json())
+    .then(data => {
+      localStorage.setItem("usuarioEsPro", data.esPro);
+      console.log("¿Es PRO?", data.esPro);
+    })
+    .catch(err => console.error("Error al verificar estado PRO:", err));
+
+  cerrarModal(loginModal);
   selectIdioma?.addEventListener("change", (e) => {
     const idioma = e.target.value;
     document.getElementById("eslogan").textContent = textos[idioma].eslogan;
@@ -221,7 +232,21 @@ btnIniciarSesion?.addEventListener("click", async (e) => {
   });
 
   cambiarPlataforma("tiktok");
-});
+    const btnCerrarSesion = document.getElementById("btnCerrarSesion");
+
+  btnCerrarSesion?.addEventListener("click", (e) => {
+    e.preventDefault();
+    cerrarSesion();
+  });
+
+  // Mostrar u ocultar botón según sesión
+ const usuario = JSON.parse(localStorage.getItem("usuario"));
+if (usuario) {
+  mostrarBotonCerrarSesion();
+} else {
+  mostrarBotonIniciarSesion();
+}
+
 
 // ✅ Confirmación de carga
 console.log("✅ script.js cargado");
@@ -335,4 +360,26 @@ document.getElementById("btnCrearCuenta").addEventListener("click", async () => 
     alert("Error al conectar con el servidor");
     console.error(error);
   }
+  mostrarBotonCerrarSesion();
+  mostrarBotonIniciarSesion();
 });
+function cerrarSesion() {
+  localStorage.removeItem("usuario");       // borra todos los datos guardados del usuario
+  localStorage.removeItem("emailUsuario");  // borra el email plano
+  localStorage.removeItem("usuarioEsPro");  // borra el estado PRO
+
+  alert("👋 Sesión cerrada correctamente");
+
+  // Si quieres recargar la página al cerrar sesión:
+  location.reload();
+}
+function mostrarBotonCerrarSesion() {
+  btnLogin.classList.add("hidden");
+  btnCerrarSesion.classList.remove("hidden");
+}
+
+function mostrarBotonIniciarSesion() {
+  btnLogin.classList.remove("hidden");
+  btnCerrarSesion.classList.add("hidden");
+}
+
