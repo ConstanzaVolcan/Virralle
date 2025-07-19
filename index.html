@@ -224,29 +224,19 @@
 
 
   <!-- Modal Contacto -->
+<div id="modalContacto" class="fixed inset-0 bg-black/50 flex items-center justify-center z-50 hidden">
   <form action="https://formspree.io/f/mqalaowq" method="POST" class="bg-white rounded-2xl p-6 w-full max-w-md shadow-xl">
-  <h2 class="text-xl font-bold mb-4 text-purple-800">Contáctanos</h2>
-  <input type="text" name="nombre" placeholder="Tu nombre" required class="w-full p-3 mb-3 border border-purple-300 rounded-lg" />
-  <input type="email" name="correo" placeholder="Tu correo" required class="w-full p-3 mb-3 border border-purple-300 rounded-lg" />
-  <textarea name="mensaje" placeholder="Escribe tu mensaje" required class="w-full p-3 mb-3 border border-purple-300 rounded-lg"></textarea>
-  <div class="flex justify-end gap-2">
-    <button type="button" onclick="document.getElementById('modalContacto').classList.add('hidden')" class="text-purple-600 font-semibold">Cerrar</button>
-    <button type="submit" class="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-lg">Enviar</button>
-  </div>
-</form>
+    <h2 class="text-xl font-bold mb-4 text-purple-800">Contáctanos</h2>
+    <input type="text" name="nombre" placeholder="Tu nombre" required class="w-full p-3 mb-3 border border-purple-300 rounded-lg" />
+    <input type="email" name="correo" placeholder="Tu correo" required class="w-full p-3 mb-3 border border-purple-300 rounded-lg" />
+    <textarea name="mensaje" placeholder="Escribe tu mensaje" required class="w-full p-3 mb-3 border border-purple-300 rounded-lg"></textarea>
+    <div class="flex justify-end gap-2">
+      <button type="button" onclick="document.getElementById('modalContacto').classList.add('hidden')" class="text-purple-600 font-semibold">Cerrar</button>
+      <button type="submit" class="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-lg">Enviar</button>
+    </div>
+  </form>
+</div>
 
-    <form action="https://formspree.io/f/mqalaowq-4">
-  <input type="text" name="nombre" placeholder="Tu nombre" required class="w-full px-4 py-2 border border-purple-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500" />
-  <input type="email" name="correo" placeholder="Tu correo" required class="w-full px-4 py-2 border border-purple-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500" />
-  <textarea name="mensaje" placeholder="Escribe tu mensaje" required class="w-full px-4 py-2 border border-purple-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"></textarea>
-
-  <div class="flex justify-between items-center pt-4">
-    <button type="button" id="btnCerrarContacto" class="text-purple-600 hover:underline">Cerrar</button>
-    <button type="submit" class="bg-purple-600 text-white px-6 py-2 rounded-lg hover:bg-purple-700 transition">Enviar</button>
-  </div>
-</form>
-
-  </div>
 
   <!-- Alertas -->
   <div id="alertaLimite" class="alerta-limite oculto">
