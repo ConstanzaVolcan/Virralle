@@ -186,16 +186,7 @@ btnIniciarSesion?.addEventListener("click", async (e) => {
     email,
     esPro: data.esPro,
     expiracion: data.expiracionPro
-  }));
-
-  // Mostrar nombre en la interfaz
-  const nombreSpan = document.getElementById("nombreUsuario");
-  if (nombreSpan && data.nombre) {
-    nombreSpan.textContent = `👋 Bienvenido/a, ${data.nombre}`;
-    nombreSpan.classList.remove("hidden");
-  }
-
-
+    
   }));
 
   localStorage.setItem("emailUsuario", email); // guarda el email plano también
