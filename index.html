@@ -224,17 +224,17 @@
 
 
   <!-- Modal Contacto -->
-  <form action="https://formspree.io/f/mqalaowq" method="POST" class="bg-white rounded-2xl p-6 w-full max-w-md shadow-xl">
-  <h2 class="text-xl font-bold mb-4 text-purple-800">Contáctanos</h2>
-  <input type="text" name="nombre" placeholder="Tu nombre" required class="w-full p-3 mb-3 border border-purple-300 rounded-lg" />
-  <input type="email" name="correo" placeholder="Tu correo" required class="w-full p-3 mb-3 border border-purple-300 rounded-lg" />
-  <textarea name="mensaje" placeholder="Escribe tu mensaje" required class="w-full p-3 mb-3 border border-purple-300 rounded-lg"></textarea>
-  <div class="flex justify-end gap-2">
-    <button type="button" onclick="document.getElementById('modalContacto').classList.add('hidden')" class="text-purple-600 font-semibold">Cerrar</button>
-    <button type="submit" class="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-lg">Enviar</button>
-  </div>
-</form>
-
+  <div id="modalContacto" class="fixed inset-0 bg-black/50 flex items-center justify-center z-50 hidden">
+    <div class="bg-white rounded-2xl p-6 w-full max-w-md shadow-xl">
+      <h2 class="text-xl font-bold mb-4 text-purple-800">Contáctanos</h2>
+      <input type="text" placeholder="Tu nombre" class="w-full p-3 mb-3 border border-purple-300 rounded-lg" />
+      <input type="email" placeholder="Tu correo" class="w-full p-3 mb-3 border border-purple-300 rounded-lg" />
+      <textarea placeholder="Escribe tu mensaje" class="w-full p-3 mb-3 border border-purple-300 rounded-lg"></textarea>
+      <div class="flex justify-end gap-2">
+        <button onclick="document.getElementById('modalContacto').classList.add('hidden')" class="text-purple-600 font-semibold">Cerrar</button>
+        <button class="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-lg">Enviar</button>
+      </div>
+    </div>
     <form action="https://formspree.io/f/mqalaowq-4">
   <input type="text" name="nombre" placeholder="Tu nombre" required class="w-full px-4 py-2 border border-purple-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500" />
   <input type="email" name="correo" placeholder="Tu correo" required class="w-full px-4 py-2 border border-purple-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500" />
