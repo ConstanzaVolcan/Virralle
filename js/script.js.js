@@ -186,7 +186,6 @@ btnIniciarSesion?.addEventListener("click", async (e) => {
     email,
     esPro: data.esPro,
     expiracion: data.expiracionPro
-    
   }));
 
   localStorage.setItem("emailUsuario", email); // guarda el email plano también
@@ -223,20 +222,6 @@ btnIniciarSesion?.addEventListener("click", async (e) => {
   });
 
   cambiarPlataforma("tiktok");
-    const btnCerrarSesion = document.getElementById("btnCerrarSesion");
-
-  btnCerrarSesion?.addEventListener("click", (e) => {
-    e.preventDefault();
-    cerrarSesion();
-  });
-
-  // Mostrar u ocultar botón según sesión
-  const usuarioGuardado = localStorage.getItem("usuario");
-  if (usuarioGuardado) {
-    btnCerrarSesion.classList.remove("hidden");
-    btnLogin?.classList.add("hidden"); // Oculta "Iniciar sesión" si ya hay sesión
-  }
-
 });
 
 
