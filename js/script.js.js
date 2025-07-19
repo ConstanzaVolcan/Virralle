@@ -222,7 +222,19 @@ btnIniciarSesion?.addEventListener("click", async (e) => {
 
   cambiarPlataforma("tiktok");
 });
+// Después de iniciar sesión correctamente
+const email = document.getElementById("inputEmail").value;
 
+localStorage.setItem("emailUsuario", email);
+
+// Verificar si es PRO
+fetch(`https://virralle-backend.vercel.app/api/es-pro?email=${email}`)
+  .then(res => res.json())
+  .then(data => {
+    localStorage.setItem("usuarioEsPro", data.esPro);
+    console.log("¿Es PRO?", data.esPro);
+  })
+  .catch(err => console.error("Error al verificar estado PRO:", err));
 
 // ✅ Confirmación de carga
 console.log("✅ script.js cargado");
