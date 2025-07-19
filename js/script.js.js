@@ -54,7 +54,7 @@ document.addEventListener("DOMContentLoaded", () => {
       tituloInstagram: "Crea un post viral en Instagram",
       descInstagram: "Haz que tu contenido destaque en Instagram con una idea viral",
       tituloYouTube: "Lleva tu canal al siguiente nivel",
-      descYouTube: "Diseña el próximo gran video viral del internet.",
+      descYouTube: "Diseña el próximo gran video viral del internet",
       placeholderIdea: "¿Tienes algo en mente o prefieres que te sorprendamos?",
       botonTikTok: "🚀 ¡Crear mi TikTok viral!",
       botonInstagram: "📸 ¡Crear mi post viral!",
