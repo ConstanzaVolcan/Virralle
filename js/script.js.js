@@ -179,28 +179,39 @@ btnIniciarSesion?.addEventListener("click", async (e) => {
       body: JSON.stringify({ email, contraseña })
     });
 
- if (res.ok) {
-  alert("✅ Sesión iniciada correctamente");
+    const data = await res.json();
 
-  localStorage.setItem("usuario", JSON.stringify({
-    email,
-    esPro: data.esPro,
-    expiracion: data.expiracionPro
-  }));
+    if (res.ok) {
+      alert("✅ Sesión iniciada correctamente");
 
-  localStorage.setItem("emailUsuario", email); // guarda el email plano también
+      localStorage.setItem("usuario", JSON.stringify({
+        email,
+        esPro: data.esPro,
+        expiracion: data.expiracionPro
+      }));
 
-  // Verificar si es PRO
-  fetch(`https://virralle-backend.vercel.app/api/es-pro?email=${email}`)
-    .then(res => res.json())
-    .then(data => {
-      localStorage.setItem("usuarioEsPro", data.esPro);
-      console.log("¿Es PRO?", data.esPro);
-    })
-    .catch(err => console.error("Error al verificar estado PRO:", err));
+      cerrarModal(loginModal);
+    } else {
+      alert("❌ " + data.mensaje);
+    }
+  } catch (error) {
+    alert("Error al conectar con el servidor");
+    console.error(error);
+  }
+  // Después de iniciar sesión correctamente
+const email = document.getElementById("inputEmail").value;
 
-  cerrarModal(loginModal);
-}
+localStorage.setItem("emailUsuario", email);
+
+// Verificar si es PRO
+fetch(`https://virralle-backend.vercel.app/api/es-pro?email=${email}`)
+  .then(res => res.json())
+  .then(data => {
+    localStorage.setItem("usuarioEsPro", data.esPro);
+    console.log("¿Es PRO?", data.esPro);
+  })
+  .catch(err => console.error("Error al verificar estado PRO:", err));
+});
 
   selectIdioma?.addEventListener("change", (e) => {
     const idioma = e.target.value;
