@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const btnCerrarSesion = document.getElementById("btnCerrarSesion");
   const contenedorPrincipal = document.getElementById("contenedorPrincipal");
   const tituloPlataforma = document.getElementById("tituloPlataforma");
   const descripcionPlataforma = document.getElementById("descripcionPlataforma");
@@ -362,9 +361,6 @@ document.getElementById("btnCrearCuenta").addEventListener("click", async () => 
     alert("Error al conectar con el servidor");
     console.error(error);
   }
-  mostrarBotonCerrarSesion();
-  mostrarBotonIniciarSesion();
-
 });
 function cerrarSesion() {
   localStorage.removeItem("usuario");       // borra todos los datos guardados del usuario
@@ -376,13 +372,3 @@ function cerrarSesion() {
   // Si quieres recargar la página al cerrar sesión:
   location.reload();
 }
-function mostrarBotonCerrarSesion() {
-  btnLogin.classList.add("hidden");
-  btnCerrarSesion.classList.remove("hidden");
-}
-
-function mostrarBotonIniciarSesion() {
-  btnLogin.classList.remove("hidden");
-  btnCerrarSesion.classList.add("hidden");
-}
-
