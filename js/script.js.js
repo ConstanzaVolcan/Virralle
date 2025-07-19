@@ -197,7 +197,7 @@ btnIniciarSesion?.addEventListener("click", async (e) => {
   }
 
 
-  };
+  }));
 
   localStorage.setItem("emailUsuario", email); // guarda el email plano también
 
@@ -211,6 +211,7 @@ btnIniciarSesion?.addEventListener("click", async (e) => {
     .catch(err => console.error("Error al verificar estado PRO:", err));
 
   cerrarModal(loginModal);
+}
   selectIdioma?.addEventListener("change", (e) => {
     const idioma = e.target.value;
     document.getElementById("eslogan").textContent = textos[idioma].eslogan;
@@ -240,12 +241,13 @@ btnIniciarSesion?.addEventListener("click", async (e) => {
   });
 
   // Mostrar u ocultar botón según sesión
- const usuario = JSON.parse(localStorage.getItem("usuario"));
-if (usuario) {
-  mostrarBotonCerrarSesion();
-} else {
-  mostrarBotonIniciarSesion();
-}
+  const usuarioGuardado = localStorage.getItem("usuario");
+  if (usuarioGuardado) {
+    btnCerrarSesion.classList.remove("hidden");
+    btnLogin?.classList.add("hidden"); // Oculta "Iniciar sesión" si ya hay sesión
+  }
+
+});
 
 
 // ✅ Confirmación de carga
@@ -362,6 +364,7 @@ document.getElementById("btnCrearCuenta").addEventListener("click", async () => 
   }
   mostrarBotonCerrarSesion();
   mostrarBotonIniciarSesion();
+
 });
 function cerrarSesion() {
   localStorage.removeItem("usuario");       // borra todos los datos guardados del usuario
@@ -382,3 +385,4 @@ function mostrarBotonIniciarSesion() {
   btnLogin.classList.remove("hidden");
   btnCerrarSesion.classList.add("hidden");
 }
+
