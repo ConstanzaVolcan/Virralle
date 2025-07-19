@@ -201,6 +201,7 @@ btnIniciarSesion?.addEventListener("click", async (e) => {
 
   cerrarModal(loginModal);
 }
+
   selectIdioma?.addEventListener("change", (e) => {
     const idioma = e.target.value;
     document.getElementById("eslogan").textContent = textos[idioma].eslogan;
@@ -338,13 +339,3 @@ document.getElementById("btnCrearCuenta").addEventListener("click", async () => 
     console.error(error);
   }
 });
-function cerrarSesion() {
-  localStorage.removeItem("usuario");       // borra todos los datos guardados del usuario
-  localStorage.removeItem("emailUsuario");  // borra el email plano
-  localStorage.removeItem("usuarioEsPro");  // borra el estado PRO
-
-  alert("👋 Sesión cerrada correctamente");
-
-  // Si quieres recargar la página al cerrar sesión:
-  location.reload();
-}
