@@ -223,9 +223,7 @@ btnIniciarSesion?.addEventListener("click", async (e) => {
   cambiarPlataforma("tiktok");
 });
 // Después de iniciar sesión correctamente
-const inputEmail = document.getElementById("inputEmail");
-const email = inputEmail ? inputEmail.value : "";
-
+const email = document.getElementById("inputEmail").value;
 
 localStorage.setItem("emailUsuario", email);
 
@@ -322,7 +320,7 @@ document.getElementById("btnCrearCuenta").addEventListener("click", async () => 
   }
 
   try {
-    const res = await fetch("https://virralle-backend.vercel.app/api/registrarse", {
+    const res = await fetch("https://virralle-backend.vercel.app/api/registro", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
