@@ -320,7 +320,7 @@ document.getElementById("btnCrearCuenta").addEventListener("click", async () => 
   }
 
   try {
-    const res = await fetch("https://virralle-backend.vercel.app/api/registro", {
+    const res = await fetch("https://virralle-backend.vercel.app/api/registrarse", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
