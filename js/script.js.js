@@ -349,3 +349,42 @@ document.getElementById("btnCrearCuenta").addEventListener("click", async () => 
     console.error(error);
   }
 });
+document.getElementById("btnCrearCuenta").addEventListener("click", async () => {
+  const email = document.getElementById("email").value.trim();
+  const contraseña = document.getElementById("password").value.trim();
+  const nombre = document.getElementById("nombreRegistro")?.value.trim();
+
+  if (!email || !contraseña || !nombre) {
+    alert("Completa todos los campos (nombre, correo y contraseña)");
+    return;
+  }
+
+  try {
+    const res = await fetch("https://virralle-backend.vercel.app/api/registro", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ email, contraseña, nombre })
+    });
+
+    const data = await res.json();
+
+    if (res.ok) {
+      localStorage.setItem("usuario", JSON.stringify({
+        email,
+        nombre: data.nombre,
+        esPro: data.esPro,
+        expiracion: data.expiracionPro
+      }));
+
+      alert(`✅ Bienvenido/a ${nombre}, tu cuenta ha sido creada exitosamente. Ya puedes usar la plataforma.`);
+      cerrarModal(registroModal);
+    } else {
+      alert("❌ " + data.mensaje);
+    }
+  } catch (error) {
+    alert("Error al conectar con el servidor");
+    console.error(error);
+  }
+});
