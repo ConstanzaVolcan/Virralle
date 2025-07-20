@@ -223,7 +223,9 @@ btnIniciarSesion?.addEventListener("click", async (e) => {
   cambiarPlataforma("tiktok");
 });
 // Después de iniciar sesión correctamente
-const email = document.getElementById("inputEmail").value;
+const inputEmail = document.getElementById("inputEmail");
+const email = inputEmail ? inputEmail.value : "";
+
 
 localStorage.setItem("emailUsuario", email);
 
