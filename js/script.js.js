@@ -311,11 +311,17 @@ function actualizarOpcionesCategorias() {
     select.appendChild(option);
   });
 }
+if (selectIdioma) {
+  selectIdioma.addEventListener("change", (e) => {
+    actualizarOpcionesCategorias();
+  });
+}
+
 document.getElementById("btnCrearCuenta").addEventListener("click", async () => {
   const email = document.getElementById("email").value.trim();
   const contraseña = document.getElementById("password").value.trim();
   const nombre = document.getElementById("nombreRegistro")?.value.trim(); // 👈 nuevo
-
+});
   if (!email || !contraseña || !nombre) {
     alert("Completa todos los campos (nombre, correo y contraseña)");
     return;

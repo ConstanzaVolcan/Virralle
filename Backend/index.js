@@ -6,6 +6,20 @@ const OpenAI = require("openai");
 const authRoutes = require("./routes/auth");
 const Usuario = require("./models/Usuario");
 
+// 🔧 Configurar opciones de CORS
+const corsOptions = {
+  origin: "https://www.virralle.com", // o "*" para pruebas
+  methods: ["GET", "POST"],
+  credentials: true
+};
+
+const app = express(); // 👈 Esto es lo que te faltaba
+
+// 🧩 Middleware
+app.use(cors(corsOptions));
+app.use(express.json());
+app.use("/api", authRoutes);
+
 
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY
