@@ -4,8 +4,8 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const OpenAI = require("openai");
 const authRoutes = require("./routes/auth");
+app.use("/api", authRoutes);
 const Usuario = require("./models/Usuario");
-
 // 🔧 Configurar opciones de CORS
 const corsOptions = {
   origin: "https://www.virralle.com", // o "*" para pruebas
