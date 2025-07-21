@@ -16,45 +16,52 @@
     }
   </style>
 </head>
-<body class="min-h-screen flex flex-col items-center justify-between fondo-animado overflow-x-hidden">
-  <!-- PORTADA INICIAL -->
-  <section id="portada" class="flex flex-col items-center justify-center text-white text-center py-20 px-6">
-    <h1 class="text-5xl sm:text-6xl font-bold mb-4">Bienvenid@ a <span class="text-yellow-300">Virralle</span></h1>
-    <p class="text-lg sm:text-2xl mb-8">Tu generador inteligente de ideas virales para redes sociales</p>
-    <div class="flex flex-wrap justify-center gap-4">
-      <button onclick="mostrarGenerador('TikTok')" class="px-6 py-3 bg-white text-purple-700 rounded-full font-semibold hover:bg-purple-100 transition">TikTok</button>
-      <button onclick="mostrarGenerador('Instagram')" class="px-6 py-3 bg-white text-purple-700 rounded-full font-semibold hover:bg-purple-100 transition">Instagram</button>
-      <button onclick="mostrarGenerador('YouTube')" class="px-6 py-3 bg-white text-purple-700 rounded-full font-semibold hover:bg-purple-100 transition">YouTube</button>
+<body class="min-h-screen bg-gradient-to-br from-blue-400 via-blue-500 to-blue-600 overflow-x-hidden">
+  <!-- Portada de bienvenida -->
+  <section id="portadaInicio" class="min-h-screen flex flex-col justify-center items-center text-white text-center p-8">
+    <h1 class="text-4xl sm:text-5xl font-bold mb-4">
+      Bienvenid@ a <span class="text-yellow-300">Virralle</span>
+    </h1>
+    <p class="text-lg sm:text-xl mb-10">
+      Tu generador inteligente de ideas virales para redes sociales
+    </p>
+    <div class="space-y-4 w-full max-w-sm">
+      <button onclick="iniciarGenerador('tiktok')" class="w-full py-3 rounded-full bg-white text-purple-700 font-semibold shadow hover:brightness-110 transition-all">TikTok</button>
+      <button onclick="iniciarGenerador('instagram')" class="w-full py-3 rounded-full bg-white text-purple-700 font-semibold shadow hover:brightness-110 transition-all">Instagram</button>
+      <button onclick="iniciarGenerador('youtube')" class="w-full py-3 rounded-full bg-white text-purple-700 font-semibold shadow hover:brightness-110 transition-all">YouTube</button>
     </div>
   </section>
 
-  <!-- GENERADOR OCULTO INICIALMENTE -->
-  <main id="generador" class="w-full flex justify-center mt-12 px-4 hidden">
-    <div class="bg-white/80 backdrop-blur-lg rounded-xl p-8 shadow-lg w-full max-w-xl flex flex-col items-center gap-6">
-      <h2 id="tituloPlataforma" class="text-2xl font-bold text-purple-900 text-center">Comencemos la creación de tu contenido viral</h2>
-      <p class="text-center text-purple-700">Responde unas preguntas y recibe una idea lista para triunfar.</p>
+  <!-- Sección generador viral (inicia oculta) -->
+  <main id="seccionGenerador" class="hidden w-full flex justify-center mt-12 px-4">
+    <div id="contenedorPrincipal" class="bg-white/80 backdrop-blur-lg rounded-xl p-8 shadow-lg w-full max-w-xl flex flex-col items-center gap-6">
+      <h2 id="tituloPlataforma" class="text-2xl font-bold text-purple-900 text-center">Comencemos la creación de tu TikTok viral</h2>
+      <p id="descripcionPlataforma" class="text-center text-purple-700">Responde unas preguntas y recibe una idea lista para triunfar en TikTok.</p>
 
-      <select class="w-[90%] max-w-[400px] p-3 text-black rounded-xl border border-purple-300 bg-white focus:outline-none focus:ring-2 focus:ring-purple-500">
-        <option value="">Selecciona una categoría</option>
-        <option value="divertido">🌟 Contenido Divertido</option>
-        <option value="retos">🔥 Retos y Tendencias</option>
-        <option value="lifehacks">🛠 Life Hacks / Tutoriales</option>
-      </select>
-
-      <textarea placeholder="¿Tienes algo en mente o prefieres que te sorprendamos?" class="w-full min-h-[180px] p-4 text-black rounded-xl border border-purple-300 focus:outline-none focus:ring-2 focus:ring-purple-500 resize-y"></textarea>
-
-      <button class="w-full py-4 px-6 bg-gradient-to-r from-purple-600 to-purple-800 text-white font-semibold rounded-xl shadow-md hover:brightness-110 transition-all duration-300">
-        🚀 ¡Crear mi contenido viral!
-      </button>
+      <!-- Aquí siguen el selector de categoría, textarea, botón y consejos virales -->
+      <!-- ... (todo tu contenido actual que ya tienes) ... -->
     </div>
   </main>
 
+  <!-- Script para mostrar generador al presionar los botones -->
   <script>
-    function mostrarGenerador(plataforma) {
-      document.getElementById('portada').style.display = 'none';
-      const generador = document.getElementById('generador');
-      generador.classList.remove('hidden');
-      document.getElementById('tituloPlataforma').innerText = `Comencemos la creación de tu contenido viral para ${plataforma}`;
+    function iniciarGenerador(red) {
+      document.getElementById("portadaInicio").style.display = "none";
+      document.getElementById("seccionGenerador").classList.remove("hidden");
+
+      // Opcional: cambiar texto según red seleccionada
+      const titulo = {
+        tiktok: "Comencemos la creación de tu TikTok viral",
+        instagram: "Comencemos la creación de tu Instagram viral",
+        youtube: "Comencemos la creación de tu YouTube viral"
+      };
+      const descripcion = {
+        tiktok: "Responde unas preguntas y recibe una idea lista para triunfar en TikTok.",
+        instagram: "Responde unas preguntas y recibe una idea lista para destacar en Instagram.",
+        youtube: "Responde unas preguntas y recibe una idea lista para triunfar en YouTube."
+      };
+      document.getElementById("tituloPlataforma").textContent = titulo[red];
+      document.getElementById("descripcionPlataforma").textContent = descripcion[red];
     }
   </script>
 </body>
