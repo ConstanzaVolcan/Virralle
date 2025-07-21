@@ -1,3 +1,4 @@
+<!-- Archivo HTML actualizado completamente -->
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -25,51 +26,36 @@
     .youtube-style {
       background-color: rgba(255, 0, 0, 0.1);
     }
-
-    /* Animación menú móvil */
-    @media (max-width: 767px) {
-      .navbar {
-        max-height: 0;
-        opacity: 0;
-        overflow: hidden;
-        transition: max-height 0.3s ease, opacity 0.3s ease;
-      }
-      .navbar.open {
-        max-height: 500px;
-        opacity: 1;
-      }
-    }
   </style>
 </head>
 <body class="min-h-screen flex flex-col items-center justify-between bg-gradient-to-br from-purple-300 via-purple-400 to-purple-500 overflow-x-hidden">
   <div class="fondo-animado fixed inset-0 -z-10"></div>
+<body class="overflow-x-hidden">
 
-  <header class="header relative">
-    <div class="flex flex-col md:flex-row items-center justify-center md:justify-between gap-2 md:gap-4">
-      <div class="top-bar">
-        <div class="titulo-contenedor">
-          <h1 class="text-2xl sm:text-3xl md:text-4xl font-bold text-white text-center mb-2">Virralle</h1>
-          <p class="eslogan" id="eslogan">Hazte viral con IA</p>
-        </div>
-        <nav class="navbar hidden md:block">
-          <ul>
-            <li><a href="#" id="btnLogin">Iniciar sesión</a></li>
-            <li><a href="#" id="btnTikTok">TikTok</a></li>
-            <li><a href="#" id="btnInstagram">Instagram</a></li>
-            <li><a href="#" id="btnYouTube">YouTube</a></li>
-            <li><a href="#" id="btnPro">Mejorar a PRO</a></li>
-            <li><a href="#" id="btnContacto" class="inline-block px-6 py-2 text-white font-bold border-2 border-white rounded-full transition duration-300 hover:bg-white hover:text-purple-600">Contáctanos</a></li>
-          </ul>
-        </nav>
-        <!-- Botón menú móvil (hamburger) -->
-        <button id="btnMenu" class="md:hidden text-white text-3xl absolute top-4 right-4 focus:outline-none" aria-label="Abrir menú">☰</button>
-        <select id="languageSelect" class="selector-idioma">
-          <option value="es">ESP</option>
-          <option value="en">ENG</option>
-        </select>
+  <header class="header">
+  <div class="flex flex-col md:flex-row items-center justify-center md:justify-between gap-2 md:gap-4">
+    <div class="top-bar">
+      <div class="titulo-contenedor">
+        <h1 class="text-2xl sm:text-3xl md:text-4xl font-bold text-white text-center mb-2">Virralle</h1>
+        <p class="eslogan" id="eslogan">Hazte viral con IA</p>
       </div>
-      <button id="btnCerrarSesion" class="hidden">Cerrar sesión</button>
+      <nav class="navbar">
+        <ul>
+          <li><a href="#" id="btnLogin">Iniciar sesión</a></li>
+          <li><a href="#" id="btnTikTok">TikTok</a></li>
+          <li><a href="#" id="btnInstagram">Instagram</a></li>
+          <li><a href="#" id="btnYouTube">YouTube</a></li>
+          <li><a href="#" id="btnPro">Mejorar a PRO</a></li>
+          <li><a href="#" id="btnContacto" class="inline-block px-6 py-2 text-white font-bold border-2 border-white rounded-full transition duration-300 hover:bg-white hover:text-purple-600">Contáctanos</a></li>
+        </ul>
+      </nav>
+      <select id="languageSelect" class="selector-idioma">
+        <option value="es">ESP</option>
+        <option value="en">ENG</option>
+      </select>
     </div>
+    <button id="btnCerrarSesion" class="hidden">Cerrar sesión</button>
+
   </header>
 
   <main class="w-full flex justify-center mt-12 px-4">
@@ -111,78 +97,80 @@
       <div class="w-full mt-4">
         <label for="pais" class="block text-purple-800 font-semibold mb-1">🌍 Tu país</label>
         <select id="pais" class="w-full p-3 border rounded-xl border-purple-300 bg-white focus:outline-none focus:ring-2 focus:ring-purple-500">
-          <option value="Alemania">Alemania</option>
-          <option value="Arabia Saudita">Arabia Saudita</option>
-          <option value="Argentina">Argentina</option>
-          <option value="Australia">Australia</option>
-          <option value="Austria">Austria</option>
-          <option value="Bélgica">Bélgica</option>
-          <option value="Bolivia">Bolivia</option>
-          <option value="Brasil">Brasil</option>
-          <option value="Canadá">Canadá</option>
-          <option value="Chile">Chile</option>
-          <option value="Colombia">Colombia</option>
-          <option value="Corea del Sur">Corea del Sur</option>
-          <option value="Costa Rica">Costa Rica</option>
-          <option value="Croacia">Croacia</option>
-          <option value="Dinamarca">Dinamarca</option>
-          <option value="Ecuador">Ecuador</option>
-          <option value="El Salvador">El Salvador</option>
-          <option value="Emiratos Árabes Unidos">Emiratos Árabes Unidos</option>
-          <option value="España">España</option>
-          <option value="Estados Unidos">Estados Unidos</option>
-          <option value="Estonia">Estonia</option>
-          <option value="Filipinas">Filipinas</option>
-          <option value="Finlandia">Finlandia</option>
-          <option value="Francia">Francia</option>
-          <option value="Guatemala">Guatemala</option>
-          <option value="Honduras">Honduras</option>
-          <option value="Hungría">Hungría</option>
-          <option value="India">India</option>
-          <option value="Indonesia">Indonesia</option>
-          <option value="Irlanda">Irlanda</option>
-          <option value="Islandia">Islandia</option>
-          <option value="Israel">Israel</option>
-          <option value="Italia">Italia</option>
-          <option value="Japón">Japón</option>
-          <option value="Kazajistán">Kazajistán</option>
-          <option value="Letonia">Letonia</option>
-          <option value="Lituania">Lituania</option>
-          <option value="Luxemburgo">Luxemburgo</option>
-          <option value="Malasia">Malasia</option>
-          <option value="Malta">Malta</option>
-          <option value="Marruecos">Marruecos</option>
-          <option value="México">México</option>
-          <option value="Nicaragua">Nicaragua</option>
-          <option value="Noruega">Noruega</option>
-          <option value="Nueva Zelanda">Nueva Zelanda</option>
-          <option value="Panamá">Panamá</option>
-          <option value="Paraguay">Paraguay</option>
-          <option value="Países Bajos">Países Bajos</option>
-          <option value="Perú">Perú</option>
-          <option value="Polonia">Polonia</option>
-          <option value="Portugal">Portugal</option>
-          <option value="Puerto Rico">Puerto Rico</option>
-          <option value="Qatar">Qatar</option>
-          <option value="Reino Unido">Reino Unido</option>
-          <option value="República Checa">República Checa</option>
-          <option value="República Dominicana">República Dominicana</option>
-          <option value="Rumania">Rumania</option>
-          <option value="Serbia">Serbia</option>
-          <option value="Singapur">Singapur</option>
-          <option value="Sudáfrica">Sudáfrica</option>
-          <option value="Suecia">Suecia</option>
-          <option value="Suiza">Suiza</option>
-          <option value="Tailandia">Tailandia</option>
-          <option value="Taiwán">Taiwán</option>
-          <option value="Turquía">Turquía</option>
-          <option value="Ucrania">Ucrania</option>
-          <option value="Uruguay">Uruguay</option>
-          <option value="Venezuela">Venezuela</option>
-          <option value="Vietnam">Vietnam</option>
-          <!-- Separador visual -->
-          <option disabled>────────────</option>
-          <option value="otro">🌍 Otro país</option>
+       <option value="Alemania">Alemania</option>
+<option value="Arabia Saudita">Arabia Saudita</option>
+<option value="Argentina">Argentina</option>
+<option value="Australia">Australia</option>
+<option value="Austria">Austria</option>
+<option value="Bélgica">Bélgica</option>
+<option value="Bolivia">Bolivia</option>
+<option value="Brasil">Brasil</option>
+<option value="Canadá">Canadá</option>
+<option value="Chile">Chile</option>
+<option value="Colombia">Colombia</option>
+<option value="Corea del Sur">Corea del Sur</option>
+<option value="Costa Rica">Costa Rica</option>
+<option value="Croacia">Croacia</option>
+<option value="Dinamarca">Dinamarca</option>
+<option value="Ecuador">Ecuador</option>
+<option value="El Salvador">El Salvador</option>
+<option value="Emiratos Árabes Unidos">Emiratos Árabes Unidos</option>
+<option value="España">España</option>
+<option value="Estados Unidos">Estados Unidos</option>
+<option value="Estonia">Estonia</option>
+<option value="Filipinas">Filipinas</option>
+<option value="Finlandia">Finlandia</option>
+<option value="Francia">Francia</option>
+<option value="Guatemala">Guatemala</option>
+<option value="Honduras">Honduras</option>
+<option value="Hungría">Hungría</option>
+<option value="India">India</option>
+<option value="Indonesia">Indonesia</option>
+<option value="Irlanda">Irlanda</option>
+<option value="Islandia">Islandia</option>
+<option value="Israel">Israel</option>
+<option value="Italia">Italia</option>
+<option value="Japón">Japón</option>
+<option value="Kazajistán">Kazajistán</option>
+<option value="Letonia">Letonia</option>
+<option value="Lituania">Lituania</option>
+<option value="Luxemburgo">Luxemburgo</option>
+<option value="Malasia">Malasia</option>
+<option value="Malta">Malta</option>
+<option value="Marruecos">Marruecos</option>
+<option value="México">México</option>
+<option value="Nicaragua">Nicaragua</option>
+<option value="Noruega">Noruega</option>
+<option value="Nueva Zelanda">Nueva Zelanda</option>
+<option value="Panamá">Panamá</option>
+<option value="Paraguay">Paraguay</option>
+<option value="Países Bajos">Países Bajos</option>
+<option value="Perú">Perú</option>
+<option value="Polonia">Polonia</option>
+<option value="Portugal">Portugal</option>
+<option value="Puerto Rico">Puerto Rico</option>
+<option value="Qatar">Qatar</option>
+<option value="Reino Unido">Reino Unido</option>
+<option value="República Checa">República Checa</option>
+<option value="República Dominicana">República Dominicana</option>
+<option value="Rumania">Rumania</option>
+<option value="Serbia">Serbia</option>
+<option value="Singapur">Singapur</option>
+<option value="Sudáfrica">Sudáfrica</option>
+<option value="Suecia">Suecia</option>
+<option value="Suiza">Suiza</option>
+<option value="Tailandia">Tailandia</option>
+<option value="Taiwán">Taiwán</option>
+<option value="Turquía">Turquía</option>
+<option value="Ucrania">Ucrania</option>
+<option value="Uruguay">Uruguay</option>
+<option value="Venezuela">Venezuela</option>
+<option value="Vietnam">Vietnam</option>
+
+<!-- Separador visual -->
+<option disabled>────────────</option>
+<option value="otro">🌍 Otro país</option>
+
         </select>
       </div>
 
@@ -204,6 +192,8 @@
     </div>
   </main>
 
+
+
   <!-- Modal PRO -->
   <div id="modalPro" class="fixed inset-0 bg-black/50 flex items-center justify-center z-50 hidden">
     <div class="bg-white rounded-2xl p-6 w-full max-w-md shadow-xl text-center">
@@ -216,39 +206,46 @@
 
   <!-- Modal Login -->
   <div class="flex flex-wrap justify-center gap-2 mt-4 sm:mt-0 sm:flex-nowrap sm:justify-end">
-    <div id="loginModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
-      <div class="bg-white rounded-xl p-8 w-full max-w-md shadow-lg space-y-6">
-        <h2 class="text-2xl font-bold text-purple-700 text-center">Iniciar sesión</h2>
-        <div class="space-y-4">
-          <input type="email" id="loginEmail" placeholder="Tu correo" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500" />
-          <input type="password" id="loginPassword" placeholder="Contraseña" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500" />
-        </div>
-        <div class="flex justify-between items-center pt-4">
-          <button id="btnCancelarLogin" class="bg-white text-purple-600 border border-purple-600 px-6 py-2 rounded-lg hover:bg-purple-600 hover:text-white transition">Cancelar</button>
-          <button id="btnIniciarSesion" class="bg-purple-600 text-white px-6 py-2 rounded-lg hover:bg-purple-700 transition">Entrar</button>
-        </div>
-        <p class="text-sm text-center text-gray-600">¿No tienes cuenta? 
-          <a href="#" id="btnAbrirRegistro" class="text-purple-700 font-medium hover:underline">Crear cuenta</a>
-        </p>
-      </div>
+   <div id="loginModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
+  <div class="bg-white rounded-xl p-8 w-full max-w-md shadow-lg space-y-6">
+    <h2 class="text-2xl font-bold text-purple-700 text-center">Iniciar sesión</h2>
+
+    <div class="space-y-4">
+      <input type="email" id="loginEmail" placeholder="Tu correo" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500" />
+      <input type="password" id="loginPassword" placeholder="Contraseña" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500" />
     </div>
-  </div>
 
-  <!-- Modal Contacto Unificado -->
-  <div id="modalContacto" class="fixed inset-0 bg-black/50 flex items-center justify-center z-50 hidden">
-    <form action="https://formspree.io/f/mqalaowq" method="POST" class="bg-white rounded-2xl p-6 w-full max-w-md shadow-xl">
-      <h2 class="text-xl font-bold mb-4 text-purple-800">Contáctanos</h2>
-      <input type="text" name="nombre" placeholder="Tu nombre" required class="w-full p-3 mb-3 border border-purple-300 rounded-lg" />
-      <input type="email" name="correo" placeholder="Tu correo" required class="w-full p-3 mb-3 border border-purple-300 rounded-lg" />
-      <textarea name="mensaje" placeholder="Escribe tu mensaje" required class="w-full p-3 mb-3 border border-purple-300 rounded-lg"></textarea>
-      <div class="flex justify-end gap-2">
-        <button type="button" onclick="document.getElementById('modalContacto').classList.add('hidden')" class="text-purple-600 font-semibold">Cerrar</button>
-        <button type="submit" class="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-lg">Enviar</button>
-      </div>
-    </form>
-  </div>
+    <div class="flex justify-between items-center pt-4">
+     <button id="btnCancelarLogin" class="bg-white text-purple-600 border border-purple-600 px-6 py-2 rounded-lg hover:bg-purple-600 hover:text-white transition">
+  Cancelar
+</button>
 
-  <!-- Alerta Límite Free -->
+      <button id="btnIniciarSesion" class="bg-purple-600 text-white px-6 py-2 rounded-lg hover:bg-purple-700 transition">Entrar</button>
+    </div>
+
+    <p class="text-sm text-center text-gray-600">¿No tienes cuenta? 
+      <a href="#" id="btnAbrirRegistro" class="text-purple-700 font-medium hover:underline">Crear cuenta</a>
+    </p>
+  </div>
+</div>
+
+
+  <!-- Modal Contacto -->
+ <!-- Modal Contacto UNIFICADO -->
+<div id="modalContacto" class="fixed inset-0 bg-black/50 flex items-center justify-center z-50 hidden">
+  <form action="https://formspree.io/f/mqalaowq" method="POST" class="bg-white rounded-2xl p-6 w-full max-w-md shadow-xl">
+    <h2 class="text-xl font-bold mb-4 text-purple-800">Contáctanos</h2>
+    <input type="text" name="nombre" placeholder="Tu nombre" required class="w-full p-3 mb-3 border border-purple-300 rounded-lg" />
+    <input type="email" name="correo" placeholder="Tu correo" required class="w-full p-3 mb-3 border border-purple-300 rounded-lg" />
+    <textarea name="mensaje" placeholder="Escribe tu mensaje" required class="w-full p-3 mb-3 border border-purple-300 rounded-lg"></textarea>
+    <div class="flex justify-end gap-2">
+      <button type="button" onclick="document.getElementById('modalContacto').classList.add('hidden')" class="text-purple-600 font-semibold">Cerrar</button>
+      <button type="submit" class="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-lg">Enviar</button>
+    </div>
+  </form>
+</div>
+
+  <!-- Alertas -->
   <div id="alertaLimite" class="alerta-limite oculto">
     <p>🚫 Solo puedes generar 1 caption gratis. <strong>Actualiza a PRO</strong> por solo $5.99/mes.</p>
     <p class="text-sm text-white/80 mt-1">Suscripción mensual — cancela en cualquier momento.</p>
@@ -257,22 +254,28 @@
   <!-- PayPal SDK -->
   <script src="https://www.paypal.com/sdk/js?client-id=AbiSnDMFMjmbJz6j34Lr_pEwF1u2iw-VmCiACaCyVSO98fNDsGywlFW-B8lsOo9NNWvLCS2P4UvNx_jb&vault=true&intent=subscription" data-sdk-integration-source="button-factory"></script>
 
-  <!-- Archivo JS principal -->
-  <script src="js/script.js"></script>
+  <!-- Script final -->
+  <script src="js/script.js.js"></script>
+<!-- Modal Registro -->
+<div id="registroModal" class="fixed inset-0 bg-black/50 flex items-center justify-center z-50 hidden">
+  <div class="bg-white rounded-2xl p-6 w-full max-w-md shadow-xl">
+    <h2 class="text-2xl font-bold mb-4 text-purple-800">Crear cuenta</h2>
 
-  <!-- Modal Registro -->
-  <div id="registroModal" class="fixed inset-0 bg-black/50 flex items-center justify-center z-50 hidden">
-    <div class="bg-white rounded-2xl p-6 w-full max-w-md shadow-xl">
-      <h2 class="text-2xl font-bold mb-4 text-purple-800">Crear cuenta</h2>
-      <input type="text" id="nombreRegistro" placeholder="Tu nombre" class="w-full p-3 mb-3 border border-purple-300 rounded-lg" />
-      <input type="email" id="email" placeholder="Tu correo" class="w-full p-3 mb-3 border border-purple-300 rounded-lg" />
-      <input type="password" id="password" placeholder="Contraseña" class="w-full p-3 mb-4 border border-purple-300 rounded-lg" />
-      <div class="flex justify-end gap-2">
-        <button id="btnCancelarRegistro" class="text-purple-600 font-semibold">Cancelar</button>
-        <button id="btnCrearCuenta" class="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-lg">Crear cuenta</button>
-      </div>
+    <input type="text" id="nombreRegistro" placeholder="Tu nombre" class="w-full p-3 mb-3 border border-purple-300 rounded-lg" />
+
+    <!-- Email y contraseña con IDs necesarios -->
+    <input type="email" id="email" placeholder="Tu correo" class="w-full p-3 mb-3 border border-purple-300 rounded-lg" />
+    <input type="password" id="password" placeholder="Contraseña" class="w-full p-3 mb-4 border border-purple-300 rounded-lg" />
+    
+    <div class="flex justify-end gap-2">
+      <button id="btnCancelarRegistro" class="text-purple-600 font-semibold">Cancelar</button>
+      <button id="btnCrearCuenta" class="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-lg">
+        Crear cuenta
+      </button>
     </div>
   </div>
+</div>
+
 
   <!-- Footer -->
   <footer class="text-center text-purple-900 py-6">
