@@ -40,15 +40,20 @@
         <p class="eslogan" id="eslogan">Hazte viral con IA</p>
       </div>
       <nav class="navbar">
-        <ul>
-          <li><a href="#" id="btnLogin">Iniciar sesión</a></li>
-          <li><a href="#" id="btnTikTok">TikTok</a></li>
-          <li><a href="#" id="btnInstagram">Instagram</a></li>
-          <li><a href="#" id="btnYouTube">YouTube</a></li>
-          <li><a href="#" id="btnPro">Mejorar a PRO</a></li>
-          <li><a href="#" id="btnContacto" class="inline-block px-6 py-2 text-white font-bold border-2 border-white rounded-full transition duration-300 hover:bg-white hover:text-purple-600">Contáctanos</a></li>
-        </ul>
-      </nav>
+  <ul class="flex flex-wrap justify-center md:justify-end gap-2">
+    <li><a href="#" id="btnLogin">Iniciar sesión</a></li>
+    <li><a href="#" id="btnTikTok">TikTok</a></li>
+    <li><a href="#" id="btnInstagram">Instagram</a></li>
+    <li><a href="#" id="btnYouTube">YouTube</a></li>
+    <li><a href="#" id="btnPro">Mejorar a PRO</a></li>
+    <li>
+      <a href="#" id="btnContacto" class="inline-block px-6 py-2 text-white font-bold border-2 border-white rounded-full transition duration-300 hover:bg-white hover:text-purple-600">
+        Contáctanos
+      </a>
+    </li>
+  </ul>
+</nav>
+
       <select id="languageSelect" class="selector-idioma">
         <option value="es">ESP</option>
         <option value="en">ENG</option>
@@ -205,6 +210,7 @@
   </div>
 
   <!-- Modal Login -->
+  <div class="flex flex-wrap justify-center gap-2 mt-4 sm:mt-0 sm:flex-nowrap sm:justify-end">
    <div id="loginModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
   <div class="bg-white rounded-xl p-8 w-full max-w-md shadow-lg space-y-6">
     <h2 class="text-2xl font-bold text-purple-700 text-center">Iniciar sesión</h2>
