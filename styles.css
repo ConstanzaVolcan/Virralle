@@ -786,7 +786,7 @@ body {
 :root {
   /* 🎨 Paleta de colores centralizada */
   --color-fondo: #f0f4ff;
-  --color-primario: #14d611;
+  --color-primario: #3f00ab;
   --color-secundario: #a855f7;
   --color-acento: #f97316;
   --color-boton-hover: #ea580c;
@@ -794,9 +794,9 @@ body {
   --color-texto: #1f2937;
   --color-texto-suave: #6b7280;
   --color-boton-texto: #ffffff;
-  --color-boton-fondo: #543189;
+  --color-boton-fondo: #2f7cbb;
   --color-boton-hover-2: #ac3fec;
-  --color-borde: #290853;
+  --color-borde: #250853;
   --color-vidrio: rgba(255, 255, 255, 0.2);
   --color-eslogan: #ffffff;
   --color-resultado: #f8f7fa;
