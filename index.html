@@ -288,5 +288,16 @@
   <footer class="text-center text-purple-900 py-6">
     © 2025 <strong>Virralle AI</strong> — Todos los derechos reservados
   </footer>
+  <script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const botonMenu = document.getElementById("botonMenuMovil");
+    const navbar = document.getElementById("navbar");
+
+    botonMenu.addEventListener("click", () => {
+      navbar.classList.toggle("hidden");
+    });
+  });
+</script>
+
 </body>
 </html>
