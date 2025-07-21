@@ -190,37 +190,6 @@ btnIniciarSesion?.addEventListener("click", async (e) => {
         expiracion: data.expiracionPro
       }));
 const email = document.getElementById("inputEmail").value;
-function iniciarGenerador(red) {
-  document.getElementById("portadaInicio").style.display = "none";
-  document.getElementById("generador").classList.remove("hidden");
-
-  const textos = {
-    tiktok: {
-      titulo: "Comencemos la creación de tu TikTok viral",
-      descripcion: "Recibe la mejor idea y consejo para triunfar en TikTok",
-      placeholder: "¿Tienes algo en mente o prefieres que te sorprendamos?",
-      boton: "🚀 ¡Crear mi TikTok viral!"
-    },
-    instagram: {
-      titulo: "Crea un post viral en Instagram",
-      descripcion: "Haz que tu contenido destaque en Instagram con una idea viral",
-      placeholder: "¿Tienes algo en mente o prefieres que te sorprendamos?",
-      boton: "📸 ¡Crear mi post viral!"
-    },
-    youtube: {
-      titulo: "Lleva tu canal al siguiente nivel",
-      descripcion: "Diseña el próximo gran video viral del internet",
-      placeholder: "¿Tienes algo en mente o prefieres que te sorprendamos?",
-      boton: "🎮 ¡Crear mi video viral!"
-    }
-  };
-
-  // Actualiza textos dinámicamente
-  document.getElementById("tituloPlataforma").textContent = textos[red].titulo;
-  document.getElementById("descripcionPlataforma").textContent = textos[red].descripcion;
-  document.getElementById("inputPlataforma").placeholder = textos[red].placeholder;
-  document.getElementById("botonPlataforma").textContent = textos[red].boton;
-}
 
 localStorage.setItem("emailUsuario", email);
       cerrarModal(loginModal);
