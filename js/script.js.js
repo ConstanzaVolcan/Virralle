@@ -347,13 +347,3 @@ document.getElementById("btnCrearCuenta").addEventListener("click", async () => 
     console.error(error);
   }
 });
-document.addEventListener("DOMContentLoaded", () => {
-  const btnMenu = document.getElementById("btnMenu");
-  const menuNavegacion = document.getElementById("menuNavegacion");
-
-  if (btnMenu && menuNavegacion) {
-    btnMenu.addEventListener("click", () => {
-      menuNavegacion.classList.toggle("hidden");
-    });
-  }
-});

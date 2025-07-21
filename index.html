@@ -33,24 +33,22 @@
 <body class="overflow-x-hidden">
 
   <header class="header">
-  
+  <div class="flex flex-col md:flex-row items-center justify-center md:justify-between gap-2 md:gap-4">
     <div class="top-bar">
       <div class="titulo-contenedor">
         <h1 class="text-2xl sm:text-3xl md:text-4xl font-bold text-white text-center mb-2">Virralle</h1>
         <p class="eslogan" id="eslogan">Hazte viral con IA</p>
       </div>
-      <div class="flex flex-col md:flex-row items-center justify-center md:justify-between gap-2 md:gap-4"></div>
-     <nav id="menuNavegacion" class="hidden flex-col items-center gap-2 mt-2 md:flex md:flex-row md:gap-4">
-  <ul class="flex flex-col md:flex-row items-center gap-2 md:gap-4">
-    <li><a href="#" id="btnLogin">Iniciar sesión</a></li>
-    <li><a href="#" id="btnTikTok">TikTok</a></li>
-    <li><a href="#" id="btnInstagram">Instagram</a></li>
-    <li><a href="#" id="btnYouTube">YouTube</a></li>
-    <li><a href="#" id="btnPro">Mejorar a PRO</a></li>
-    <li><a href="#" id="btnContacto">Contáctanos</a></li>
-  </ul>
-</nav>
-
+      <nav class="navbar">
+        <ul>
+          <li><a href="#" id="btnLogin">Iniciar sesión</a></li>
+          <li><a href="#" id="btnTikTok">TikTok</a></li>
+          <li><a href="#" id="btnInstagram">Instagram</a></li>
+          <li><a href="#" id="btnYouTube">YouTube</a></li>
+          <li><a href="#" id="btnPro">Mejorar a PRO</a></li>
+          <li><a href="#" id="btnContacto" class="inline-block px-6 py-2 text-white font-bold border-2 border-white rounded-full transition duration-300 hover:bg-white hover:text-purple-600">Contáctanos</a></li>
+        </ul>
+      </nav>
       <select id="languageSelect" class="selector-idioma">
         <option value="es">ESP</option>
         <option value="en">ENG</option>
@@ -59,8 +57,6 @@
     <button id="btnCerrarSesion" class="hidden">Cerrar sesión</button>
 
   </header>
-<button id="menuToggle" class="md:hidden text-white font-bold px-4 py-2 border border-white rounded-full mt-2">
-  Menú
 
   <main class="w-full flex justify-center mt-12 px-4">
     <div id="contenedorPrincipal" class="bg-white/80 backdrop-blur-lg rounded-xl p-8 shadow-lg w-full max-w-xl flex flex-col items-center gap-6">
