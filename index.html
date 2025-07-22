@@ -17,11 +17,15 @@
   </style>
 </head>
 <body class="min-h-screen flex flex-col items-center justify-between fondo-animado overflow-x-hidden">
+  <!-- Botón HOME (🏠) -->
+<button onclick="volverInicio()" class="fixed top-4 left-4 z-50 p-3 bg-white text-purple-700 rounded-full shadow-lg hover:bg-yellow-300 hover:text-black transition-all duration-300">
+  🏠
+</button>
   <!-- PORTADA INICIAL -->
   <section id="portada" class="flex flex-col items-center justify-center text-white text-center py-20 px-6">
-    <h1 class="text-5xl sm:text-6xl font-bold mb-4 text-neutral-900">
+    <h1 class="text-5xl sm:text-6xl font-bold mb-4 text-neutral-900 group">
   Bienvenid@ a
-  <span class="font-extrabold bg-gradient-to-r from-yellow-400 via-yellow-300 to-orange-500 bg-clip-text text-transparent drop-shadow-sm">
+  <span class="font-extrabold bg-gradient-to-r from-yellow-400 via-yellow-300 to-orange-500 bg-clip-text text-transparent transition-all duration-500 ease-in-out group-hover:blur-[0.5px] group-hover:brightness-110">
     Virralle
   </span>
 </h1>
@@ -371,6 +375,12 @@
       navbar.classList.toggle("hidden");
     });
   });
+</script>
+<script>
+  function volverInicio() {
+    document.getElementById('generador').classList.add('hidden');
+    document.getElementById('portada').style.display = 'flex';
+  }
 </script>
 
 </body>
