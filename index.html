@@ -18,7 +18,7 @@
 </head>
 <body class="min-h-screen flex flex-col items-center justify-between fondo-animado overflow-x-hidden">
   <!-- Botón HOME (🏠) -->
-<button onclick="volverInicio()" class="fixed top-4 left-4 z-50 p-3 bg-white text-purple-700 rounded-full shadow-lg hover:bg-yellow-300 hover:text-black transition-all duration-300">
+<button id="botonHome" onclick="volverInicio()" class="hidden fixed top-4 left-4 z-50 text-3xl text-white hover:text-yellow-300 transition duration-300">
   🏠
 </button>
   <!-- PORTADA INICIAL -->
@@ -69,11 +69,22 @@
 
   <script>
     function mostrarGenerador(plataforma) {
-      document.getElementById('portada').style.display = 'none';
-      const generador = document.getElementById('generador');
-      generador.classList.remove('hidden');
-      document.getElementById('tituloPlataforma').innerText = `Comencemos la creación de tu contenido viral para ${plataforma}`;
-    }
+  document.getElementById('portada').style.display = 'none';
+  const generador = document.getElementById('generador');
+  generador.classList.remove('hidden');
+  document.getElementById('tituloPlataforma').innerText = `Comencemos la creación de tu contenido viral para ${plataforma}`;
+  
+  // Mostrar el botón de la casa
+  document.getElementById('botonHome').classList.remove('hidden');
+}
+function volverInicio() {
+  document.getElementById('generador').classList.add('hidden');
+  document.getElementById('portada').style.display = 'flex';
+
+  // Ocultar el botón de la casa
+  document.getElementById('botonHome').classList.add('hidden');
+}
+
   </script>
 </body>
 </html>
