@@ -803,11 +803,5 @@ body {
   --color-resultado-borde: #9b5cb6;
   --color-categoria: #4b0082;
 }
-<span style="
-  background: linear-gradient(to right, #FFD700, #FF8C00);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  font-weight: 800;">
-  Virralle
-</span>
+
 text-shadow: 0 1px 4px rgba(0,0,0,0.3);
