@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const descripcionPlataforma = document.getElementById("descripcionPlataforma");
   const inputPlataforma = document.getElementById("inputPlataforma");
   const botonPlataforma = document.getElementById("botonPlataforma");
-  
+  const selectIdioma = document.getElementById("languageSelect");
 
   const btnTikTok = document.getElementById("btnTikTok");
   const btnInstagram = document.getElementById("btnInstagram");
