@@ -113,6 +113,30 @@ document.addEventListener("DOMContentLoaded", () => {
 ]
 
   };
+function mostrarGenerador(plataforma) {
+  document.getElementById('portada').style.display = 'none';
+
+  const generador = document.getElementById('generador');
+  generador.classList.remove('hidden');
+
+  const titulo = document.getElementById('tituloPlataforma');
+  titulo.innerText = `Comencemos la creación de tu contenido viral para ${plataforma}`;
+
+  // Mostrar el botón de la casa al entrar a una plataforma
+  document.getElementById('botonHome').classList.remove('hidden');
+
+  // Activar la clase correspondiente a la plataforma
+  const main = document.querySelector("main");
+  main.classList.remove("tiktok", "instagram", "youtube");
+  main.classList.add(plataforma.toLowerCase());
+}
+function volverInicio() {
+  document.getElementById('generador').classList.add('hidden');
+  document.getElementById('portada').style.display = 'flex';
+
+  // Ocultar botón de la casa
+  document.getElementById('botonHome').classList.add('hidden');
+}
 
   function capitalize(str) {
     return str.charAt(0).toUpperCase() + str.slice(1);
