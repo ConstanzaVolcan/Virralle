@@ -336,27 +336,6 @@ document.getElementById("btnCrearCuenta").addEventListener("click", async () => 
   esPro: data.esPro,
   expiracion: data.expiracionPro
 }));
-const botonHome = document.getElementById('botonHome');
-
-document.getElementById('btnTikTok').addEventListener('click', () => {
-  botonHome.classList.remove('hidden');
-});
-
-document.getElementById('btnInstagram').addEventListener('click', () => {
-  botonHome.classList.remove('hidden');
-});
-
-document.getElementById('btnYouTube').addEventListener('click', () => {
-  botonHome.classList.remove('hidden');
-});
-function volverInicio() {
-  // Ocultar el generador y mostrar la portada
-  document.getElementById('generador').classList.add('hidden');
-  document.getElementById('portada').classList.remove('hidden');
-
-  // Ocultar el botón de volver
-  botonHome.classList.add('hidden');
-}
 
 
   alert(`✅ Bienvenido/a ${nombre}, tu cuenta ha sido creada exitosamente. Ya puedes usar la plataforma.`);
