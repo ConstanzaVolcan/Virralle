@@ -130,6 +130,9 @@ function mostrarGenerador(plataforma) {
   main.classList.remove("tiktok", "instagram", "youtube");
   main.classList.add(plataforma.toLowerCase());
 }
+// Mostrar botón de volver al inicio si no estás en la portada
+document.getElementById('botonHome')?.classList.remove('hidden');
+
 function volverInicio() {
   document.getElementById('generador').classList.add('hidden');
   document.getElementById('portada').style.display = 'flex';
